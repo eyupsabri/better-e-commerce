@@ -48,6 +48,16 @@ namespace Entities
                 StreetAddress = "Yenice mah Sumer Oral cad no 23",
                 PhoneNumber = "5344181168"
                 
+            }, new Customer()
+            {
+                CustomerId = 2,
+                CustomerName = "Husnu",
+                Email = "husnu.cemre@gmail.com",
+                Province = "Manisa",
+                City = "Alasehir",
+                StreetAddress = "Yenice mah Sumer Oral cad no 23",
+                PhoneNumber = "5344181168"
+
             });
 
             modelBuilder.Entity<Category>().HasData(new Category() {
