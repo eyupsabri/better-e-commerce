@@ -1,6 +1,6 @@
 ﻿using Business.DTOs;
 using Entities;
-using Repositories;
+using Repos;
 
 namespace Business
 {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenericRepository
+namespace Repos
 {
     public interface ICategoriesRepository
     {

@@ -1,8 +1,8 @@
 using Business;
 using Entities;
-using GenericRepository;
+using Repos;
 using Microsoft.EntityFrameworkCore;
-using Repositories;
+
 
 namespace Customer
 {

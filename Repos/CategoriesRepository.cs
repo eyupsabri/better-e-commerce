@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace GenericRepository
+namespace Repos
 {
     public class CategoriesRepository : ICategoriesRepository
     {
