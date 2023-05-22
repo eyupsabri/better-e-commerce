@@ -57,13 +57,13 @@ namespace Customer.Controllers
 
         
         [Route("[action]/{ProductId}")]
-        public  IActionResult OrderCard(int ProductId)
+        public  IActionResult OrderCard(int ProductId, string decreaseByOne, string increaseByOne)
         {
-            List<string> Products;
-            List<int> Quantities;
+            List<string>? Products = HttpContext.Session.Get<List<string>>("Products");
+            List<int>? Quantities = HttpContext.Session.Get<List<int>>("Quantities"); ;
 
 
-            if (HttpContext.Session.Get<List<string>>("Products") == null)
+            if (Products == null && Quantities == null)
             {
                 Products = new List<string>();
                 Quantities = new List<int>();
@@ -72,18 +72,45 @@ namespace Customer.Controllers
 
             } else
             {
-                Products = HttpContext.Session.Get<List<string>>("Products");
-                Quantities = HttpContext.Session.Get<List<int>>("Quantities");
-
                 int index = Products.FindIndex(temp => temp.Equals(ProductId.ToString()));
-                if(index == -1)
+
+                //Sepete Ekle Logic
+                if (decreaseByOne == null && increaseByOne == null)
                 {
-                    Products.Add(ProductId.ToString());
-                    Quantities.Add(1);
-                } else
+                    
+                    if (index == -1)
+                    {
+                        Products.Add(ProductId.ToString());
+                        Quantities.Add(1);
+                    }
+                    else
+                    {
+                        Quantities[index]++; ;
+                    }
+                //Oklarla arttırma ya da azaltma
+                }else
                 {
-                    Quantities[index] = Quantities[index] + 1;
+                   
+
+                    if (decreaseByOne == null)
+                        Quantities[index]++;
+                    else if (Quantities[index] > 1)
+                        Quantities[index]--;
+                    //If quantity is zero remove Product
+                    else if(Quantities.Sum() > 1)
+                    {
+                        Products.RemoveAt(index);
+                        Quantities.RemoveAt(index);
+                    }else
+                    {
+                        HttpContext.Session.Clear();
+                        return Redirect("~/");
+
+                    }
+
                 }
+
+                
             }
             HttpContext.Session.Set<List<string>>("Products", Products);
             HttpContext.Session.Set<List<int>>("Quantities", Quantities);
