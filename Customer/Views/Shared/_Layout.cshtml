@@ -7,6 +7,11 @@
 
     <title>@ViewBag.Title</title>
 </head>
+
+@{
+    string? IsNull = Context.Session.GetString("IsNull");
+}
+
 <body style="background-color: #dee2e6;">
     <div class="container-lg">
         <nav class="navbar navbar-expand-lg bg-primary px-5" data-bs-theme="dark">
@@ -20,9 +25,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="~/home">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="~/Products/Order">Link</a>
-                        </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Dropdown
@@ -35,7 +38,22 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled">Disabled</a>
+                            <a class="nav-link" href="~/Products/Order">Sepet
+                                @{
+                                    if (IsNull == null)
+                                    {
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bag-dash-fill" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM6 9.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1H6z" />
+                                        </svg>
+                                    }
+                                    else
+                                    {
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
+                                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z" />
+                                        </svg>
+                                    }
+                                }
+                            </a>
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
@@ -55,7 +73,7 @@
                             <a class="nav-link" asp-controller="Products" asp-action="ProductsByCategoryId" asp-route-id="@item.CategoryId">@item.CategoryName</a>
                         }
                         <a class="nav-link active" aria-current="page" href="#">Active</a>
- 
+
                         <a class="nav-link disabled">Disabled</a>
                     </nav>
                 </div>

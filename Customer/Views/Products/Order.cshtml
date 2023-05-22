@@ -1,29 +1,74 @@
 ﻿<div class="col px-0">
-    @{
-        double sum = 0;
-        //List<string> productsName = new List<string>();
-        foreach (var product in ViewBag.Orders)
-        {
-            //if (productsName.Contains(product.Product.ProductName))
-            //{
+    <table class="table caption-top">
+        <caption>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z" />
+            </svg>
+        </caption>
 
-            //}
-            //else
-            //{
-                
-            //}
-            sum = sum + product.Quantity * product.Product.ProductPrice;
-            <ul class="list-group list-group-horizontal-md">
-                <li class="list-group-item">@product.Product.ProductName</li>
-                <li class="list-group-item">@product.Quantity adet</li>
-                <li class="list-group-item">@(product.Quantity * product.Product.ProductPrice)TL</li>
-            </ul>
+        
+
+        <thead>
+            <tr>
+                <th scope="col">Ürün</th>
+                <th scope="col">Adet</th>
+                <th scope="col">Fiyat</th>
+            </tr>
+        </thead>
+
+        @{
+            double sum = 0;
+            //List<string> productsName = new List<string>();
+
+            foreach (var product in ViewBag.Orders)
+            {
+                //if (productsName.Contains(product.Product.ProductName))
+                //{
+
+                //}
+                //else
+                //{
+
+                //}
+                //sum = sum + product.Quantity * product.Product.ProductPrice;
+                //<ul class="list-group list-group-horizontal-xl">
+                //    <li class="list-group-item">@product.Product.ProductName</li>
+                //    <li class="list-group-item">@product.Quantity adet</li>
+                //    <li class="list-group-item">@(product.Quantity * product.Product.ProductPrice)TL</li>
+                //</ul>
+
+                //<div class="d-flex justify-content-around text-bg-secondary p-3 py-0 mb-1">
+                //    <ul class="list-group list-group-horizontal-md">
+                //        <li class="list-group-item">@product.Product.ProductName</li>
+                //    </ul>
+                //    <ul class="list-group list-group-horizontal-md">
+                //        <li class="list-group-item">@product.Quantity adet</li>
+                //    </ul>
+                //    <ul class="list-group list-group-horizontal-md">
+                //        <li class="list-group-item">@(product.Quantity * product.Product.ProductPrice)TL</li>
+                //    </ul>
+                //</div>
+                sum = sum + product.Quantity * product.Product.ProductPrice;
+                <tbody class="table-group-divider">
+                    <tr>
+                        <td>@product.Product.ProductName</td>
+                        <td>@product.Quantity adet</td>
+                        <td>@(product.Quantity * product.Product.ProductPrice)TL</td>
+                    </tr>
+
+                </tbody>
+            }
+
+
+            <tbody class="table-group-divider">
+                <tr>
+                    <td></td>
+                    <td>Toplam</td>
+                    <td>@(sum)TL</td>
+                </tr>
+            </tbody>
         }
-        <ul class="list-group list-group-horizontal-md">
-            <li class="list-group-item">Toplam</li>
-            <li class="list-group-item">@sum</li>
-        </ul>
-    }
+    </table>
 </div>
 
 

@@ -87,6 +87,8 @@ namespace Customer.Controllers
             }
             HttpContext.Session.Set<List<string>>("Products", Products);
             HttpContext.Session.Set<List<int>>("Quantities", Quantities);
+            //To Check From _Layout
+            HttpContext.Session.SetString("IsNull", "False");
 
             return Redirect("~/Products/Order");
         }
