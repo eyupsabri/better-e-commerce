@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -65,6 +66,13 @@ namespace Repos
             int countUpdated = await _db.SaveChangesAsync();
 
             return matchingProduct;
+        }
+
+        public async Task<List<Product>> GetFilteredProducts(Expression<Func<Product, bool>> predicate)
+        {
+            return await _db.Products
+             .Where(predicate)
+             .ToListAsync();
         }
     }
 }

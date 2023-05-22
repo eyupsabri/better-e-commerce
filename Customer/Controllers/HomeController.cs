@@ -13,6 +13,7 @@ namespace Admin.Controllers
         }
 
         [Route("/")]
+        [Route("/home")]
         public async Task<IActionResult> Index()
         {
             List<CategoryResponse> categoryResponse =  await _categoriesService.GetAllCategories();

@@ -10,5 +10,6 @@ namespace Business
     public interface IProductsService
     {
         Task<List<ProductResponse>> GetAllProductsByCategoryId(int categoryId);
+        Task<List<SessionOrder>> GetOrderItems(List<string> ProductsId, List<int> Quantities);
     }
 }

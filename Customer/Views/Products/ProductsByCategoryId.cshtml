@@ -18,7 +18,11 @@
                     <div class="card" style="width: 18rem;">
                         <img src="~/@String.Concat(product.ProductName, ".jpg")" class="card-img-top" width="200"  alt="...">
                         <div class="card-body">
+                            <h5 class="card-title">@product.ProductName</h5>
                             <p class="card-text">@product.ProductDescription</p>
+                            <p class="card-text text-end fw-bold">@String.Concat(product.ProductPrice, "TL")</p>
+                            <p class="text-end my-0"><a href="~/Products/OrderCard/@product.ProductId" class="btn btn-primary">Sepete Ekle</a></p>
+                            
                         </div>
                     </div>
                 </div>

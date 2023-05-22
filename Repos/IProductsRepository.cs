@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,5 +16,6 @@ namespace Repos
         Task<Product> AddProduct(Product prod);
         Task<Product> UpdateProduct(Product prod);
         Task<bool> DeleteProduct(int id);
+        Task<List<Product>> GetFilteredProducts(Expression<Func<Product, bool>> predicate);
     }
 }
