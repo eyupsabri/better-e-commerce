@@ -53,37 +53,67 @@
                     <tr>
                         <td>@product.Product.ProductName</td>
                         <td>
-                            <a href="~/Products/OrderCard/@(product.Product.ProductId)?decreaseByOne=1">
+                            <button id="button-decrease@(product.Product.ProductId)" type="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
                                 </svg>
-                            </a>
+                            </button>
 
-                            @product.Quantity adet
 
-                            <a href="~/Products/OrderCard/@(product.Product.ProductId)?increaseByOne=1">
+
+                            <script>
+                                document.querySelector("#button-decrease@(product.Product.ProductId)").addEventListener("click", async function () {
+                                    
+                                    await fetch("/Products/OrderCard/@(product.Product.ProductId)?decreaseByOne=1").then(response => response.json()).then(myObject => {
+                                        if(myObject.notEmpty)
+                                            window.location.href = window.location.origin + "/Products/Order";
+                                        document.querySelector(".quantity@(product.Product.ProductId)").innerHTML = myObject.quantity;
+                                        document.querySelector(".individualSum@(product.Product.ProductId)").innerHTML = myObject.individualSum;
+                                        document.querySelector(".totalSum").innerHTML = myObject.totalSum;
+                                    }).catch(err => window.location.href = window.location.origin + "/home");                                                                  
+                                });
+                            </script>
+
+
+                            <span class="quantity@(product.Product.ProductId)">@product.Quantity adet</span>
+
+
+                            <button id="button-increase@(product.Product.ProductId)" type="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
                                 </svg>
-                            </a>
+                            </button>
+
+
+                            <script>
+                                document.querySelector("#button-increase@(product.Product.ProductId)").addEventListener("click", async function () {
+                                    await fetch("/Products/OrderCard/@(product.Product.ProductId)?increaseByOne=1").then(response => response.json()).then(myObject => {
+                                        document.querySelector(".quantity@(product.Product.ProductId)").innerHTML = myObject.quantity;
+                                        document.querySelector(".individualSum@(product.Product.ProductId)").innerHTML = myObject.individualSum;
+                                        document.querySelector(".totalSum").innerHTML = myObject.totalSum;
+                                    }).catch(err => window.location.href = window.location.origin + "/home");
+                                })
+                            </script>
+
                         </td>
-                        <td>@(product.Quantity * product.Product.ProductPrice)TL</td>
+                        <td><span class="individualSum@(product.Product.ProductId)">@(product.Quantity * product.Product.ProductPrice)TL</span></td>
+
                     </tr>
 
                 </tbody>
             }
 
-
             <tbody class="table-group-divider">
                 <tr>
                     <td></td>
                     <td>Toplam</td>
-                    <td>@(sum)TL</td>
+                    <td><span class="totalSum">@sum</span>TL</td>
                 </tr>
             </tbody>
         }
     </table>
 </div>
+
 
 
 

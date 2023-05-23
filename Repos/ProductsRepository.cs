@@ -46,7 +46,7 @@ namespace Repos
 
         public async Task<Product> GetProductById(int id)
         {
-            return await _db.Products.FirstOrDefaultAsync(temp => temp.ProductId == id);
+            return await _db.Products.Include("Category").FirstOrDefaultAsync(temp => temp.ProductId == id);
         }
 
         public async Task<Product> UpdateProduct(Product prod)

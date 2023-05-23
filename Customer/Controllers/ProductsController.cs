@@ -40,6 +40,7 @@ namespace Customer.Controllers
 
             List<string>? ProductsId = HttpContext.Session.Get<List<string>>("Products");
             List<int>? Quantities = HttpContext.Session.Get<List<int>>("Quantities");
+            int QuantitiesSum;
             List<SessionOrder> products;
 
             if (ProductsId == null || Quantities == null)
@@ -48,21 +49,23 @@ namespace Customer.Controllers
             }else
             {
                 products = await _productsService.GetOrderItems(ProductsId, Quantities);
+                QuantitiesSum = Quantities.Sum();
             }
 
             ViewBag.Orders = products;
+            ViewBag.QuantitiesSum = QuantitiesSum;
 
             return View();
         }
 
         
         [Route("[action]/{ProductId}")]
-        public  IActionResult OrderCard(int ProductId, string decreaseByOne, string increaseByOne)
+        public async Task<IActionResult> OrderCard(int ProductId, string decreaseByOne, string increaseByOne)
         {
             List<string>? Products = HttpContext.Session.Get<List<string>>("Products");
-            List<int>? Quantities = HttpContext.Session.Get<List<int>>("Quantities"); ;
+            List<int>? Quantities = HttpContext.Session.Get<List<int>>("Quantities");
 
-
+            //Sıfırdan sepete ekleme
             if (Products == null && Quantities == null)
             {
                 Products = new List<string>();
@@ -70,11 +73,17 @@ namespace Customer.Controllers
                 Products.Add(ProductId.ToString());
                 Quantities.Add(1);
 
+                HttpContext.Session.Set<List<string>>("Products", Products);
+                HttpContext.Session.Set<List<int>>("Quantities", Quantities);
+                //To Check From _Layout
+                HttpContext.Session.SetString("IsNull", "False");
+                return Redirect("~/Products/Order");
+
             } else
             {
                 int index = Products.FindIndex(temp => temp.Equals(ProductId.ToString()));
 
-                //Sepete Ekle Logic
+                //Products' dan sepete ekleme
                 if (decreaseByOne == null && increaseByOne == null)
                 {
                     
@@ -85,39 +94,100 @@ namespace Customer.Controllers
                     }
                     else
                     {
-                        Quantities[index]++; ;
-                    }
-                //Oklarla arttırma ya da azaltma
-                }else
-                {
-                   
-
-                    if (decreaseByOne == null)
                         Quantities[index]++;
+                    }
+                    HttpContext.Session.Set<List<string>>("Products", Products);
+                    HttpContext.Session.Set<List<int>>("Quantities", Quantities);
+                    HttpContext.Session.SetString("IsNull", "False");
+
+                    return Redirect("~/Products/Order");
+                    
+                }
+                //Oklarla arttırma ya da azaltma
+                else
+                {
+                    //Arttırma
+                    if (decreaseByOne == null)
+                    {
+                        Quantities[index]++;
+                        List<SessionOrder> orderCardItem = await _productsService.GetOrderItems(Products, Quantities);
+
+                        double totalSum = 0;
+                        double indivualSum = 0;
+                        foreach (SessionOrder orderItem in orderCardItem)
+                        {
+                            totalSum = totalSum + orderItem.Quantity * orderItem.Product.ProductPrice;
+                            if(orderItem.Product.ProductId == ProductId)
+                            {
+                                indivualSum = orderItem.Product.ProductPrice * Quantities[index];
+                            }
+                        }
+                        Dictionary<string, string> orderJson = new Dictionary<string, string>();
+                        orderJson.Add("totalSum", totalSum.ToString());
+                        orderJson.Add("individualSum", indivualSum.ToString());
+                        orderJson.Add("quantity", Quantities[index].ToString());
+
+                        HttpContext.Session.Set<List<string>>("Products", Products);
+                        HttpContext.Session.Set<List<int>>("Quantities", Quantities);
+
+                        HttpContext.Session.SetString("IsNull", "False");
+
+                        return Json(orderJson);
+                    }
+                    //Azaltma, 
+                       //Aynı üründen birden fazla 
                     else if (Quantities[index] > 1)
+                    {
                         Quantities[index]--;
-                    //If quantity is zero remove Product
-                    else if(Quantities.Sum() > 1)
+
+                        List<SessionOrder> orderCardItem = await _productsService.GetOrderItems(Products, Quantities);
+
+                        double totalSum = 0;
+                        double indivualSum = 0;
+                        foreach (SessionOrder orderItem in orderCardItem)
+                        {
+                            totalSum = totalSum + orderItem.Quantity * orderItem.Product.ProductPrice;
+                            if (orderItem.Product.ProductId == ProductId)
+                            {
+                                indivualSum = orderItem.Product.ProductPrice * Quantities[index];
+                            }
+                        }
+                        Dictionary<string, string> orderJson = new Dictionary<string, string>();
+                        orderJson.Add("totalSum", totalSum.ToString());
+                        orderJson.Add("individualSum", indivualSum.ToString());
+                        orderJson.Add("quantity", Quantities[index].ToString());
+
+                        HttpContext.Session.Set<List<string>>("Products", Products);
+                        HttpContext.Session.Set<List<int>>("Quantities", Quantities);
+                        HttpContext.Session.SetString("IsNull", "False");
+                        
+                        return Json(orderJson);
+                    }
+
+                    //If quantity is zero, but there are other items in Card, remove Product
+                    else if (Quantities.Sum() > 1)
                     {
                         Products.RemoveAt(index);
                         Quantities.RemoveAt(index);
-                    }else
+                        HttpContext.Session.Set<List<string>>("Products", Products);
+                        HttpContext.Session.Set<List<int>>("Quantities", Quantities);
+                        HttpContext.Session.SetString("IsNull", "False");
+
+                        return Json(new Dictionary<string, string>() { { "notEmpty", "notEmpty" } });
+                    }
+                    else
                     {
                         HttpContext.Session.Clear();
-                        return Redirect("~/");
+                        //return Redirect("~/");
+
+                        return Redirect("~/Products/Order");
 
                     }
 
                 }
 
-                
             }
-            HttpContext.Session.Set<List<string>>("Products", Products);
-            HttpContext.Session.Set<List<int>>("Quantities", Quantities);
-            //To Check From _Layout
-            HttpContext.Session.SetString("IsNull", "False");
-
-            return Redirect("~/Products/Order");
+          
         }
     }
 

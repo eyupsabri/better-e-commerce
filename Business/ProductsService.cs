@@ -37,5 +37,18 @@ namespace Business
            
             return Products;
         }
+
+        public async Task<SessionOrder> GetOneOrderByProductId(int ProductId, int Quantity)
+        {
+            SessionOrder order = new SessionOrder();
+            Product product = await productsRepo.GetProductById(ProductId);
+            ProductResponse prod = product.ToProductResponse();
+            order.Product = prod;
+            order.Quantity = Quantity;
+            return order;
+            
+        }
     }
+
+
 }
