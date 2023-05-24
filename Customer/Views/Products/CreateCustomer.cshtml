@@ -1,0 +1,93 @@
+﻿@model CustomerAddRequest
+
+<div class="col px-0">
+<form asp-controller="Products" asp-action="Order" method="post">
+    <div class="row mb-3">
+        <label asp-for="CustomerName" class="col-sm-2 col-form-label">Person Name</label>
+        <div class="col-sm-10">
+            <input asp-for="CustomerName" class="form-control">
+            <span asp-validation-for="CustomerName"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label asp-for="Email" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+            <input asp-for="Email" type="email" class="form-control">
+            <span asp-validation-for="Email"></span>
+        </div>
+    </div>
+    <fieldset class="row mb-3">
+        <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
+        <div class="col-sm-10">
+            @{
+                string[] genders = (string[])Enum.GetNames(typeof(GenderOptions));
+            }
+            @foreach (string gender in genders)
+            {
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="Gender" value="@gender" id="@gender">
+                    <label class="form-check-label" for="@gender">
+                        @gender
+                    </label>
+                </div>
+            }
+            <span asp-validation-for="Gender"></span>
+        </div>
+
+    </fieldset>
+    <div class="row mb-3">
+        <label asp-for="DateOfBirth" class="col-sm-2 col-form-label">Date of Birth</label>
+        <div class="col-sm-10">
+            <input type="date" asp-for="DateOfBirth" class="form-control">
+            <span asp-validation-for="DateOfBirth"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label asp-for="Province" class="col-sm-2 col-form-label">Province</label>
+        <div class="col-sm-10">
+            <input asp-for="Province" class="form-control">
+            <span asp-validation-for="Province"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label asp-for="City" class="col-sm-2 col-form-label">City</label>
+        <div class="col-sm-10">
+            <input asp-for="City" class="form-control">
+            <span asp-validation-for="City"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label asp-for="StreetAddress" class="col-sm-2 col-form-label">Address</label>
+        <div class="col-sm-10">
+            <input asp-for="StreetAddress" class="form-control">
+            <span asp-validation-for="StreetAddress"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label asp-for="PhoneNumber" class="col-sm-2 col-form-label">Phone Number</label>
+        <div class="col-sm-10">
+            <input asp-for="PhoneNumber" class="form-control">
+            <span asp-validation-for="PhoneNumber"></span>
+        </div>
+    </div>
+
+
+
+
+    <button type="submit" class="btn btn-primary">Sign in</button>
+</form>
+</div>
+
+
+@section scripts
+    {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" asp-fallback-test="window.jQuery" asp-fallback-src="~/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.4/jquery.validate.min.js" asp-fallback-test="window.jQuery.validator" asp-fallback-src="~/jquery.validate.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" asp-fallback-test="window.jQuery.validator.unobstrusive" asp-fallback-src="~/jquery.validate.unobtrusive.min.js"></script>
+}

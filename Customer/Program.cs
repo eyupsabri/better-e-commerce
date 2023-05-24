@@ -23,6 +23,12 @@ namespace Customer
             builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
             builder.Services.AddScoped<IProductsService, ProductsService>();
 
+            builder.Services.AddScoped<ICustomersRepository, CustomersRepository>();
+            builder.Services.AddScoped<ICustomersService, CustomersService>();
+
+            builder.Services.AddScoped<IOrderItemsRepository, OrderItemsRepository>();
+            builder.Services.AddScoped<IOrderItemsService, OrderItemsService>();
+
             builder.Services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromSeconds(1000);

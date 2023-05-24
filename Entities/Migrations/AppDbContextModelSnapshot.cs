@@ -110,28 +110,6 @@ namespace Entities.Migrations
                     b.HasKey("CustomerId");
 
                     b.ToTable("Customers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            CustomerId = 1,
-                            City = "Alasehir",
-                            CustomerName = "Cemre",
-                            Email = "husnu.cemre@gmail.com",
-                            PhoneNumber = "5344181168",
-                            Province = "Manisa",
-                            StreetAddress = "Yenice mah Sumer Oral cad no 23"
-                        },
-                        new
-                        {
-                            CustomerId = 2,
-                            City = "Alasehir",
-                            CustomerName = "Husnu",
-                            Email = "husnu.cemre@gmail.com",
-                            PhoneNumber = "5344181168",
-                            Province = "Manisa",
-                            StreetAddress = "Yenice mah Sumer Oral cad no 23"
-                        });
                 });
 
             modelBuilder.Entity("Entities.Order", b =>
@@ -345,7 +323,7 @@ namespace Entities.Migrations
             modelBuilder.Entity("Entities.OrderItem", b =>
                 {
                     b.HasOne("Entities.Order", null)
-                        .WithMany("OderItems")
+                        .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -382,7 +360,7 @@ namespace Entities.Migrations
 
             modelBuilder.Entity("Entities.Order", b =>
                 {
-                    b.Navigation("OderItems");
+                    b.Navigation("OrderItems");
                 });
 #pragma warning restore 612, 618
         }

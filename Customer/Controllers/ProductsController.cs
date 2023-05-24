@@ -10,12 +10,14 @@ namespace Customer.Controllers
     {
         private IProductsService _productsService;
         private ICategoriesService _categoriesService;
+        private ICustomersService _customersService;
         
 
-        public ProductsController(IProductsService productsService, ICategoriesService categoriesService)
+        public ProductsController(IProductsService productsService, ICategoriesService categoriesService, ICustomersService customersService)
         {
             _productsService = productsService;
             _categoriesService = categoriesService;
+            _customersService = customersService;
             
         }
 
@@ -32,8 +34,9 @@ namespace Customer.Controllers
             return View();
         }
 
+        [HttpGet]
         [Route("[action]")]
-        public async Task<IActionResult> Order()
+        public async Task<IActionResult> Card()
         {
             List<CategoryResponse> categoryResponse = await _categoriesService.GetAllCategories();
             ViewBag.Categories = categoryResponse;
@@ -58,7 +61,53 @@ namespace Customer.Controllers
             return View();
         }
 
-        
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<IActionResult> CreateCustomer()
+        {
+            List<string>? ProductsId = HttpContext.Session.Get<List<string>>("Products");
+            List<int>? Quantities = HttpContext.Session.Get<List<int>>("Quantities");
+            if (ProductsId == null || Quantities == null)
+            {
+                return Redirect("~/");
+            }
+
+            List<CategoryResponse> categoryResponse = await _categoriesService.GetAllCategories();
+            ViewBag.Categories = categoryResponse;
+            return View();
+        }
+
+
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<IActionResult> Order(CustomerAddRequest customer)
+        {
+            List<CategoryResponse> categoryResponse = await _categoriesService.GetAllCategories();
+            ViewBag.Categories = categoryResponse;
+
+            List<string>? ProductsId = HttpContext.Session.Get<List<string>>("Products");
+            List<int>? Quantities = HttpContext.Session.Get<List<int>>("Quantities");
+            int QuantitiesSum;
+            List<SessionOrder> products;
+
+            if (ProductsId == null || Quantities == null)
+            {
+                return Redirect("~/");
+            }
+            else
+            {
+                products = await _productsService.GetOrderItems(ProductsId, Quantities);
+            }
+
+            await _customersService.AddCustomerWithOrder(customer, products);
+
+            ViewBag.Orders = products;
+
+
+            return View();
+        }
+
+
         [Route("[action]/{ProductId}")]
         public async Task<IActionResult> OrderCard(int ProductId, string decreaseByOne, string increaseByOne)
         {
@@ -77,7 +126,7 @@ namespace Customer.Controllers
                 HttpContext.Session.Set<List<int>>("Quantities", Quantities);
                 //To Check From _Layout
                 HttpContext.Session.SetString("IsNull", "False");
-                return Redirect("~/Products/Order");
+                return Redirect("~/Products/Card");
 
             } else
             {
@@ -100,7 +149,7 @@ namespace Customer.Controllers
                     HttpContext.Session.Set<List<int>>("Quantities", Quantities);
                     HttpContext.Session.SetString("IsNull", "False");
 
-                    return Redirect("~/Products/Order");
+                    return Redirect("~/Products/Card");
                     
                 }
                 //Oklarla arttırma ya da azaltma
@@ -177,10 +226,10 @@ namespace Customer.Controllers
                     }
                     else
                     {
+                        
                         HttpContext.Session.Clear();
-                        //return Redirect("~/");
-
-                        return Redirect("~/Products/Order");
+                        //Redirect in anlamı yok browser bakıyor buraya
+                        return Redirect("~/Products/Card");
 
                     }
 

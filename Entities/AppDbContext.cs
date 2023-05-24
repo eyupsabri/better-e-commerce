@@ -17,7 +17,7 @@ namespace Entities
 
         public DbSet<Order> Orders { get; set; }
 
-        public DbSet<OrderItem> OderItems { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
 
         public AppDbContext(DbContextOptions options) : base(options)
         {
@@ -38,27 +38,27 @@ namespace Entities
 
             modelBuilder.Entity<OrderItem>().ToTable("OrderItems");
 
-            modelBuilder.Entity<Customer>().HasData(new Customer()
-            {
-                CustomerId = 1,
-                CustomerName = "Cemre",
-                Email = "husnu.cemre@gmail.com",
-                Province = "Manisa",
-                City = "Alasehir",
-                StreetAddress = "Yenice mah Sumer Oral cad no 23",
-                PhoneNumber = "5344181168"
+            //modelBuilder.Entity<Customer>().HasData(new Customer()
+            //{
+            //    CustomerId = 1,
+            //    CustomerName = "Cemre",
+            //    Email = "husnu.cemre@gmail.com",
+            //    Province = "Manisa",
+            //    City = "Alasehir",
+            //    StreetAddress = "Yenice mah Sumer Oral cad no 23",
+            //    PhoneNumber = "5344181168"
                 
-            }, new Customer()
-            {
-                CustomerId = 2,
-                CustomerName = "Husnu",
-                Email = "husnu.cemre@gmail.com",
-                Province = "Manisa",
-                City = "Alasehir",
-                StreetAddress = "Yenice mah Sumer Oral cad no 23",
-                PhoneNumber = "5344181168"
+            //}, new Customer()
+            //{
+            //    CustomerId = 2,
+            //    CustomerName = "Husnu",
+            //    Email = "husnu.cemre@gmail.com",
+            //    Province = "Manisa",
+            //    City = "Alasehir",
+            //    StreetAddress = "Yenice mah Sumer Oral cad no 23",
+            //    PhoneNumber = "5344181168"
 
-            });
+            //});
 
             modelBuilder.Entity<Category>().HasData(new Category() {
                 CategoryId = 1,
