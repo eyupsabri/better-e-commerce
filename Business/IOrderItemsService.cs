@@ -1,4 +1,5 @@
 ﻿using Business.DTOs;
+using Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace Business
     public interface IOrderItemsService
     {
         Task<bool> AddOrderItems(List<SessionOrder> items);
-        Task<bool> CreateOrders(int CustomerId);
+        Task<bool> CreateOrders(Customer customer);
+        Task<int> GetLatestOrderId();
     }
 }

@@ -115,17 +115,9 @@ namespace Entities.Migrations
             modelBuilder.Entity("Entities.Order", b =>
                 {
                     b.Property<int>("OrderId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
-
-                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.HasKey("OrderId");
-
-                    b.HasIndex("CustomerId");
 
                     b.ToTable("Orders", (string)null);
                 });
@@ -312,8 +304,8 @@ namespace Entities.Migrations
             modelBuilder.Entity("Entities.Order", b =>
                 {
                     b.HasOne("Entities.Customer", "Customer")
-                        .WithMany("Orders")
-                        .HasForeignKey("CustomerId")
+                        .WithOne("order")
+                        .HasForeignKey("Entities.Order", "OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -355,7 +347,8 @@ namespace Entities.Migrations
 
             modelBuilder.Entity("Entities.Customer", b =>
                 {
-                    b.Navigation("Orders");
+                    b.Navigation("order")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Entities.Order", b =>

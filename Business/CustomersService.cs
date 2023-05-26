@@ -1,4 +1,5 @@
 ﻿using Business.DTOs;
+using Entities;
 using Repos;
 using System;
 using System.Collections.Generic;
@@ -21,16 +22,16 @@ namespace Business
         }
 
 
-        public async Task<bool> AddCustomerWithOrder(CustomerAddRequest customer, List<SessionOrder> order)
+        public async Task<bool> AddCustomerWithOrder(CustomerAddRequest customerAddReq, List<SessionOrder> order)
         {
-            await _customersRepo.AddCustomer(customer.ToCustomer());
-            int CustomerId = await _customersRepo.GetLatestCustomerId();
-            await _orderItemsService.CreateOrders(CustomerId);
-            await _orderItemsService.AddOrderItems(order);
-
-            return true;
+            await _customersRepo.AddCustomerWithoutOrderId(customerAddReq.ToCustomer());//Order no olmadan ekliyorum.
+            Customer? customer = await _customersRepo.GetLatestCustomer();//Eklenen Customer ı alıyorum
+            if (customer != null)
+            {
+                await _orderItemsService.CreateOrders(customer); //Customer ile order yaratıyorum
+                return await _orderItemsService.AddOrderItems(order);//order item ekleme
+            }
+            return false;
         }
-
-
     }
 }

@@ -34,7 +34,8 @@ namespace Entities
         [StringLength(10)]
         public string PhoneNumber { get; set; }
 
-        public IEnumerable<Order>? Orders { get; set; }
+      
+        public virtual Order order { get; set; }
         
     }
 }

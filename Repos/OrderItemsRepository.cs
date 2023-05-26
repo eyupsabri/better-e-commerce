@@ -40,9 +40,9 @@ namespace Repos
             }
         }
 
-        public async Task<bool> CreateOrder(int CustomerId)
+        public async Task<bool> CreateOrder(Customer customer)
         {
-            _orderItemRepo.Orders.Add(new Order() { CustomerId = CustomerId });
+            _orderItemRepo.Orders.Add(new Order() { Customer = customer});
             int success = await _orderItemRepo.SaveChangesAsync();
             return success > 0;
         }

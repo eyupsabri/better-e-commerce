@@ -23,24 +23,31 @@ namespace Repos
             return await _db.Customers.FirstOrDefaultAsync(temp => temp.CustomerId == CustomerId);
         }
 
-        public async Task<bool> AddCustomer(Customer customer)
+        public async Task<bool> AddCustomerWithoutOrderId(Customer customer)
         {
             _db.Customers.Add(customer);
             int success = await _db.SaveChangesAsync();
             return success > 0;
         }
 
-        public async Task<int> GetLatestCustomerId()
+        public async Task<Customer>? GetLatestCustomer()
         {
             List<Customer> customers = await _db.Customers.ToListAsync();
 
             if(customers.Count == 0)
             {
-                return -1;
+                return null;
             }
-            return customers.Max(x => x.CustomerId);
+            return customers[customers.Count - 1];
 
         }
+
+        //public async Task<bool> AddOrderIdToCustomer(int OrderId, Customer customer)
+        //{
+        //    customer.OrderId = OrderId;
+        //    int success = await _db.SaveChangesAsync();
+        //    return success > 0;
+        //}
 
 
     }

@@ -228,8 +228,8 @@ namespace Customer.Controllers
                     {
                         
                         HttpContext.Session.Clear();
-                        //Redirect in anlamı yok browser bakıyor buraya
-                        return Redirect("~/Products/Card");
+                        
+                        return Json(null);
 
                     }
 

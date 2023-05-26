@@ -19,6 +19,8 @@ namespace Business
             _orderItemsRepo = orderItemsRepo;
         }
 
+        
+
         public async Task<bool> AddOrderItems(List<SessionOrder> items)
         {
             int OrderId = await _orderItemsRepo.GetLatestOrderId();
@@ -33,9 +35,14 @@ namespace Business
                      
         }
 
-        public async Task<bool> CreateOrders(int CustomerId)
+        public async Task<bool> CreateOrders(Customer customer)
         {
-           return await _orderItemsRepo.CreateOrder(CustomerId);
+           return await _orderItemsRepo.CreateOrder(customer);
+        }
+
+        public async Task<int> GetLatestOrderId()
+        {
+            return await _orderItemsRepo.GetLatestOrderId();
         }
     }
 }
