@@ -42,13 +42,10 @@ namespace Repos
 
         }
 
-        //public async Task<bool> AddOrderIdToCustomer(int OrderId, Customer customer)
-        //{
-        //    customer.OrderId = OrderId;
-        //    int success = await _db.SaveChangesAsync();
-        //    return success > 0;
-        //}
-
-
+        public async Task<List<Customer>> GetAllCustomers()
+        {
+            List<Customer> customers = await _db.Customers.Include("order").ToListAsync();
+            return customers;
+        }
     }
 }

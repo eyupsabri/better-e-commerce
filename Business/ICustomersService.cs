@@ -10,5 +10,6 @@ namespace Business
     public interface ICustomersService
     {
         Task<bool> AddCustomerWithOrder(CustomerAddRequest customer, List<SessionOrder> order);
+        Task<List<CustomerResponse>> GetAllCustomers();
     }
 }

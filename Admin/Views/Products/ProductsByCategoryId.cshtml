@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<div class="col px-0">
+    <div class="row">
+        @{
+            int i = 0;
+            int remaining = 12 - ViewBag.Products.Count;
+            @foreach (var product in ViewBag.Products)
+            {
+                if (i % 3 == 0)
+                {
+                    <div class="row"></div>
+                }
+                i++;
+                <div class="col-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="~/@String.Concat(product.ProductName, ".jpg")" class="card-img-top" width="200"  alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">@product.ProductName</h5>
+                            <p class="card-text">@product.ProductDescription</p>
+                            <p class="card-text text-end fw-bold">@String.Concat(product.ProductPrice, "TL")</p>
+                            <p class="text-end my-0"><a href="~/" class="btn btn-primary">Sepete Ekle</a></p>
+                            
+                        </div>
+                    </div>
+                </div>
+            }
+
+        }
+    </div>
+</div>

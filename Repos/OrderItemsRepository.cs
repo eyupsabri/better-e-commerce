@@ -46,5 +46,10 @@ namespace Repos
             int success = await _orderItemRepo.SaveChangesAsync();
             return success > 0;
         }
+
+        public async Task<List<OrderItem>> GetAllOrderItemsByOrderId(int OrderId)
+        {
+           return await _orderItemRepo.OrderItems.Include(orderItem => orderItem.Product).ThenInclude(product => product.Category).Where(item => item.OrderId == OrderId).ToListAsync();        
+        }
     }
 }

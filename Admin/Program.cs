@@ -3,7 +3,7 @@ using Entities;
 using Microsoft.EntityFrameworkCore;
 using Repos;
 
-namespace Customer
+namespace Admin
 {
     public class Program
     {
@@ -22,18 +22,24 @@ namespace Customer
             builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
             builder.Services.AddScoped<IProductsService, ProductsService>();
 
-            builder.Services.AddSession(options =>
-            {
-                options.IdleTimeout = TimeSpan.FromSeconds(1000);
-                //options.Cookie.HttpOnly = true;
-                //options.Cookie.IsEssential = true;
-            });
+            builder.Services.AddScoped<ICustomersRepository, CustomersRepository>();
+            builder.Services.AddScoped<ICustomersService, CustomersService>();
+
+            builder.Services.AddScoped<IOrderItemsRepository, OrderItemsRepository>();
+            builder.Services.AddScoped<IOrderItemsService, OrderItemsService>();
+
+            //builder.Services.AddSession(options =>
+            //{
+            //    options.IdleTimeout = TimeSpan.FromSeconds(1000);
+            //    //options.Cookie.HttpOnly = true;
+            //    //options.Cookie.IsEssential = true;
+            //});
 
             var app = builder.Build();
 
             app.UseStaticFiles();
             app.UseRouting();
-            app.UseSession();
+            //app.UseSession();
             app.MapControllers();
 
             app.Run();

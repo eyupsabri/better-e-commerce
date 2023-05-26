@@ -33,5 +33,20 @@ namespace Business
             }
             return false;
         }
+
+        public async Task<List<CustomerResponse>> GetAllCustomers()
+        {
+            List<Customer> customers = await _customersRepo.GetAllCustomers();
+            List<CustomerResponse> customerRespones = new List<CustomerResponse>();
+            if(customers.Count > 0)
+            {
+                foreach (Customer customer in customers)
+                {
+                    customerRespones.Add(customer.ToCustomerResponse());
+                }
+            }
+            return customerRespones;
+
+        }
     }
 }

@@ -12,5 +12,6 @@ namespace Repos
         Task<bool> CreateOrderItems(List<OrderItem> items);
         Task<int> GetLatestOrderId();
         Task<bool> CreateOrder(Customer customer);
+        Task<List<OrderItem>> GetAllOrderItemsByOrderId(int OrderId);
     }
 }

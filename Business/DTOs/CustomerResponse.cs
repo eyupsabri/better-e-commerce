@@ -30,7 +30,7 @@ namespace Business.DTOs
 
         public string PhoneNumber { get; set; }
 
-        public IEnumerable<Order>? Orders { get; set; }
+        public int OrderId { get; set; }
     }
 
     public static class CustomerExtentions
@@ -47,7 +47,8 @@ namespace Business.DTOs
                 Province = customer.Province,
                 City = customer.City,
                 StreetAddress = customer.StreetAddress,
-                PhoneNumber = customer.PhoneNumber
+                PhoneNumber = customer.PhoneNumber,
+                OrderId = customer.order.OrderId
             };
         }
     } 

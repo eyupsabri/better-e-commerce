@@ -80,14 +80,14 @@ namespace Customer.Controllers
 
         [HttpPost]
         [Route("[action]")]
-        public async Task<IActionResult> Order(CustomerAddRequest customer)
+        public async Task<IActionResult> Order(CustomerAddRequest customerAddReq)
         {
             List<CategoryResponse> categoryResponse = await _categoriesService.GetAllCategories();
             ViewBag.Categories = categoryResponse;
 
             List<string>? ProductsId = HttpContext.Session.Get<List<string>>("Products");
             List<int>? Quantities = HttpContext.Session.Get<List<int>>("Quantities");
-            int QuantitiesSum;
+
             List<SessionOrder> products;
 
             if (ProductsId == null || Quantities == null)
@@ -99,11 +99,11 @@ namespace Customer.Controllers
                 products = await _productsService.GetOrderItems(ProductsId, Quantities);
             }
 
-            await _customersService.AddCustomerWithOrder(customer, products);
+            await _customersService.AddCustomerWithOrder(customerAddReq, products);
 
+            //Products i html de göstermek istersem
             ViewBag.Orders = products;
-
-
+            HttpContext.Session.Clear();
             return View();
         }
 

@@ -12,7 +12,7 @@ namespace Repos
         Task<Customer> GetCustomerById(int CustomerId);
         Task<Customer>? GetLatestCustomer();
         Task<bool> AddCustomerWithoutOrderId(Customer customer);
-        //Task<bool> AddOrderIdToCustomer(int OrderId, Customer customer);
+        Task<List<Customer>> GetAllCustomers();
     }
 
     
