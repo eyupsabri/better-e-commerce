@@ -1,5 +1,6 @@
 ﻿using Business;
 using Business.DTOs;
+using Customer.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 
@@ -22,17 +23,39 @@ namespace Customer.Controllers
         }
 
         [HttpGet]
-        [Route("[action]/{id}")]
-        public async Task<IActionResult> ProductsByCategoryId(int id)
+        [Route("[action]/{categoryId}")]
+        public async Task<IActionResult> Index(int categoryId)
         {
-            List<CategoryResponse> categoryResponse = await _categoriesService.GetAllCategories();
+            int totalProductsNumber = await _productsService.GetProductsCountByCategoryId(categoryId);
+            int remainder = totalProductsNumber % 12;
+            int quotient = totalProductsNumber / 12;
+            int totalPages = remainder > 0 ? quotient + 1 : quotient;
+
+
+
+            List <CategoryResponse> categoryResponse = await _categoriesService.GetAllCategories();
             ViewBag.Categories = categoryResponse;
 
-            List<ProductResponse> productResponse = await _productsService.GetAllProductsByCategoryId(id);
-            ViewBag.Products = productResponse;
+            List<ProductResponse> productResponse = await _productsService.GetProductsByPagination(categoryId, 0);
+            SingleProductsPage page = new SingleProductsPage() { Products = productResponse, CurrentPage = 0, TotalPages=totalPages };
 
-            return View();
+            return View(page);
+
+
+
         }
+
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<IActionResult> PaginatedProducts(int categoryId, int pageNumber, int totalPages)
+        {
+
+            List<ProductResponse> productResponse = await _productsService.GetProductsByPagination(categoryId, pageNumber);
+            SingleProductsPage page = new SingleProductsPage() { Products = productResponse, CurrentPage = pageNumber, TotalPages = totalPages };
+            return PartialView("_ProductsPage", page);
+
+        }
+
 
     }
 

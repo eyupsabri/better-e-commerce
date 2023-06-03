@@ -205,6 +205,127 @@ namespace Entities
                 CategoryId = 2,
 
             },
+            new Product()
+            {
+                ProductId = 16,
+                ProductName = "Selpak",
+                ProductPrice = 100,
+                ProductDescription = "Cok ucuz",
+                CategoryId = 2,
+
+            }, new Product()
+            {
+                ProductId = 17,
+                ProductName = "Selpak",
+                ProductPrice = 100,
+                ProductDescription = "Cok ucuz",
+                CategoryId = 2,
+
+            }, new Product()
+            {
+                ProductId = 18,
+                ProductName = "Selpak",
+                ProductPrice = 100,
+                ProductDescription = "Cok ucuz",
+                CategoryId = 2,
+
+            }, new Product()
+            {
+                ProductId = 19,
+                ProductName = "Selpak",
+                ProductPrice = 100,
+                ProductDescription = "Cok ucuz",
+                CategoryId = 2,
+
+            }, new Product()
+            {
+                ProductId = 20,
+                ProductName = "Selpak",
+                ProductPrice = 100,
+                ProductDescription = "Cok ucuz",
+                CategoryId = 2,
+
+            }, new Product()
+            {
+                ProductId = 21,
+                ProductName = "Selpak",
+                ProductPrice = 100,
+                ProductDescription = "Cok ucuz",
+                CategoryId = 2,
+
+            }, new Product()
+            {
+                ProductId = 22,
+                ProductName = "Selpak",
+                ProductPrice = 100,
+                ProductDescription = "Cok ucuz",
+                CategoryId = 2,
+
+            }, new Product()
+            {
+                ProductId = 23,
+                ProductName = "Selpak",
+                ProductPrice = 100,
+                ProductDescription = "Cok ucuz",
+                CategoryId = 2,
+
+            }, new Product()
+            {
+                ProductId = 24,
+                ProductName = "Selpak",
+                ProductPrice = 100,
+                ProductDescription = "Cok ucuz",
+                CategoryId = 2,
+
+            }, new Product()
+            {
+                ProductId = 25,
+                ProductName = "Selpak",
+                ProductPrice = 100,
+                ProductDescription = "Cok ucuz",
+                CategoryId = 2,
+
+            }, new Product()
+            {
+                ProductId = 26,
+                ProductName = "Selpak",
+                ProductPrice = 100,
+                ProductDescription = "Cok ucuz",
+                CategoryId = 2,
+
+            }, new Product()
+            {
+                ProductId = 27,
+                ProductName = "Selpak",
+                ProductPrice = 100,
+                ProductDescription = "Cok ucuz",
+                CategoryId = 2,
+
+            }, new Product()
+            {
+                ProductId = 28,
+                ProductName = "Selpak",
+                ProductPrice = 100,
+                ProductDescription = "Cok ucuz",
+                CategoryId = 2,
+
+            }, new Product()
+            {
+                ProductId = 29,
+                ProductName = "Selpak",
+                ProductPrice = 100,
+                ProductDescription = "Cok ucuz",
+                CategoryId = 2,
+
+            }, new Product()
+            {
+                ProductId = 30,
+                ProductName = "Selpak",
+                ProductPrice = 100,
+                ProductDescription = "Cok ucuz",
+                CategoryId = 2,
+
+            },
             new Product() {
                 ProductId = 15,
                 ProductName = "Sozcu",

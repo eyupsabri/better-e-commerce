@@ -18,6 +18,8 @@ namespace Customer.Controllers
             _productsService = productsService;
             CategoriesService = categoriesService;
         }
+
+
         [HttpGet,Route("index")]
         public async Task<IActionResult> Index()
         {
@@ -31,6 +33,8 @@ namespace Customer.Controllers
             
             return View(products);
         }
+
+
         [HttpGet]
         [Route("AddToCard/{ProductId}")]
         public async Task<IActionResult> AddToCard(int ProductId)
@@ -64,6 +68,8 @@ namespace Customer.Controllers
             return RedirectToAction("Index");
 
         }
+
+
         [HttpPost]
         [Route("Update")]
         public async Task<IActionResult> Update(int productId, bool decrease)

@@ -77,7 +77,7 @@
                     <nav class="nav flex-column">
                         @foreach (var item in ViewBag.Categories)
                         {
-                            <a class="nav-link" asp-controller="Products" asp-action="ProductsByCategoryId" asp-route-id="@item.CategoryId">@item.CategoryName</a>
+                            <a class="nav-link" href="~/Products/Index/@(item.CategoryId)">@item.CategoryName</a>
                         }
                         <a class="nav-link active" aria-current="page" href="#">Active</a>
 

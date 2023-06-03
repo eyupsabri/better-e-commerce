@@ -11,8 +11,6 @@
         </svg>
     </caption>
 
-
-
     <thead>
         <tr>
             <th scope="col">Ürün</th>
@@ -30,22 +28,7 @@
                     <i class="fa fa-minus"></i>
                 </button>
 
-                @*
-            <script>
-            document.querySelector("#button-decrease@(product.Product.ProductId)").addEventListener("click", async function () {
-            await fetch("/Products/OrderCard/@(product.Product.ProductId)?decreaseByOne=1").then(response => response.json()).then(myObject => {
-            if (myObject.notEmpty)
-            window.location.href = window.location.origin + "/Products/Card";
-            document.querySelector(".quantity@(product.Product.ProductId)").innerHTML = myObject.quantity;
-            document.querySelector(".individualSum@(product.Product.ProductId)").innerHTML = myObject.individualSum;
-            document.querySelector(".totalSum").innerHTML = myObject.totalSum;
-            }).catch(err => window.location.href = window.location.origin + "/home");
-            });
-            </script>*@
-
-
                 <span class="quantity@(product.Product.ProductId)">@product.Quantity adet</span>
-
 
                 <button id="button-increase@(product.Product.ProductId)" class="btn btn-success button-increase" data-product="@(product.Product.ProductId)" type="button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
@@ -53,24 +36,12 @@
                     </svg>
                 </button>
 
-
-                @*         <script>
-            document.querySelector("#button-increase@(product.Product.ProductId)").addEventListener("click", async function () {
-            await fetch("/Products/OrderCard/@(product.Product.ProductId)?increaseByOne=1").then(response => response.json()).then(myObject => {
-            document.querySelector(".quantity@(product.Product.ProductId)").innerHTML = myObject.quantity;
-            document.querySelector(".individualSum@(product.Product.ProductId)").innerHTML = myObject.individualSum;
-            document.querySelector(".totalSum").innerHTML = myObject.totalSum;
-            }).catch(err => window.location.href = window.location.origin + "/home");
-            })
-            </script>*@
-
             </td>
             <td><span class="individualSum@(product.Product.ProductId)">@(product.Quantity * product.Product.ProductPrice)TL</span></td>
 
         </tr>
 
     }
-
 
     <tr class="table-group-divider">
         <td></td>

@@ -48,6 +48,22 @@ namespace Business
             return order;
             
         }
+
+        public async Task<List<ProductResponse>> GetProductsByPagination(int categoryId, int position)
+        {
+            List<Product> products = await productsRepo.GetPaginatedProducts(categoryId, position);
+            List<ProductResponse> productsResponse = new List<ProductResponse>();
+            foreach(Product product in products)
+            {
+                productsResponse.Add(product.ToProductResponse());
+            }
+            return productsResponse;
+        }
+
+        public async Task<int> GetProductsCountByCategoryId(int categoryId)
+        {
+            return await productsRepo.GetProductsCountByCategoryId(categoryId);
+        }
     }
 
 

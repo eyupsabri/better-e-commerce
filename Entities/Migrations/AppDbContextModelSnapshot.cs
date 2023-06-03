@@ -293,6 +293,126 @@ namespace Entities.Migrations
                         },
                         new
                         {
+                            ProductId = 16,
+                            CategoryId = 2,
+                            ProductDescription = "Cok ucuz",
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
+                        },
+                        new
+                        {
+                            ProductId = 17,
+                            CategoryId = 2,
+                            ProductDescription = "Cok ucuz",
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
+                        },
+                        new
+                        {
+                            ProductId = 18,
+                            CategoryId = 2,
+                            ProductDescription = "Cok ucuz",
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
+                        },
+                        new
+                        {
+                            ProductId = 19,
+                            CategoryId = 2,
+                            ProductDescription = "Cok ucuz",
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
+                        },
+                        new
+                        {
+                            ProductId = 20,
+                            CategoryId = 2,
+                            ProductDescription = "Cok ucuz",
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
+                        },
+                        new
+                        {
+                            ProductId = 21,
+                            CategoryId = 2,
+                            ProductDescription = "Cok ucuz",
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
+                        },
+                        new
+                        {
+                            ProductId = 22,
+                            CategoryId = 2,
+                            ProductDescription = "Cok ucuz",
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
+                        },
+                        new
+                        {
+                            ProductId = 23,
+                            CategoryId = 2,
+                            ProductDescription = "Cok ucuz",
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
+                        },
+                        new
+                        {
+                            ProductId = 24,
+                            CategoryId = 2,
+                            ProductDescription = "Cok ucuz",
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
+                        },
+                        new
+                        {
+                            ProductId = 25,
+                            CategoryId = 2,
+                            ProductDescription = "Cok ucuz",
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
+                        },
+                        new
+                        {
+                            ProductId = 26,
+                            CategoryId = 2,
+                            ProductDescription = "Cok ucuz",
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
+                        },
+                        new
+                        {
+                            ProductId = 27,
+                            CategoryId = 2,
+                            ProductDescription = "Cok ucuz",
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
+                        },
+                        new
+                        {
+                            ProductId = 28,
+                            CategoryId = 2,
+                            ProductDescription = "Cok ucuz",
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
+                        },
+                        new
+                        {
+                            ProductId = 29,
+                            CategoryId = 2,
+                            ProductDescription = "Cok ucuz",
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
+                        },
+                        new
+                        {
+                            ProductId = 30,
+                            CategoryId = 2,
+                            ProductDescription = "Cok ucuz",
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
+                        },
+                        new
+                        {
                             ProductId = 15,
                             CategoryId = 3,
                             ProductDescription = "Cok ucuz",

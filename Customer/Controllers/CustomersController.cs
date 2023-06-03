@@ -12,17 +12,22 @@ namespace Customer.Controllers
         ICategoriesService CategoriesService;
         IProductsService ProductsService;
 
-        public CustomersController(ICustomersService customersService, ICategoriesService categoriesService, IProductsService productsService)
+        public CustomersController(ICustomersService customersService, ICategoriesService categoriesService)
         {
             this.CustomersService = customersService;
             this.CategoriesService = categoriesService;
-            this.ProductsService = productsService;
+
         }
 
         [HttpGet]
         [Route("[action]")]
         public async Task<IActionResult> Index()
         {
+            List<SessionOrder>? orders = HttpContext.Session.Get<List<SessionOrder>>("Products");
+            if(orders == null)
+            {
+                return Redirect("~/");
+            }
 
             List<CategoryResponse> categoryResponse = await CategoriesService.GetAllCategories();
             ViewBag.Categories = categoryResponse;
