@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,22 @@ namespace Business.DTOs
             orderItemRequest.ProductId = Product.ProductId;
             orderItemRequest.Quantity = Quantity;
             return orderItemRequest;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            // If the passed object is null, return False
+            if (obj == null)
+            {
+                return false;
+            }
+            // If the passed object is not Customer Type, return False
+            if (!(obj is SessionOrder))
+            {
+                return false;
+            }
+            return (this.Product.ProductId== ((SessionOrder)obj).Product.ProductId);
+               
         }
     }
 }

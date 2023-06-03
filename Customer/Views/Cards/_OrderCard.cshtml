@@ -1,0 +1,124 @@
+﻿@model List<SessionOrder>
+
+@{
+    var sum = Model.Sum(p => p.Quantity * p.Product.ProductPrice);
+}
+
+<table class="table caption-top">
+    <caption>
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
+            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z" />
+        </svg>
+    </caption>
+
+
+
+    <thead>
+        <tr>
+            <th scope="col">Ürün</th>
+            <th scope="col">Adet</th>
+            <th scope="col">Fiyat</th>
+        </tr>
+    </thead>
+
+    @foreach (SessionOrder product in Model)
+    {
+        <tr id="CardProductsContainer">
+            <td>@product.Product.ProductName</td>
+            <td>
+                <button id="button-decrease@(product.Product.ProductId)" class="btn btn-danger button-decrease" data-product="@(product.Product.ProductId)" type="button">
+                    <i class="fa fa-minus"></i>
+                </button>
+
+                @*
+            <script>
+            document.querySelector("#button-decrease@(product.Product.ProductId)").addEventListener("click", async function () {
+            await fetch("/Products/OrderCard/@(product.Product.ProductId)?decreaseByOne=1").then(response => response.json()).then(myObject => {
+            if (myObject.notEmpty)
+            window.location.href = window.location.origin + "/Products/Card";
+            document.querySelector(".quantity@(product.Product.ProductId)").innerHTML = myObject.quantity;
+            document.querySelector(".individualSum@(product.Product.ProductId)").innerHTML = myObject.individualSum;
+            document.querySelector(".totalSum").innerHTML = myObject.totalSum;
+            }).catch(err => window.location.href = window.location.origin + "/home");
+            });
+            </script>*@
+
+
+                <span class="quantity@(product.Product.ProductId)">@product.Quantity adet</span>
+
+
+                <button id="button-increase@(product.Product.ProductId)" class="btn btn-success button-increase" data-product="@(product.Product.ProductId)" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                    </svg>
+                </button>
+
+
+                @*         <script>
+            document.querySelector("#button-increase@(product.Product.ProductId)").addEventListener("click", async function () {
+            await fetch("/Products/OrderCard/@(product.Product.ProductId)?increaseByOne=1").then(response => response.json()).then(myObject => {
+            document.querySelector(".quantity@(product.Product.ProductId)").innerHTML = myObject.quantity;
+            document.querySelector(".individualSum@(product.Product.ProductId)").innerHTML = myObject.individualSum;
+            document.querySelector(".totalSum").innerHTML = myObject.totalSum;
+            }).catch(err => window.location.href = window.location.origin + "/home");
+            })
+            </script>*@
+
+            </td>
+            <td><span class="individualSum@(product.Product.ProductId)">@(product.Quantity * product.Product.ProductPrice)TL</span></td>
+
+        </tr>
+
+    }
+
+
+    <tr class="table-group-divider">
+        <td></td>
+        <td>Toplam</td>
+        <td><span class="totalSum">@sum</span>TL</td>
+    </tr>
+</table>
+
+<script>
+    $(function () {
+        $(".button-decrease").click(function () {
+            var productId = $(this).data("product");
+            $.ajax({
+                url: "@Url.Action("Update","Cards")",
+                method: "post",
+                data: {
+                    productId: productId,
+                    decrease: true
+                },
+                success: function (data) {
+                    try {
+                        var response = jQuery.parseJSON(data);
+                        if (typeof response == 'object') {
+                            window.location.href = window.location.origin + "/home"
+                        }
+                    }catch(err){
+                         $("#CardProductsContainer").html(data);
+                    }
+
+                        
+                }
+            })
+        })
+
+        $(".button-increase").click(function () {
+            var productId = $(this).data("product");
+            $.ajax({
+                url: "@Url.Action("Update","Cards")",
+                method: "post",
+                data: {
+                    productId: productId,
+                    decrease: false
+                },
+                success: function (data) {
+
+                    $("#CardProductsContainer").html(data);
+                }
+            })
+        })
+    })
+</script>
