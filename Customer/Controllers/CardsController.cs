@@ -28,6 +28,7 @@ namespace Customer.Controllers
             }
             List<CategoryResponse> categoryResponse = await CategoriesService.GetAllCategories();
             ViewBag.Categories = categoryResponse;
+            
             return View(products);
         }
         [HttpGet]
