@@ -64,6 +64,18 @@ namespace Business
         {
             return await productsRepo.GetProductsCountByCategoryId(categoryId);
         }
+
+        public async Task<List<ProductResponse>> GetProductsByNameSearchWithPagination(string name, int position)
+        {
+            List<Product> filtered = await productsRepo.GetProductsByNameSearchWithPagination(name, position);
+            return filtered.Select(x => x.ToProductResponse()).ToList();
+        }
+
+        public async Task<List<ProductResponse>> GetProductsByNameSearch(string name)
+        {           
+            List<Product> products = await productsRepo.GetFilteredProducts(temp => temp.ProductName.Contains(name));
+            return products.Select(temp => temp.ToProductResponse()).ToList();  
+        }
     }
 
 

@@ -1,7 +1,7 @@
 ﻿@model SingleProductsPage
 
 
-<div id="ProductsPageContainer">
+<div id="ProductsPageContainer" class="col px-0">
     <div class="row">
         <nav aria-label="...">
             <ul class="pagination">
@@ -11,14 +11,14 @@
                         <button class="page-link myPagination">Previous</button>
                     </li>
                     <li class="page-item active" aria-current="page">
-                        <button class="page-link myPagination"  data-categoryid="@(Model.Products[0].CategoryId)" data-pageNumber="0" data-totalPages="@Model.TotalPages">1</button>
+                        <button class="page-link myPagination" data-pageNumber="0">1</button>
                     </li>
 
 
                     @if (Model.TotalPages > Model.CurrentPage + 1)
                     {
                         <li class="page-item">
-                            <button class="page-link myPagination" data-categoryid="@(Model.Products[0].CategoryId)" data-pageNumber="1" data-totalPages="@Model.TotalPages">2</button>
+                            <button class="page-link myPagination" data-pageNumber="1">2</button>
                         </li>
 
                     }
@@ -31,7 +31,7 @@
                     @if (Model.TotalPages > Model.CurrentPage + 2)
                     {
                         <li class="page-item">
-                            <button class="page-link myPagination" data-categoryid="@(Model.Products[0].CategoryId)" data-pagenumber="2" data-totalpages="@Model.TotalPages">3</button>
+                            <button class="page-link myPagination" data-pagenumber="2">3</button>
                         </li>
                     }
                     else
@@ -40,10 +40,10 @@
                             <button class="page-link">3</button>
                         </li>
                     }
-                    @if(Model.TotalPages > Model.CurrentPage + 1)
+                    @if (Model.TotalPages > Model.CurrentPage + 1)
                     {
                         <li class="page-item">
-                            <button class="page-link myPagination" data-categoryid="@(Model.Products[0].CategoryId)" data-pagenumber="1" data-totalpages="@Model.TotalPages">Next</button>
+                            <button class="page-link myPagination" data-pagenumber="1">Next</button>
                         </li>
                     }
                     else
@@ -58,19 +58,28 @@
                 @if (Model.CurrentPage != 0)
                 {
                     <li class="page-item">
-                        <button class="page-link myPagination" data-categoryid="@(Model.Products[0].CategoryId)" data-pagenumber="@(Model.CurrentPage - 1)" data-totalpages="@Model.TotalPages">
-                           Previous
+                        <button class="page-link myPagination" data-pagenumber="@(Model.CurrentPage - 1)">
+                            Previous
                         </button>
                     </li>
+
+                    <li class="page-item">
+                        <button class="page-link myPagination" data-pagenumber="@(Model.CurrentPage - 1)">
+                            @Model.CurrentPage
+                        </button>
+                    </li>
+
                     <li class="page-item active" aria-current="page">
-                        <button class="page-link myPagination" data-categoryid="@(Model.Products[0].CategoryId)" data-pagenumber="@(Model.CurrentPage)" data-totalpages="@Model.TotalPages">
+                        <button class="page-link myPagination" data-pagenumber="@(Model.CurrentPage)">
                             @(Model.CurrentPage + 1)
                         </button>
                     </li>
+                    
+                    
                     @if (Model.TotalPages > Model.CurrentPage + 1)
                     {
                         <li class="page-item">
-                            <button class="page-link myPagination" data-categoryid="@(Model.Products[0].CategoryId)" data-pagenumber="@(Model.CurrentPage + 1)" data-totalpages="@Model.TotalPages">
+                            <button class="page-link myPagination" data-pagenumber="@(Model.CurrentPage + 1)">
                                 @(Model.CurrentPage + 2)
                             </button>
                         </li>
@@ -83,27 +92,11 @@
                             </button>
                         </li>
                     }
-                    @if (Model.TotalPages > Model.CurrentPage + 2)
-                    {
-                        <li class="page-item">
-                            <button class="page-link myPagination" data-categoryid="@(Model.Products[0].CategoryId)" data-pagenumber="@(Model.CurrentPage + 2)" data-totalpages="@Model.TotalPages">
-                                @(Model.CurrentPage + 3)
-                            </button>
-                        </li>
-                    }
-                    else
-                    {
-                        <li class="page-item disabled">
-                            <button class="page-link" >
-                                @(Model.CurrentPage + 3)
-                            </button>
-                        </li>
-                    }
 
                     @if (Model.TotalPages > Model.CurrentPage + 1)
                     {
                         <li class="page-item">
-                            <button class="page-link myPagination" data-categoryid="@(Model.Products[0].CategoryId)" data-pagenumber="@(Model.CurrentPage + 1)" data-totalpages="@Model.TotalPages">
+                            <button class="page-link myPagination" data-pagenumber="@(Model.CurrentPage + 1)">
                                 Next
                             </button>
                         </li>
@@ -153,24 +146,53 @@
 </div>
 
 
-<script>
-    $(".myPagination").click(function () {
-        var categoryId = $(this).data("categoryid");
-        var pageNumber = $(this).data("pagenumber");
-        var totalPages = $(this).data("totalpages");
-        $.ajax({
-            url: "@Url.Action("PaginatedProducts","Products")",
-            method: "post",
-            data: {
-                categoryId: categoryId,
-                pageNumber: pageNumber,
-                totalPages: totalPages,
-            },
-            success: function (data) {
+@if (Model.CategoryId == null)
+{
+    <script>
+        $(".myPagination").click(function () {
 
-                $("#ProductsPageContainer").html(data);
-            }
+            var pageNumber = $(this).data("pagenumber");
+            var totalPages = @Model.TotalPages;
+
+            $.ajax({
+                url: url = "@Url.Action("SearchProductByNameWithPagination","Products")",
+                method: "post",
+                data: {
+                    pageNumber: pageNumber,
+                    totalPages: totalPages,
+                    searchString: "@(Model.CurrentSearchString)"
+                },
+                success: function (data) {
+
+                    $("#ProductsPageContainer").html(data);
+                }
+            })
         })
-    });
-</script>
+    </script>
+}
+else
+{
+    <script>
+        $(".myPagination").click(function () {
+            var categoryId = @(Model.CategoryId);
+            var pageNumber = $(this).data("pagenumber");
+            var totalPages = @Model.TotalPages;
+            $.ajax({
+                url: url = "@Url.Action("PaginatedProducts","Products")",
+                method: "post",
+                data: {
+                    categoryId: @Model.CategoryId,
+                    pageNumber: pageNumber,
+                    totalPages: totalPages,
+                },
+                success: function (data) {
+
+                    $("#ProductsPageContainer").html(data);
+                }
+            })
+        })
+    </script>
+}
+
+
 

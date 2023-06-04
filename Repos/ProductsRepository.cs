@@ -41,7 +41,7 @@ namespace Repos
 
         public async Task<List<Product>> GetAllProductsByCategoryId(int categoryId)
         {
-           return await _db.Products.Where(temp => temp.CategoryId == categoryId).ToListAsync();
+            return await _db.Products.Where(temp => temp.CategoryId == categoryId).ToListAsync();
         }
 
         public async Task<Product> GetProductById(int id)
@@ -72,12 +72,13 @@ namespace Repos
         {
             return await _db.Products
              .Where(predicate)
+             .Include("Category")
              .ToListAsync();
         }
 
         public async Task<List<Product>> GetPaginatedProducts(int categoryId, int position)
         {
-           
+
             return await _db.Products
                 .Where(temp => temp.CategoryId == categoryId)
                 .Include("Category")
@@ -92,6 +93,17 @@ namespace Repos
             return await _db.Products
                     .Where(temp => temp.CategoryId == categoryId)
                     .CountAsync();
+        }
+
+        public async Task<List<Product>> GetProductsByNameSearchWithPagination(string name,int position)
+        {
+            return await _db.Products
+                    .Where(temp => temp.ProductName.Contains(name))
+                    .Include("Category")
+                    .OrderBy(b => b.ProductName)
+                    .Skip(position * 12)
+                    .Take(12)
+                    .ToListAsync();
         }
     }
 }

@@ -17,7 +17,9 @@ namespace Repos
         Task<Product> UpdateProduct(Product prod);
         Task<bool> DeleteProduct(int id);
         Task<List<Product>> GetFilteredProducts(Expression<Func<Product, bool>> predicate);
+
         Task<List<Product>> GetPaginatedProducts(int categoryId, int position);
         Task<int> GetProductsCountByCategoryId(int categoryId);
+        Task<List<Product>> GetProductsByNameSearchWithPagination(string name, int position);
     }
 }
