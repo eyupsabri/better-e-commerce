@@ -47,7 +47,7 @@ namespace Entities
             //    City = "Alasehir",
             //    StreetAddress = "Yenice mah Sumer Oral cad no 23",
             //    PhoneNumber = "5344181168"
-                
+
             //}, new Customer()
             //{
             //    CustomerId = 2,
@@ -60,7 +60,8 @@ namespace Entities
 
             //});
 
-            modelBuilder.Entity<Category>().HasData(new Category() {
+            modelBuilder.Entity<Category>().HasData(new Category()
+            {
                 CategoryId = 1,
                 CategoryName = "Elektronik",
             },
@@ -80,263 +81,62 @@ namespace Entities
                 CategoryName = "Telefon"
             });
 
-            modelBuilder.Entity<Product>().HasData(new Product()
+            List<Product> products = new List<Product>();
+            for (int i = 1; i <= 200; i++)
             {
-                ProductId = 1,
-                ProductName = "Samsung-s20",
-                ProductPrice = 10550.6,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 4,
+                if (i <= 50)
+                {
+                    products.Add(new Product()
+                    {
+                        ProductId = i,
+                        ProductName = "Samsung-s20",
+                        ProductPrice = 10550.6,
+                        ProductDescription = "Cok ucuz",
+                        CategoryId = 4,
+                    });
+                }
+                else if (50 < i && i <= 100)
+                {
+                    products.Add(new Product()
+                    {
+                        ProductId = i,
+                        ProductName = "Hoparlor",
+                        ProductPrice = 500,
+                        ProductDescription = "Cok ucuz",
+                        CategoryId = 1,
+                    });
+                }
+                else if (100 < i && i <= 150)
+                {
+                    products.Add(new Product()
+                    {
+                        ProductId = i,
+                        ProductName = "Selpak",
+                        ProductPrice = 100,
+                        ProductDescription = "Cok ucuz",
+                        CategoryId = 2,
 
-            },
-            new Product() {
-                ProductId = 2,
-                ProductName = "Hoparlor",
-                ProductPrice = 500,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 1,
+                    });
+                }
+                else if (150 < i && i <= 200)
+                {
+                    products.Add(new Product()
+                    {
+                        ProductId = i,
+                        ProductName = "Sozcu",
+                        ProductPrice = 2,
+                        ProductDescription = "Cok ucuz",
+                        CategoryId = 3,
 
-            },
-            new Product()
+                    });
+                }
+            }
+
+            foreach(Product product in products)
             {
-                ProductId = 3,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            },
-            new Product()
-            {
-                ProductId = 4,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            },
-            new Product()
-            {
-                ProductId = 5,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            },
-            new Product()
-            {
-                ProductId = 6,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            },
-            new Product()
-            {
-                ProductId = 7,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            },
-            new Product()
-            {
-                ProductId = 8,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            },
-            new Product()
-            {
-                ProductId = 9,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            },
-            new Product()
-            {
-                ProductId = 10,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            },
-            new Product()
-            {
-                ProductId = 11,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            },
-            new Product()
-            {
-                ProductId = 12,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            },
-            new Product()
-            {
-                ProductId = 13,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            },
-            new Product()
-            {
-                ProductId = 14,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            },
-            new Product()
-            {
-                ProductId = 16,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            }, new Product()
-            {
-                ProductId = 17,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            }, new Product()
-            {
-                ProductId = 18,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            }, new Product()
-            {
-                ProductId = 19,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            }, new Product()
-            {
-                ProductId = 20,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            }, new Product()
-            {
-                ProductId = 21,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            }, new Product()
-            {
-                ProductId = 22,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            }, new Product()
-            {
-                ProductId = 23,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            }, new Product()
-            {
-                ProductId = 24,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            }, new Product()
-            {
-                ProductId = 25,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            }, new Product()
-            {
-                ProductId = 26,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            }, new Product()
-            {
-                ProductId = 27,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            }, new Product()
-            {
-                ProductId = 28,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            }, new Product()
-            {
-                ProductId = 29,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            }, new Product()
-            {
-                ProductId = 30,
-                ProductName = "Selpak",
-                ProductPrice = 100,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 2,
-
-            },
-            new Product() {
-                ProductId = 15,
-                ProductName = "Sozcu",
-                ProductPrice = 2,
-                ProductDescription = "Cok ucuz",
-                CategoryId = 3,
-
-            });
-
-
+                modelBuilder.Entity<Product>().HasData(product);
+            }
+            
         }
-        
     }
 }

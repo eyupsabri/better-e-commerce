@@ -22,6 +22,8 @@ namespace Customer.Controllers
 
         }
 
+
+        //Herhangi bir category e bastıgında gelen sayfa 
         [HttpGet]
         [Route("[action]/{categoryId}")]
         public async Task<IActionResult> Index(int categoryId)
@@ -45,6 +47,7 @@ namespace Customer.Controllers
 
         }
 
+         
         [HttpPost]
         [Route("[action]")]
         public async Task<IActionResult> PaginatedProducts(int categoryId, int pageNumber, int totalPages)
