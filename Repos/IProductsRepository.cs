@@ -21,5 +21,6 @@ namespace Repos
         Task<List<Product>> GetPaginatedProducts(int categoryId, int position);
         Task<int> GetProductsCountByCategoryId(int categoryId);
         Task<List<Product>> GetProductsByNameSearchWithPagination(string name, int position);
+        Task<int> GetProductsCountByNameSearch(string name);
     }
 }

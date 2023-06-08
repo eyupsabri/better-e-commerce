@@ -1,5 +1,6 @@
 ﻿using Business;
 using Business.DTOs;
+using Business.Helper;
 using Customer.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
@@ -29,9 +30,8 @@ namespace Customer.Controllers
         public async Task<IActionResult> Index(int categoryId)
         {
             int totalProductsNumber = await _productsService.GetProductsCountByCategoryId(categoryId);
-            int remainder = totalProductsNumber % 12;
-            int quotient = totalProductsNumber / 12;
-            int totalPages = remainder > 0 ? quotient + 1 : quotient;
+            
+            int totalPages = TotalPagesCalculator.CalculatingTotalPages(totalProductsNumber);
 
 
 
@@ -50,10 +50,12 @@ namespace Customer.Controllers
          
         [HttpPost]
         [Route("[action]")]
-        public async Task<IActionResult> PaginatedProducts(int categoryId, int pageNumber, int totalPages)
+        public async Task<IActionResult> PaginatedProducts(int categoryId, int pageNumber)
         {
 
             List<ProductResponse> productsResponse = await _productsService.GetProductsByPagination(categoryId, pageNumber);
+            int totalProductsNumber = await _productsService.GetProductsCountByCategoryId(categoryId);
+            int totalPages = TotalPagesCalculator.CalculatingTotalPages(totalProductsNumber);
             SingleProductsPage page = new SingleProductsPage() { Products = productsResponse, CurrentPage = pageNumber, TotalPages = totalPages, CategoryId = categoryId };
             return PartialView("_ProductsPage", page);
 
@@ -61,22 +63,18 @@ namespace Customer.Controllers
 
         [HttpPost]
         [Route("[action]")]
-        public async Task<IActionResult> SearchProductByNameWithPagination(string searchString, int? pageNumber, int? totalPages)
+        public async Task<IActionResult> SearchProductByNameWithPagination(string searchString, int? pageNumber)
         {
             List<ProductResponse> paginatedProducts = await _productsService.GetProductsByNameSearchWithPagination(searchString, pageNumber == null ? 0 : (int)pageNumber);
-            
+            int totalProductsNumber = await _productsService.GetProductsCountByNameSearch(searchString);
+            int totalPages = TotalPagesCalculator.CalculatingTotalPages(totalProductsNumber);
 
-            if (totalPages == null)
+            if (pageNumber == null)
             {
                 List<CategoryResponse> categoryResponse = await _categoriesService.GetAllCategories();
                 ViewBag.Categories = categoryResponse;
                 ViewBag.CurrentSearchString = searchString;
-
-                List<ProductResponse> productsList = await _productsService.GetProductsByNameSearch(searchString);
-                int totalProductsNumber = productsList.Count;
-                int remainder = totalProductsNumber % 12;
-                int quotient = totalProductsNumber / 12;
-                totalPages = remainder > 0 ? quotient + 1 : quotient;
+              
                 SingleProductsPage page = new SingleProductsPage() { Products = paginatedProducts, CurrentPage = pageNumber == null ? 0 : (int)pageNumber, TotalPages = (int)totalPages, CurrentSearchString = searchString };
                 return View("Index", page);
             }else
@@ -86,6 +84,8 @@ namespace Customer.Controllers
             }
                     
         }
+
+      
     }
 
     public static class SessionExtensions

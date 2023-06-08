@@ -71,10 +71,12 @@ namespace Business
             return filtered.Select(x => x.ToProductResponse()).ToList();
         }
 
-        public async Task<List<ProductResponse>> GetProductsByNameSearch(string name)
-        {           
-            List<Product> products = await productsRepo.GetFilteredProducts(temp => temp.ProductName.Contains(name));
-            return products.Select(temp => temp.ToProductResponse()).ToList();  
+
+        public async Task<int> GetProductsCountByNameSearch(string name)
+        {
+            return await productsRepo.GetProductsCountByNameSearch(name);
+
+
         }
     }
 

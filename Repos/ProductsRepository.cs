@@ -105,5 +105,10 @@ namespace Repos
                     .Take(12)
                     .ToListAsync();
         }
+
+        public async Task<int> GetProductsCountByNameSearch(string name)
+        {
+            return await _db.Products.Where(temp => temp.ProductName.Contains(name)).CountAsync();
+        }
     }
 }
