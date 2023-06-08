@@ -20,6 +20,8 @@ namespace Customer
             builder.Services.AddScoped<ICategoriesRepository, CategoriesRepository>();
             builder.Services.AddScoped<ICategoriesService, CategoriesService>();
 
+
+
             builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
             builder.Services.AddScoped<IProductsService, ProductsService>();
 

@@ -30,7 +30,7 @@ namespace Customer.Controllers
             }
             List<CategoryResponse> categoryResponse = await CategoriesService.GetAllCategories();
             ViewBag.Categories = categoryResponse;
-            
+            int i = 5;
             return View(products);
         }
 
