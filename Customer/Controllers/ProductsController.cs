@@ -39,7 +39,7 @@ namespace Customer.Controllers
             ViewBag.Categories = categoryResponse;
 
             List<ProductResponse> productResponse = await _productsService.GetProductsByPagination(categoryId, 0);
-            SingleProductsPage page = new SingleProductsPage() { Products = productResponse, CurrentPage = 0, TotalPages=totalPages, CategoryId = categoryId };
+            SingleProductsPage page = new SingleProductsPage() { Products = productResponse, CurrentPage = 0, TotalPages=totalPages, CategoryId = categoryId, CategoryName = productResponse[0].CategoryName };
 
             return View(page);
 
@@ -56,7 +56,7 @@ namespace Customer.Controllers
             List<ProductResponse> productsResponse = await _productsService.GetProductsByPagination(categoryId, pageNumber);
             int totalProductsNumber = await _productsService.GetProductsCountByCategoryId(categoryId);
             int totalPages = TotalPagesCalculator.CalculatingTotalPages(totalProductsNumber);
-            SingleProductsPage page = new SingleProductsPage() { Products = productsResponse, CurrentPage = pageNumber, TotalPages = totalPages, CategoryId = categoryId };
+            SingleProductsPage page = new SingleProductsPage() { Products = productsResponse, CurrentPage = pageNumber, TotalPages = totalPages, CategoryId = categoryId, CategoryName = productsResponse[0].CategoryName };
             return PartialView("_ProductsPage", page);
 
         }

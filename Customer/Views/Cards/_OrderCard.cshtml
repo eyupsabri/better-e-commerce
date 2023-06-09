@@ -4,51 +4,90 @@
     var sum = Model.Sum(p => p.Quantity * p.Product.ProductPrice);
 }
 
-<table class="table caption-top">
-    <caption>
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
-            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z" />
-        </svg>
-    </caption>
+<div class="container-fluid pt-5">
+    <div class="row px-xl-5">
+        <div class="col-lg-8 table-responsive mb-5">
+            <table class="table table-bordered text-center mb-0">
+                <thead class="bg-secondary text-dark">
+                    <tr>
+                        <th>Products</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    @foreach (SessionOrder order in Model)
+                    {
+                        <tr>
+                            <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> @order.Product.ProductName</td>
+                            <td class="align-middle">$@order.Product.ProductPrice</td>
+                            <td class="align-middle">
+                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-primary btn-minus button-decrease" data-product="@(order.Product.ProductId)" type="button">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    @*<input type="text" class="form-control form-control-sm bg-secondary text-center" value="1">*@
+                                    <span class="form-control form-control-sm bg-secondary text-center">@order.Quantity</span>
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-primary btn-plus button-increase" data-product="@(order.Product.ProductId)" type="button">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="align-middle">$@(order.Quantity * order.Product.ProductPrice)</td>
+                            <!-- Remove Button not Implemented -->
+                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
+                        </tr>
+                    }
+                    
+                   
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-4">
+            <form class="mb-5" action="">
+                <div class="input-group">
+                    <input type="text" class="form-control p-4" placeholder="Coupon Code">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary">Apply Coupon</button>
+                    </div>
+                </div>
+            </form>
+            <div class="card border-secondary mb-5">
+                <div class="card-header bg-secondary border-0">
+                    <h4 class="font-weight-semi-bold m-0">Cart Summary</h4>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-3 pt-1">
+                        <h6 class="font-weight-medium">Subtotal</h6>
+                        <h6 class="font-weight-medium">$@sum</h6>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-medium">Shipping</h6>
+                        <h6 class="font-weight-medium">$10</h6>
+                    </div>
+                </div>
+                <div class="card-footer border-secondary bg-transparent">
+                    <div class="d-flex justify-content-between mt-2">
+                        <h5 class="font-weight-bold">Total</h5>
+                        <h5 class="font-weight-bold">$@(sum + 10)</h5>
+                    </div>
 
-    <thead>
-        <tr>
-            <th scope="col">Ürün</th>
-            <th scope="col">Adet</th>
-            <th scope="col">Fiyat</th>
-        </tr>
-    </thead>
+                    <a class="btn btn-block btn-primary my-3 py-3" href="~/Customers/Index">Proceed To Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Cart End -->
 
-    @foreach (SessionOrder product in Model)
-    {
-        <tr id="CardProductsContainer">
-            <td>@product.Product.ProductName</td>
-            <td>
-                <button id="button-decrease@(product.Product.ProductId)" class="btn btn-danger button-decrease" data-product="@(product.Product.ProductId)" type="button">
-                    <i class="fa fa-minus"></i>
-                </button>
 
-                <span class="quantity@(product.Product.ProductId)">@product.Quantity adet</span>
 
-                <button id="button-increase@(product.Product.ProductId)" class="btn btn-success button-increase" data-product="@(product.Product.ProductId)" type="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
-                    </svg>
-                </button>
-
-            </td>
-            <td><span class="individualSum@(product.Product.ProductId)">@(product.Quantity * product.Product.ProductPrice)TL</span></td>
-
-        </tr>
-
-    }
-
-    <tr class="table-group-divider">
-        <td></td>
-        <td>Toplam</td>
-        <td><span class="totalSum">@sum</span>TL</td>
-    </tr>
-</table>
 
 <script>
     $(function () {

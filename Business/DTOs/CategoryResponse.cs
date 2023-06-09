@@ -9,8 +9,9 @@ namespace Business.DTOs
 {
     public class CategoryResponse
     {
-        public int CategoryId;
-        public string CategoryName;
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
+        public int? ProductsCount { get; set; }
     }
 
     public static class CategoryExtensions

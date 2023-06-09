@@ -7,9 +7,12 @@ namespace Admin.Controllers
     public class HomeController : Controller
     {
         private ICategoriesService _categoriesService;
+        private IProductsService _productsService;
 
-        public HomeController(ICategoriesService categoriesService) {
+        public HomeController(ICategoriesService categoriesService, IProductsService productsService)
+        {
             this._categoriesService = categoriesService;
+            this._productsService = productsService;
         }
 
         [Route("/")]
@@ -17,8 +20,16 @@ namespace Admin.Controllers
         public async Task<IActionResult> Index()
         {
             List<CategoryResponse> categoryResponse =  await _categoriesService.GetAllCategories();
-            ViewBag.Categories = categoryResponse;
-            return View();
+            ViewData["categories"] = categoryResponse;
+            
+            
+            foreach (var category in categoryResponse)
+            {
+                int count = await _productsService.GetProductsCountByCategoryId(category.CategoryId);
+                category.ProductsCount = count;
+            }
+            
+            return View(categoryResponse);
         }
     }
 }
