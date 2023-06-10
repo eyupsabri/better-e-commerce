@@ -1,0 +1,126 @@
+﻿@model PagingModel
+
+<nav aria-label="...">
+    <ul class="pagination">
+
+        @if (Model.CurrentPage != 0)
+        {
+            <li class="page-item">
+                <button class="page-link myPagination" data-pagenumber="@(Model.CurrentPage - 1)">
+                    Previous
+                </button>
+            </li>
+        }
+        else
+        {
+            <li class="page-item disabled">
+                <button class="page-link">
+                    Previous
+                </button>
+            </li>
+        }
+
+        <li class="page-item">
+            <button class="page-link myPagination" data-pagenumber="0">
+                First Page
+            </button>
+        </li>
+
+        @if (Model.CurrentPage > 2)
+        {
+            for (int k = Model.CurrentPage - 2; k < Model.CurrentPage + 3; k++)
+            {
+
+                if (Model.TotalPages > k)
+                {
+                    if (k == Model.CurrentPage)
+                    {
+                        <li class="page-item active">
+                            <button class="page-link myPagination" aria-current="page" data-pagenumber="@(k)">
+                                @(k + 1)
+                            </button>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <button class="page-link myPagination" data-pagenumber="@(k)">
+                                @(k + 1)
+                            </button>
+                        </li>
+                    }
+
+                }
+                else if (Model.TotalPages <= k)
+                {
+                    <li class="page-item disabled">
+                        <button class="page-link" data-pagenumber="@(k)">
+                            @(k + 1)
+                        </button>
+                    </li>
+                }
+            }
+        }
+        else
+        {
+            for (int k = 0; k < 5; k++)
+            {
+                if (Model.TotalPages > k)
+                {
+                    if (k == Model.CurrentPage)
+                    {
+                        <li class="page-item active">
+                            <button class="page-link myPagination" aria-current="page" data-pagenumber="@(k)">
+                                @(k + 1)
+                            </button>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <button class="page-link myPagination" data-pagenumber="@(k)">
+                                @(k + 1)
+                            </button>
+                        </li>
+                    }
+
+                }
+                else if (Model.TotalPages <= k)
+                {
+                    <li class="page-item disabled">
+                        <button class="page-link" data-pagenumber="@(k)">
+                            @(k + 1)
+                        </button>
+                    </li>
+                }
+
+            }
+        }
+
+        <li class="page-item">
+            <button class="page-link myPagination" data-pagenumber="@(Model.TotalPages - 1)">
+                Last Page
+            </button>
+        </li>
+
+        @if (Model.TotalPages > Model.CurrentPage + 1)
+        {
+            <li class="page-item">
+                <button class="page-link myPagination" data-pagenumber="@(Model.CurrentPage + 1)">
+                    Next
+                </button>
+            </li>
+        }
+        else
+        {
+            <li class="page-item disabled">
+                <button class="page-link">
+                    Next
+                </button>
+            </li>
+        }
+
+    </ul>
+</nav>
+
+

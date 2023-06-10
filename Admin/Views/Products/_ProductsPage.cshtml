@@ -1,0 +1,76 @@
+﻿@model SingleProductsPage
+
+<div id="ProductsPageContainer" class="col px-0">
+    @Html.Partial("_PagingComponent", (PagingModel)Model)
+
+    <div class="row">
+        @{
+            int i = 0;
+
+            @foreach (var product in Model.Products)
+            {
+                if (i % 3 == 0)
+                {
+                    <div class="row"></div>
+                }
+                i++;
+                <div class="col-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="~/@String.Concat(product.ProductName, ".jpg")" class="card-img-top" width="200" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">@product.ProductName</h5>
+                            <p class="card-text">@product.ProductDescription</p>
+                            <p class="card-text text-end fw-bold">@String.Concat(product.ProductPrice, "TL")</p>
+                            <p class="text-end my-0"><a href="~/Cards/AddToCard/@product.ProductId" class="btn btn-primary">Sepete Ekle</a></p>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+
+@if (Model.CategoryId == null)
+{
+    <script>
+        $(".myPagination").click(function () {
+            var pageNumber = $(this).data("pagenumber");
+            $.ajax({
+                url: url = "@Url.Action("SearchProductByNameWithPagination","Products")",
+                method: "post",
+                data: {
+                    pageNumber: pageNumber,
+                    searchString: "@(Model.CurrentSearchString)",
+                },
+                success: function (data) {
+
+                    $("#ProductsPageContainer").html(data);
+                }
+            })
+        })
+    </script>
+}
+else
+{
+    <script>
+        $(".myPagination").click(function () {
+            var pageNumber = $(this).data("pagenumber");
+            $.ajax({
+                url: url = "@Url.Action("PaginatedProducts","Products")",
+                method: "post",
+                data: {
+                    pageNumber: pageNumber,
+                    categoryId: @Model.CategoryId,
+                },
+                success: function (data) {
+
+                    $("#ProductsPageContainer").html(data);
+                }
+            })
+        })
+    </script>
+}
+
+
