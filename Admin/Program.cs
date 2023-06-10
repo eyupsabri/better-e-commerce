@@ -1,7 +1,9 @@
 using Business;
 using Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Repos;
+using System.Text.RegularExpressions;
 
 namespace Admin
 {
@@ -12,7 +14,8 @@ namespace Admin
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddDbContext<AppDbContext>(options => {
+            builder.Services.AddDbContext<AppDbContext>(options =>
+            {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 
@@ -37,12 +40,22 @@ namespace Admin
 
             var app = builder.Build();
 
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Regex.Replace(app.Environment.ContentRootPath, $"{app.Environment.ApplicationName}$", "assets")),
+                RequestPath = new PathString("/assets")
+       
+            });
+
+
+
+
+
             app.UseRouting();
             //app.UseSession();
             app.MapControllers();
 
             app.Run();
         }
-    }
+}
 }
