@@ -22,16 +22,18 @@ namespace Business
         }
 
 
-        public async Task<bool> AddCustomerWithOrder(CustomerAddRequest customerAddReq, List<SessionOrder> order)
+        public async Task<CustomerResponse> AddCustomerWithOrder(CustomerAddRequest customerAddReq, List<SessionOrder> order)
         {
             await _customersRepo.AddCustomerWithoutOrderId(customerAddReq.ToCustomer());//Order no olmadan ekliyorum.
             Customer? customer = await _customersRepo.GetLatestCustomer();//Eklenen Customer ı alıyorum
             if (customer != null)
             {
                 await _orderItemsService.CreateOrders(customer); //Customer ile order yaratıyorum
-                return await _orderItemsService.AddOrderItems(order);//order item ekleme
+                await _orderItemsService.AddOrderItems(order);//order item ekleme
             }
-            return false;
+            CustomerResponse response = customer.ToCustomerResponse();
+            response.Items = order;
+            return response;
         }
 
         public async Task<List<CustomerResponse>> GetAllCustomers()

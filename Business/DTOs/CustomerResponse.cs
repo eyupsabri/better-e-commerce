@@ -31,6 +31,8 @@ namespace Business.DTOs
         public string PhoneNumber { get; set; }
 
         public int OrderId { get; set; }
+
+        public List<SessionOrder>? Items { get; set; }
     }
 
     public static class CustomerExtentions
