@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entiti
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{1B510E55-49E0-43D8-810A-778EEE626E6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repos", "Repos\Repos.csproj", "{25B43617-4A5E-4BB3-97D9-7ACE596F9F30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repos", "Repos\Repos.csproj", "{25B43617-4A5E-4BB3-97D9-7ACE596F9F30}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{AC41B205-815E-4539-9FE9-65459B4F8560}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
