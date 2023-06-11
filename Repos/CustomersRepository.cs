@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -46,6 +47,37 @@ namespace Repos
         {
             List<Customer> customers = await _db.Customers.Include("order").ToListAsync();
             return customers;
+        }
+
+        public async Task<List<Customer>> GetPaginatedCustomers(int position)
+        {
+            return await _db.Customers                              
+                .Skip(position * 12)
+                .Include("order")
+                .Take(12)
+                .ToListAsync();
+        }
+
+        public async Task<int> CustomersCount()
+        {
+            return await _db.Customers.CountAsync();
+        }
+
+        public async Task<int> GetCustomersCountByNameSearch(string search)
+        {
+            return await _db.Customers
+             .Where(temp => temp.CustomerName.Contains(search))
+             .CountAsync();
+        }
+
+        public async Task<List<Customer>> GetCustomersByNameSearchPaginated(string search,int position)
+        {
+            return await _db.Customers
+                .Where(temp =>temp.CustomerName.Contains(search))
+                .Skip(position * 12)
+                .Include("order")
+                .Take(12)
+                .ToListAsync();
         }
     }
 }

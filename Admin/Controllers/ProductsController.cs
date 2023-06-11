@@ -81,35 +81,6 @@ namespace Admin.Controllers
 
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-        [HttpGet]
-        [Route("[action]")]
-        public async Task<IActionResult> GetAllOrders()
-        {
-            List<CategoryResponse> categoryResponse = await _categoriesService.GetAllCategories();
-            ViewBag.Categories = categoryResponse;
-
-            List<CustomerResponse> customers = await _customersService.GetAllCustomers();          
-            Dictionary<CustomerResponse, List<SessionOrder>> myDictionary = new Dictionary<CustomerResponse, List<SessionOrder>>();
-
-            foreach (CustomerResponse customer in customers)
-            {
-                List<SessionOrder> orders = await _orderItemsService.GetAllOrderItemsByOrderId(customer.OrderId);
-                myDictionary[customer] = orders;
-            }
-            ViewBag.myDictionary = myDictionary;
-            return View();
-        }
+       
     }
 }

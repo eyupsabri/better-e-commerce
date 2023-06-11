@@ -31,21 +31,27 @@
                                 Dropdown
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="~/Categories/Index">Update Categories</a></li>
                                 <li><a class="dropdown-item" href="#">Another action</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="~/Products/GetAllOrders">
+                            <a class="nav-link" href="~/Orders/Index">
                                 Orders
                             </a>
                         </li>
                     </ul>
-                    <form class="d-flex" asp-controller="Products" asp-action="SearchProductByNameWithPagination" method="post">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchString" value="@ViewBag.CurrentSearchString">
-                        <button class="btn btn-outline-light" type="submit">Search</button>
+
+                    <select class="form-select container-sm" aria-label="Default select example" id="SearchBy" style=" width: 50%;">
+                        <option selected value="product">By Product Name</option>
+                        <option value="customer">By Customer Name</option>
+                    </select>
+                    <form class="d-flex" id="SearchByForm" method="post" style="width: 40%;">
+                        
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchString" value="@ViewBag.CurrentSearchString" >
+                        <button class="btn btn-outline-light initiatesearch" type="button">Search</button>
                     </form>
                 </div>
             </div>
@@ -75,7 +81,28 @@
         </footer>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+    <script>
+        $(".initiatesearch").click(function () {
+            var form = $("#SearchByForm");
+            var searchby = $("#SearchBy").val();          
+            //var $inputs = $('#SearchByForm :input');
+            //var values = {};
+            //$inputs.each(function () {
+            //    values[this.name] = $(this).val();
+            //});
+            if (searchby == "product"){
+                $('#SearchByForm').attr('action', '/Products/SearchProductByNameWithPagination');
+            }else {
+                $('#SearchByForm').attr('action', '/Orders/PaginatedCustomersByNameSearch');
+            }
+            form.submit();
+            
+        });
+    </script>
+
+
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

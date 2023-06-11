@@ -36,6 +36,8 @@ namespace Business
             return response;
         }
 
+       
+
         public async Task<List<CustomerResponse>> GetAllCustomers()
         {
             List<Customer> customers = await _customersRepo.GetAllCustomers();
@@ -49,6 +51,29 @@ namespace Business
             }
             return customerRespones;
 
+        }
+
+        public async Task<List<CustomerResponse>> GetPaginatedCustomers(int position)
+        {
+            List<Customer> customers = await _customersRepo.GetPaginatedCustomers(position);
+            return customers.Select(x => x.ToCustomerResponse()).ToList();
+        }
+
+        public async Task<int> CustomersCount()
+        {
+            return await _customersRepo.CustomersCount();
+        }
+
+        public async Task<List<CustomerResponse>> GetCustomersByNameSearchPaginated(string search, int position)
+        {
+            List<Customer> customers = await _customersRepo.GetCustomersByNameSearchPaginated(search, position);
+            List<CustomerResponse> customerResponses = customers.Select(customer => customer.ToCustomerResponse()).ToList();
+            return customerResponses;
+        }
+
+        public async Task<int> GetCustomersCountByNameSearch(string search)
+        {
+            return await _customersRepo.GetCustomersCountByNameSearch(search);
         }
     }
 }

@@ -1,0 +1,102 @@
+﻿@model SingleOrdersPage
+<div id="CustomerContainer">
+    @Html.Partial("_PagingComponent", (PagingModel)Model)
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Customer ID</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Quantity</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @{
+                int i = 0;
+                foreach (CustomerResponse customer in Model.Customers)
+                {
+                    i++;
+                    int k = 0;
+
+                    @foreach (SessionOrder orderItem in customer.Items)
+                    {
+                        if (customer.Items.Count == 1)
+                        {
+                            <tr class="table-group-divider">
+                                <th scope="row">@i</th>
+                                <td>@customer.CustomerId</td>
+                                <td>@customer.CustomerName</td>
+                                <td>@orderItem.Product.ProductName</td>
+                                <td>@orderItem.Quantity</td>
+                            </tr>
+                        }
+                        else if (customer.Items.Count > 1 && k == 0)
+                        {
+                            <tr class="table-group-divider">
+                                <th scope="row">@i</th>
+                                <td>@customer.CustomerId</td>
+                                <td>@customer.CustomerName</td>
+                                <td>@orderItem.Product.ProductName</td>
+                                <td>@orderItem.Quantity</td>
+                            </tr>
+                        }
+                        else if (k > 0)
+                        {
+                            <tr>
+                                <th scope="row" colspan="3"></th>
+                                <td>@orderItem.Product.ProductName</td>
+                                <td>@orderItem.Quantity</td>
+                            </tr>
+                        }
+                        k++;
+                    }
+
+                }
+            }
+        </tbody>
+
+    </table>
+</div>
+
+
+@if (Model.CurrentSearchString == null)
+{
+    <script>
+        $(".myPagination").click(function () {
+            var pageNumber = $(this).data("pagenumber");
+            $.ajax({
+                url: url = "@Url.Action("PaginatedCustomers","Orders")",
+                method: "post",
+                data: {
+                    pageNumber: pageNumber,
+                },
+                success: function (data) {
+
+                    $("#CustomerContainer").html(data);
+                }
+            })
+        })
+    </script>
+}
+@*else
+{
+    <script>
+        $(".myPagination").click(function () {
+            var pageNumber = $(this).data("pagenumber");
+            $.ajax({
+                url: url = "@Url.Action("PaginatedProducts","Products")",
+                method: "post",
+                data: {
+                    pageNumber: pageNumber,
+                    
+                },
+                success: function (data) {
+
+                    $("#ProductsPageContainer").html(data);
+                }
+            })
+        })
+    </script>
+}*@

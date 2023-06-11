@@ -11,5 +11,9 @@ namespace Business
     {
         Task<CustomerResponse> AddCustomerWithOrder(CustomerAddRequest customer, List<SessionOrder> order);
         Task<List<CustomerResponse>> GetAllCustomers();
+        Task<List<CustomerResponse>> GetPaginatedCustomers(int position);
+        Task<int> CustomersCount();
+        Task<List<CustomerResponse>> GetCustomersByNameSearchPaginated(string search, int position);
+        Task<int> GetCustomersCountByNameSearch(string search);
     }
 }
