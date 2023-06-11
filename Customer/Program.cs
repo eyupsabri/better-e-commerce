@@ -2,7 +2,8 @@ using Business;
 using Entities;
 using Repos;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.Extensions.FileProviders;
+using System.Text.RegularExpressions;
 
 namespace Customer
 {
@@ -40,7 +41,14 @@ namespace Customer
 
             var app = builder.Build();
 
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Regex.Replace(builder.Environment.ContentRootPath, builder.Environment.ApplicationName, "assets")),
+                RequestPath = new PathString("/assets")
+
+            });
+
+
             app.UseRouting();
             app.UseSession();
             app.MapControllers();

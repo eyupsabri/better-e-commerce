@@ -3,6 +3,7 @@ using Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Repos;
+using System.Diagnostics.Metrics;
 using System.Text.RegularExpressions;
 
 namespace Admin
@@ -40,11 +41,15 @@ namespace Admin
 
             var app = builder.Build();
 
+            //app.UseStaticFiles();
+
+            
+
             app.UseStaticFiles(new StaticFileOptions
             {
-                FileProvider = new PhysicalFileProvider(Regex.Replace(app.Environment.ContentRootPath, $"{app.Environment.ApplicationName}$", "assets")),
+                FileProvider = new PhysicalFileProvider(Regex.Replace(builder.Environment.ContentRootPath, builder.Environment.ApplicationName, "assets")),
                 RequestPath = new PathString("/assets")
-       
+
             });
 
 

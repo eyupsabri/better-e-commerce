@@ -21,7 +21,7 @@
                     @foreach (SessionOrder order in Model)
                     {
                         <tr>
-                            <td class="align-middle"><img src="~/products/@(order.Product.ProductName).jpg" alt="" style="width: 50px;"> @order.Product.ProductName</td>
+                            <td class="align-middle"><img src="~/assets/products/@(order.Product.ProductName).jpg" alt="" style="width: 50px;"> @order.Product.ProductName</td>
                             <td class="align-middle">$@order.Product.ProductPrice</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
