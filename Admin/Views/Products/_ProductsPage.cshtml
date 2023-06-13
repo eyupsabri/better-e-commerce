@@ -21,9 +21,8 @@
     @foreach (ProductResponse product in Model.Products)
     {
 
-        ViewDataDictionary dic = new ViewDataDictionary(ViewData) { { "searchString", Model.CurrentSearchString },
-    { "pageNumber", Model.CurrentPage }};
-        @Html.Partial("_OneProduct", product.ToProductUpdateReq(), dic )
+      
+        @Html.Partial("_OneProduct", product.ToProductUpdateReq() )
     }
 
 
