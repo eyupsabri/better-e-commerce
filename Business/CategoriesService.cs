@@ -23,5 +23,10 @@ namespace Business
             List<CategoryResponse> categories = allCategories.Select(temp => temp.ToCategoryResponse()).ToList();
             return categories;
         }
+
+        public async Task<bool> DeleteCategoryById(int id)
+        {
+            return await CategoriesRepo.DeleteCategory(id);
+        }
     }
 }

@@ -42,7 +42,7 @@ namespace Business.DTOs
         [StringLength(10)]
         public string PhoneNumber { get; set; }
 
-        public IEnumerable<Order>? Orders { get; set; }
+        //public IEnumerable<Order>? Orders { get; set; }
 
         public Customer ToCustomer()
         {//Burada enum null mu diye bak null olarak gir yoksa empty string atıyor

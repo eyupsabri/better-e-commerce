@@ -10,5 +10,6 @@ namespace Business
     public interface ICategoriesService
     {
         Task<List<CategoryResponse>> GetAllCategories();
+        Task<bool> DeleteCategoryById(int id);
     }
 }

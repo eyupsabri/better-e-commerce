@@ -18,5 +18,7 @@ namespace Business
         Task<int> GetProductsCountByCategoryId(int categoryId);
         Task<List<ProductResponse>> GetProductsByNameSearchWithPagination(string name, int position);
         Task<int> GetProductsCountByNameSearch(string name);
+        Task<ProductResponse> UpdateProductById(ProductUpdateRequest product);
+        Task<bool> DeleteProductById(int productId, int categoryId);
     }
 }

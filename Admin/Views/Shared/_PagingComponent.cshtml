@@ -36,7 +36,7 @@
                     if (k == Model.CurrentPage)
                     {
                         <li class="page-item active">
-                            <button class="page-link myPagination" aria-current="page" data-pagenumber="@(k)">
+                            <button class="page-link myPagination currentpagenumber" aria-current="page" data-pagenumber="@(k)">
                                 @(k + 1)
                             </button>
                         </li>
@@ -70,7 +70,7 @@
                     if (k == Model.CurrentPage)
                     {
                         <li class="page-item active">
-                            <button class="page-link myPagination" aria-current="page" data-pagenumber="@(k)">
+                            <button class="page-link myPagination currentpagenumber" aria-current="page" data-pagenumber="@(k)">
                                 @(k + 1)
                             </button>
                         </li>

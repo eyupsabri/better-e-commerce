@@ -16,6 +16,11 @@ namespace Business.DTOs
         public string ProductDescription { get; set; }
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
+
+        public ProductUpdateRequest ToProductUpdateReq()
+        {
+            return new ProductUpdateRequest() { ProductDescription = ProductDescription, ProductId = ProductId, ProductName = ProductName, ProductPrice = (decimal)ProductPrice, CategoryId = CategoryId };
+        }
     }
 
     public static class ProductExtentions

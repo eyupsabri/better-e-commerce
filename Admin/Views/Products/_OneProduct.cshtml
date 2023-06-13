@@ -1,0 +1,21 @@
+﻿@model ProductUpdateRequest
+
+<form id="UpdateProductForm@(Model.ProductId)" method="post">
+    <div class="grid-table">
+        <span style="width: 100%;">@Model.ProductId</span>
+        <span>
+            <input style="width: 100%;" asp-for="ProductName" value="@Model.ProductName" />
+            <span asp-validation-for="ProductName"></span>
+        </span>
+        <span>
+            <input style="width: 100%;" asp-for="ProductDescription" value="@Model.ProductDescription" />
+            <span asp-validation-for="ProductDescription"></span>
+        </span>
+        <span>
+            <input style="width: 100%;" name="ProductPrice" type="text"  value="@(Model.ProductPrice)" />
+            @*<span asp-validation-for="ProductPrice"></span>*@
+        </span>
+        <span><button id="UpdateProductSaveButton@(Model.ProductId)" style="width: 100%;" class="button-save"  data-productid="@(Model.ProductId)" type="button">Save</button></span>
+        <span><button id="UpdateProductRemoveButton@(Model.ProductId)" style="width: 100%;" class="button-remove" data-categoryid="@Model.CategoryId" data-productid="@(Model.ProductId)" type="button">Remove</button></span>
+    </div>
+</form>

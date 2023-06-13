@@ -66,10 +66,10 @@ namespace Admin.Controllers
             int customersCount = await _customersService.GetCustomersCountByNameSearch(searchString);
             int totalPages = TotalPagesCalculator.CalculatingTotalPages(customersCount);
 
-            if (customers.Count == 0)
-            {
-                return Redirect("Home/Index");
-            }else if(pageNumber == null)
+            //if (customers.Count == 0)
+            //{
+            //    return Redirect("~/Home");
+             if(pageNumber == null)
             {
                 foreach (CustomerResponse customer in customers)
                 {

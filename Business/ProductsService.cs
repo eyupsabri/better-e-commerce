@@ -9,9 +9,12 @@ namespace Business
     public class ProductsService : IProductsService
     {
         private  IProductsRepository productsRepo;
+        private ICategoriesService categoriesService;
 
-        public ProductsService(IProductsRepository productsRepository) {
+        public ProductsService(IProductsRepository productsRepository, ICategoriesService categoriesService)
+        {
             this.productsRepo = productsRepository;
+            this.categoriesService = categoriesService;
         }
 
         public async Task<List<ProductResponse>> GetAllProductsByCategoryId(int categoryId)
@@ -77,6 +80,23 @@ namespace Business
             return await productsRepo.GetProductsCountByNameSearch(name);
 
 
+        }
+
+        public async Task<ProductResponse> UpdateProductById(ProductUpdateRequest product)
+        {
+            Product temp = await productsRepo.UpdateProduct(product.ToProduct());
+            return temp.ToProductResponse();
+        }
+
+        public async Task<bool> DeleteProductById(int productId, int categoryId)
+        {
+            await productsRepo.DeleteProduct(productId);
+            int totalProducts = await GetProductsCountByCategoryId(categoryId);
+            if(totalProducts == 0)
+            {
+                await categoriesService.DeleteCategoryById(categoryId);
+            }
+            return true;
         }
     }
 

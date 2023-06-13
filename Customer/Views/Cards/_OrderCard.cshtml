@@ -93,6 +93,7 @@
     $(function () {
         $(".button-decrease").click(function () {
             var productId = $(this).data("product");
+            console.log(productId)
             $.ajax({
                 url: "@Url.Action("Update","Cards")",
                 method: "post",

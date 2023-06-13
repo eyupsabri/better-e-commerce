@@ -51,7 +51,7 @@ namespace Repos
 
         public async Task<Product> UpdateProduct(Product prod)
         {
-            Product? matchingProduct = await _db.Products.FirstOrDefaultAsync(temp => temp.ProductId == prod.ProductId);
+            Product? matchingProduct = await _db.Products.Include("Category").FirstOrDefaultAsync(temp => temp.ProductId == prod.ProductId);
 
             if (matchingProduct == null)
                 return prod;
@@ -59,8 +59,8 @@ namespace Repos
             matchingProduct.ProductName = prod.ProductName;
             matchingProduct.ProductPrice = prod.ProductPrice;
             matchingProduct.ProductDescription = prod.ProductDescription;
-            matchingProduct.ProductName = prod.ProductName;
-            matchingProduct.CategoryId = prod.CategoryId;
+            
+            
 
 
             int countUpdated = await _db.SaveChangesAsync();

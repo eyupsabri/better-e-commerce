@@ -51,7 +51,7 @@ namespace Admin.Controllers
             List<ProductResponse> productsResponse = await _productsService.GetProductsByPagination(categoryId, pageNumber);
             int totalProductsNumber = await _productsService.GetProductsCountByCategoryId(categoryId);
             int totalPages = TotalPagesCalculator.CalculatingTotalPages(totalProductsNumber);
-            SingleProductsPage page = new SingleProductsPage() { Products = productsResponse, CurrentPage = pageNumber, TotalPages = totalPages, CategoryId = categoryId };
+            SingleProductsPage page = new SingleProductsPage() { Products = productsResponse, CurrentPage = pageNumber, TotalPages = totalPages, CategoryId = categoryId, CurrentSearchString = null };
             return PartialView("_ProductsPage", page);
 
         }
@@ -70,17 +70,54 @@ namespace Admin.Controllers
                 ViewBag.Categories = categoryResponse;
                 ViewBag.CurrentSearchString = searchString;
 
-                SingleProductsPage page = new SingleProductsPage() { Products = paginatedProducts, CurrentPage = pageNumber == null ? 0 : (int)pageNumber, TotalPages = (int)totalPages, CurrentSearchString = searchString };
+                SingleProductsPage page = new SingleProductsPage() { Products = paginatedProducts, CurrentPage = pageNumber == null ? 0 : (int)pageNumber, TotalPages = (int)totalPages, CurrentSearchString = searchString, CategoryId = null };
                 return View("Index", page);
             }
             else
             {
-                SingleProductsPage page = new SingleProductsPage() { Products = paginatedProducts, CurrentPage = pageNumber == null ? 0 : (int)pageNumber, TotalPages = (int)totalPages, CurrentSearchString = searchString };
+                SingleProductsPage page = new SingleProductsPage() { Products = paginatedProducts, CurrentPage = pageNumber == null ? 0 : (int)pageNumber, TotalPages = (int)totalPages, CurrentSearchString = searchString, CategoryId = null };
                 return PartialView("_ProductsPage", page);
             }
 
         }
 
-       
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<IActionResult> UpdateProduct(ProductUpdateRequest product)
+        {
+            ProductResponse response = await _productsService.UpdateProductById(product);
+            return PartialView("_OneProduct", response.ToProductUpdateReq());
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<IActionResult> RemoveProduct(int productId, string? searchString, int pageNumber, int categoryId)
+        {
+
+            await _productsService.DeleteProductById(productId, categoryId);
+            int totalProductsNumber;
+            int totalPages;
+            SingleProductsPage page;
+
+            if (searchString == null) {
+                totalProductsNumber = await _productsService.GetProductsCountByCategoryId(categoryId);
+                if (totalProductsNumber == 0)
+                {
+                    return Json(null);
+                }
+                List<ProductResponse> productsResponse = await _productsService.GetProductsByPagination(categoryId, pageNumber);               
+                totalPages = TotalPagesCalculator.CalculatingTotalPages(totalProductsNumber);
+                if (pageNumber == totalPages)
+                    pageNumber--;
+                page = new SingleProductsPage() { Products = productsResponse, CurrentPage = pageNumber, TotalPages = totalPages, CategoryId = categoryId, CurrentSearchString = null };
+                return PartialView("_ProductsPage", page);
+            }
+            List<ProductResponse> paginatedProducts = await _productsService.GetProductsByNameSearchWithPagination(searchString, pageNumber);
+            totalProductsNumber = await _productsService.GetProductsCountByNameSearch(searchString);
+            totalPages = TotalPagesCalculator.CalculatingTotalPages(totalProductsNumber);
+            page = new SingleProductsPage() { Products = paginatedProducts, CurrentPage = pageNumber, TotalPages = (int)totalPages, CurrentSearchString = searchString, CategoryId = null };
+            return PartialView("_ProductsPage", page);
+
+        }     
     }
 }

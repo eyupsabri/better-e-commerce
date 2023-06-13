@@ -3,74 +3,292 @@
 <div id="ProductsPageContainer" class="col px-0">
     @Html.Partial("_PagingComponent", (PagingModel)Model)
 
-    <div class="row">
-        @{
-            int i = 0;
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
+        <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z" />
+    </svg>
 
-            @foreach (var product in Model.Products)
-            {
-                if (i % 3 == 0)
-                {
-                    <div class="row"></div>
-                }
-                i++;
-                <div class="col-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="~/@String.Concat("assets/products","/",product.ProductName, ".jpg")" class="card-img-top" width="200" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">@product.ProductName</h5>
-                            <p class="card-text">@product.ProductDescription</p>
-                            <p class="card-text text-end fw-bold">@String.Concat(product.ProductPrice, "TL")</p>
-                            <p class="text-end my-0"><a href="~/Cards/AddToCard/@product.ProductId" class="btn btn-primary">Sepete Ekle</a></p>
 
-                        </div>
-                    </div>
-                </div>
-            }
-        }
+    <div class="grid-table">
+        <span><strong>Row</strong></span>
+        <span><strong>Product Name</strong></span>
+        <span><strong>Product Description</strong></span>
+        <span><strong>Product Price</strong></span>
+        <span><strong>Save</strong></span>
+        <span><strong>Remove</strong></span>
+
     </div>
+
+    @foreach (ProductResponse product in Model.Products)
+    {
+
+        ViewDataDictionary dic = new ViewDataDictionary(ViewData) { { "searchString", Model.CurrentSearchString },
+    { "pageNumber", Model.CurrentPage }};
+        @Html.Partial("_OneProduct", product.ToProductUpdateReq(), dic )
+    }
+
+
 </div>
 
 
-@if (Model.CategoryId == null)
-{
-    <script>
-        $(".myPagination").click(function () {
-            var pageNumber = $(this).data("pagenumber");
+
+<script>
+
+
+    $("#ProductsPageContainer").on("click", ".button-save", function () {
+        var ProductId = $(this).data("productid");
+        console.log("#UpdateProductForm" + ProductId);
+        var form = $("#UpdateProductForm" + ProductId);
+
+        form.removeData("validator");
+        form.removeData("unobtrusiveValidation");
+        $.validator.unobtrusive.parse(form);
+
+
+        
+        var $inputs = $('#UpdateProductForm' + ProductId + ' :input');
+        var values = {};
+        $inputs.each(function () {
+            values[this.name] = $(this).val();
+        });
+
+        form.validate();
+        console.log(form.valid());
+        if (form.valid()) {
             $.ajax({
-                url: url = "@Url.Action("SearchProductByNameWithPagination","Products")",
+                url: "@Url.Action("UpdateProduct","Products")",
                 method: "post",
                 data: {
-                    pageNumber: pageNumber,
-                    searchString: "@(Model.CurrentSearchString)",
+                    ProductId: ProductId,
+                    ...values
                 },
                 success: function (data) {
 
-                    $("#ProductsPageContainer").html(data);
+                    $("#UpdateProductSaveButton" + ProductId).animate({
+                        backgroundColor: '#AAFF00'
+                    }, {
+                        duration: 200,
+                        complete: function () {
+                            $("#UpdateProductForm" + ProductId).html(data);
+                        }
+                    });
+
+
                 }
             })
-        })
+        }
+
+    });
+
+
+</script>
+
+
+
+
+
+
+
+
+@if (Model.CurrentSearchString != null)
+{
+    <script>
+        $(function () {
+
+            $(".myPagination").click(function () {
+                var pageNumber = $(this).data("pagenumber");
+                console.log(pageNumber)
+                $.ajax({
+                    url: "@Url.Action("SearchProductByNameWithPagination","Products")",
+                    method: "post",
+                    data: {
+                        pageNumber: pageNumber,
+                        searchString: "@(Model.CurrentSearchString)",
+                    },
+                    success: function (data) {
+                        $("#ProductsPageContainer").off("click", ".button-save");
+                        $("#ProductsPageContainer").off("click", ".button-remove");
+                        $("#ProductsPageContainer").html(data);
+                    }
+                })
+            })
+
+
+            $("#ProductsPageContainer").on("click", ".button-remove", function () {
+
+                var ProductId = $(this).data("productid");
+                var categoryid = $(this).data("categoryid");
+
+                var searchString = @Model.CurrentSearchString;
+                var pageNumber = @Model.CurrentPage;
+
+
+                $.ajax({
+                    url: "@Url.Action("RemoveProduct","Products")",
+                    method: "post",
+                    data: {
+                        productId: ProductId,
+                        searchString: searchString,
+                        pageNumber: pageNumber,
+                        categoryId: categoryid
+                    },
+                    success: function (data) {
+                        try {
+                            var response = jQuery.parseJSON(data);
+                            if (typeof response == 'object') {
+                                window.location.href = window.location.origin + "/home"
+                            }
+                        } catch (err) {
+
+                            $("#UpdateProductRemoveButton" + ProductId).animate({
+                                backgroundColor: '#FF2400'
+                            }, {
+                                duration: 200,
+                                complete: function () {
+                                    $("#ProductsPageContainer").html(data);
+                                }
+                            });
+
+
+
+                        }
+
+                    }
+                })
+
+
+            });
+
+
+
+
+        @*
+            $(".button-remove").on("click",function () {
+            var ProductId = $(this).data("productid");
+            var categoryid = $(this).data("categoryid");
+            var form = $("#UpdateProductForm" + ProductId);
+            var $inputs = $('#UpdateProductForm' + ProductId + ' :input');
+            var searchString = @Model.CurrentSearchString;
+            var pageNumber = @Model.CurrentPage;
+
+
+            var values = {};
+            $inputs.each(function () {
+            values[this.name] = $(this).val();
+            });
+            form.validate();
+
+            if (form.valid()) {
+            $.ajax({
+            url: "@Url.Action("RemoveProduct","Products")",
+            method: "post",
+            data: {
+            productId: ProductId,
+            searchString: searchString,
+            pageNumber: pageNumber,
+            categoryId: categoryid
+            },
+            success: function (data) {
+            try {
+            var response = jQuery.parseJSON(data);
+            if (typeof response == 'object') {
+            window.location.href = window.location.origin + "/home"
+            }
+            } catch (err) {
+
+            $("#UpdateProductRemoveButton" + ProductId).animate({
+            backgroundColor: '#FF2400'
+            }, {
+            duration: 200,
+            complete: function () {
+            $("#ProductsPageContainer").html(data);
+            }
+            });
+
+
+
+            }
+
+            }
+            })
+            }
+
+            });*@
+
+
+                                                })
+
+
     </script>
 }
 else
 {
     <script>
-        $(".myPagination").click(function () {
-            var pageNumber = $(this).data("pagenumber");
-            $.ajax({
-                url: url = "@Url.Action("PaginatedProducts","Products")",
-                method: "post",
-                data: {
-                    pageNumber: pageNumber,
-                    categoryId: @Model.CategoryId,
-                },
-                success: function (data) {
-
-                    $("#ProductsPageContainer").html(data);
-                }
+        $(function () {
+            $(".myPagination").click(function () {
+                var pageNumber = $(this).data("pagenumber");
+                console.log(pageNumber)
+                $.ajax({
+                    url: "@Url.Action("PaginatedProducts","Products")",
+                    method: "post",
+                    data: {
+                        pageNumber: pageNumber,
+                        categoryId: @Model.CategoryId,
+                    },
+                    success: function (data) {
+                        $("#ProductsPageContainer").off("click", ".button-save")
+                        $("#ProductsPageContainer").off("click", ".button-remove");
+                        $("#ProductsPageContainer").html(data);
+                    }
+                })
             })
+
+
+
+
+            $("#ProductsPageContainer").on("click", ".button-remove", function () {
+
+                var ProductId = $(this).data("productid");
+                var categoryId = $(this).data("categoryid");
+
+                var pageNumber = @Model.CurrentPage;
+
+
+                $.ajax({
+                    url: "@Url.Action("RemoveProduct","Products")",
+                    method: "post",
+                    data: {
+                        productId: ProductId,
+                        categoryId: categoryId,
+                        pageNumber: pageNumber
+
+                    },
+                    success: function (data) {
+                        try {
+                            var response = jQuery.parseJSON(data);
+                            if (typeof response == 'object') {
+                                window.location.href = window.location.origin + "/home"
+                            }
+                        } catch (err) {
+                            $("#UpdateProductRemoveButton" + ProductId).animate({
+                                backgroundColor: '#FF2400'
+                            }, {
+                                duration: 200,
+                                complete: function () {
+                                    $("#ProductsPageContainer").html(data);
+                                }
+                            });
+                        }
+
+                    }
+                })
+
+            });
+
+
         })
+
     </script>
 }
+
 
 
