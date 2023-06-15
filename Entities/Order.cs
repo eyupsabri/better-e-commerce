@@ -15,6 +15,6 @@ namespace Entities
 
         public virtual Customer Customer { get; set; }
 
-        public IEnumerable<OrderItem> OrderItems { get; set; }
+        public virtual IEnumerable<OrderItem> OrderItems { get; set; }
     }
 }

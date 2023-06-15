@@ -1,6 +1,8 @@
 ﻿@model ProductUpdateRequest
 
-<form id="UpdateProductForm@(Model.ProductId)" method="post">
+@*<form data-update="#productContainer_@Model.ProductId" class="ajax-form" asp-controller="Products" asp-action="UpdateProduct">*@
+<form data-ajax-update="#productContainer_@Model.ProductId" data-ajax="true" data-ajax-confirm="Emin misin?" asp-controller="Products" asp-action="UpdateProduct">
+    @Html.HiddenFor(m=>m.ProductId)
     <div class="grid-table">
         <span style="width: 100%;">@Model.ProductId</span>
         <span>
@@ -15,7 +17,7 @@
             <input style="width: 100%;" name="ProductPrice" type="text"  value="@(Model.ProductPrice)" />
             @*<span asp-validation-for="ProductPrice"></span>*@
         </span>
-        <span><button id="UpdateProductSaveButton@(Model.ProductId)" style="width: 100%;" class="button-save"  data-productid="@(Model.ProductId)" type="button">Save</button></span>
+        <span><button id="UpdateProductSaveButton@(Model.ProductId)" style="width: 100%;" class="button-save" data-productid="@(Model.ProductId)">Save</button></span>
         <span><button id="UpdateProductRemoveButton@(Model.ProductId)" style="width: 100%;" class="button-remove" data-categoryid="@Model.CategoryId" data-productid="@(Model.ProductId)" type="button">Remove</button></span>
     </div>
 </form>

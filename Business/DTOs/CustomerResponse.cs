@@ -1,12 +1,4 @@
-﻿using Business.Enums;
-using Entities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Entities;
 
 namespace Business.DTOs
 {
@@ -45,7 +37,7 @@ namespace Business.DTOs
                 CustomerName = customer.CustomerName,
                 Email = customer.Email,
                 DateOfBirth = customer.DateOfBirth,
-                Gender = customer.Gender,
+                Gender = customer.Gender.ToString(),
                 Province = customer.Province,
                 City = customer.City,
                 StreetAddress = customer.StreetAddress,

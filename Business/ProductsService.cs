@@ -1,4 +1,5 @@
 ﻿using Business.DTOs;
+using Business.PageList;
 using Entities;
 using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 using Repos;
@@ -97,6 +98,11 @@ namespace Business
                 await categoriesService.DeleteCategoryById(categoryId);
             }
             return true;
+        }
+
+        public IPagedList<ProductResponse> GetProducts(string searchString, int? pageIndex = 0)
+        {
+            return productsRepo.GetProducts(searchString).Select(_ => _.ToProductResponse()).ToPagedList(pageIndex.Value, 12);
         }
     }
 

@@ -1,11 +1,6 @@
-﻿using Business.Enums;
-using Entities;
-using System;
-using System.Collections.Generic;
+﻿using Entities;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static Entities.Enums.DbEnums;
 
 namespace Business.DTOs
 {
@@ -47,7 +42,7 @@ namespace Business.DTOs
         public Customer ToCustomer()
         {//Burada enum null mu diye bak null olarak gir yoksa empty string atıyor
             return new Customer() { CustomerName = CustomerName, Email = Email, DateOfBirth = DateOfBirth, 
-                Gender = Gender.ToString(), Province = Province, City = City, 
+                Gender = Gender, Province = Province, City = City, 
                 StreetAddress = StreetAddress, PhoneNumber = PhoneNumber };
 
         }

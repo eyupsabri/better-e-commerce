@@ -1,5 +1,17 @@
-﻿@model SingleOrdersPage
+﻿@model IPagedList<CustomerResponse>
+<div class="row">
+    <div class="col-12">
+        Filter
 
-<div class="col px-0">    
-    @Html.Partial("_OrdersPage", Model)
+        <form data-ajax="true" data-ajax-update="#OrderListContanier" asp-action="Index" asp-controller="Orders" class="d-flex" id="SearchByForm" method="post" style="width: 40%;">
+
+            <input class="form-control me-2" type="search" placeholder="Customer Name" aria-label="Search" name="customerName" value="@ViewBag.CurrentSearchString">
+            <input class="form-control me-2" type="search" placeholder="Product Name" aria-label="Search" name="productName" value="@ViewBag.CurrentSearchString">
+            <button class="btn btn-primary">Search</button>
+        </form>
+
+    </div>
+    <div class="col-12 px-0" id="OrderListContanier">
+        @Html.Partial("_OrdersPage", Model)
+    </div>
 </div>

@@ -59,8 +59,8 @@ namespace Repos
             matchingProduct.ProductName = prod.ProductName;
             matchingProduct.ProductPrice = prod.ProductPrice;
             matchingProduct.ProductDescription = prod.ProductDescription;
-            
-            
+
+
 
 
             int countUpdated = await _db.SaveChangesAsync();
@@ -95,7 +95,7 @@ namespace Repos
                     .CountAsync();
         }
 
-        public async Task<List<Product>> GetProductsByNameSearchWithPagination(string name,int position)
+        public async Task<List<Product>> GetProductsByNameSearchWithPagination(string name, int position)
         {
             return await _db.Products
                     .Where(temp => temp.ProductName.Contains(name))
@@ -109,6 +109,13 @@ namespace Repos
         public async Task<int> GetProductsCountByNameSearch(string name)
         {
             return await _db.Products.Where(temp => temp.ProductName.Contains(name)).CountAsync();
+        }
+
+        public IQueryable<Product> GetProducts(string searchString, double? priceUpper = 0, double? priceLower = 0)
+        {
+
+            return _db.Products.Where(temp => temp.ProductName.Contains(searchString));
+
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Business.DTOs;
+using Business.PageList;
 using Entities;
 using Repos;
+using Business.PageList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,13 +38,13 @@ namespace Business
             return response;
         }
 
-       
+
 
         public async Task<List<CustomerResponse>> GetAllCustomers()
         {
             List<Customer> customers = await _customersRepo.GetAllCustomers();
             List<CustomerResponse> customerRespones = new List<CustomerResponse>();
-            if(customers.Count > 0)
+            if (customers.Count > 0)
             {
                 foreach (Customer customer in customers)
                 {
@@ -59,21 +61,33 @@ namespace Business
             return customers.Select(x => x.ToCustomerResponse()).ToList();
         }
 
+        public async Task<int> GetCustomersCountByNameSearch(string search)
+        {
+            return await _customersRepo.GetCustomersCountByNameSearch(search);
+        }
+
         public async Task<int> CustomersCount()
         {
             return await _customersRepo.CustomersCount();
         }
 
-        public async Task<List<CustomerResponse>> GetCustomersByNameSearchPaginated(string search, int position)
+        public  IPagedList<CustomerResponse> GetCustomers(string? customerName, string? productName, int pageIndex)
         {
-            List<Customer> customers = await _customersRepo.GetCustomersByNameSearchPaginated(search, position);
-            List<CustomerResponse> customerResponses = customers.Select(customer => customer.ToCustomerResponse()).ToList();
-            return customerResponses;
+            var list = _customersRepo.GetCustomersByNameSearch(productName, customerName);
+
+            IPagedList<CustomerResponse> response = list.Select(_ => _.ToCustomerResponse()).ToPagedList(pageIndex, 12);
+
+            return response;
         }
 
-        public async Task<int> GetCustomersCountByNameSearch(string search)
-        {
-            return await _customersRepo.GetCustomersCountByNameSearch(search);
-        }
+        //public async Task<List<CustomerResponse>> GetCustomersByNameSearchPaginated(string search, int position)
+        //{
+        //    List<Customer> customers = await _customersRepo.GetCustomersByNameSearchPaginated(search, position);
+        //    List<CustomerResponse> customerResponses = customers.Select(customer => customer.ToCustomerResponse()).ToList();
+        //    return customerResponses;
+        //}
+
     }
 }
+
+

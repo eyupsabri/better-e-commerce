@@ -1,6 +1,7 @@
-﻿@model SingleOrdersPage
+﻿@model IPagedList<CustomerResponse>
+
 <div id="CustomerContainer">
-    @Html.Partial("_PagingComponent", (PagingModel)Model)
+    @Html.Partial("_PagingComponent")
     <table class="table">
         <thead>
             <tr>
@@ -15,7 +16,7 @@
         <tbody>
             @{
                 int i = 0;
-                foreach (CustomerResponse customer in Model.Customers)
+                foreach (CustomerResponse customer in Model)
                 {
                     i++;
                     int k = 0;
@@ -60,7 +61,7 @@
     </table>
 </div>
 
-
+@*
 @if (Model.CurrentSearchString == null)
 {
     <script>
@@ -75,26 +76,6 @@
                 success: function (data) {
 
                     $("#CustomerContainer").html(data);
-                }
-            })
-        })
-    </script>
-}
-@*else
-{
-    <script>
-        $(".myPagination").click(function () {
-            var pageNumber = $(this).data("pagenumber");
-            $.ajax({
-                url: url = "@Url.Action("PaginatedProducts","Products")",
-                method: "post",
-                data: {
-                    pageNumber: pageNumber,
-                    
-                },
-                success: function (data) {
-
-                    $("#ProductsPageContainer").html(data);
                 }
             })
         })

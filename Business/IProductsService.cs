@@ -1,4 +1,5 @@
 ﻿using Business.DTOs;
+using Business.PageList;
 using Entities;
 using System;
 using System.Collections.Generic;
@@ -20,5 +21,6 @@ namespace Business
         Task<int> GetProductsCountByNameSearch(string name);
         Task<ProductResponse> UpdateProductById(ProductUpdateRequest product);
         Task<bool> DeleteProductById(int productId, int categoryId);
+        IPagedList<ProductResponse> GetProducts(string searchString, int? pageIndex);
     }
 }

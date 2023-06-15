@@ -8,10 +8,10 @@ namespace Business.Helper
 {
     public static class TotalPagesCalculator
     {
-        public static int CalculatingTotalPages(int itemsCount)
+        public static int CalculatingTotalPages(int itemsCount, int itemPerPage = 12)
         {
-            int remainder = itemsCount % 12;
-            int quotient = itemsCount / 12;
+            int remainder = itemsCount % itemPerPage;
+            int quotient = itemsCount / itemPerPage;
             int totalPages = remainder > 0 ? quotient + 1 : quotient;
             return totalPages;
         }

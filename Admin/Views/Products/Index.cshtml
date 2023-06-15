@@ -4,4 +4,19 @@
 @model SingleProductsPage
 
 
-@Html.Partial("_ProductsPage", Model)
+<div class="col px-0">
+
+    <form data-ajax="true" data-ajax-update="#ProductsPageContainer" asp-action="Index" asp-controller="Products" class="d-flex" id="SearchByForm" method="post" style="width: 40%;">
+        Filter
+        <input class="form-control me-2" type="search" placeholder="Customer Name" aria-label="Search" name="customerName" value="@ViewBag.CurrentSearchString">
+        <input class="form-control me-2" type="search" placeholder="Product Name" aria-label="Search" name="productName" value="@ViewBag.CurrentSearchString">
+        <button class="btn btn-primary">Search</button>
+    </form>
+
+
+    <div id="ProductsPageContainer" >
+        @Html.Partial("_ProductsPage", Model)
+    </div>
+
+</div>
+

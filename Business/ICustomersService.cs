@@ -1,4 +1,5 @@
 ﻿using Business.DTOs;
+using Business.PageList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,8 @@ namespace Business
         Task<List<CustomerResponse>> GetAllCustomers();
         Task<List<CustomerResponse>> GetPaginatedCustomers(int position);
         Task<int> CustomersCount();
-        Task<List<CustomerResponse>> GetCustomersByNameSearchPaginated(string search, int position);
+        //Task<List<CustomerResponse>> GetCustomersByNameSearchPaginated(string search, int position);
+        IPagedList<CustomerResponse> GetCustomers(string? customerName, string? productName, int pageIndex);
         Task<int> GetCustomersCountByNameSearch(string search);
     }
 }

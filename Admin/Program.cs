@@ -17,6 +17,7 @@ namespace Admin
 
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
+                options.UseLazyLoadingProxies();
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 

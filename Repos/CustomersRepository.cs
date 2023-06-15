@@ -52,9 +52,9 @@ namespace Repos
         public async Task<List<Customer>> GetPaginatedCustomers(int position)
         {
             return await _db.Customers                              
-                .Skip(position * 12)
+                .Skip(position * 1)
                 .Include("order")
-                .Take(12)
+                .Take(1)
                 .ToListAsync();
         }
 
@@ -78,6 +78,15 @@ namespace Repos
                 .Include("order")
                 .Take(12)
                 .ToListAsync();
+        }
+        public IQueryable<Customer> GetCustomersByNameSearch(string? productName, string? customerName)
+        {
+            var q = _db.Customers as IQueryable<Customer>;
+            if (customerName != null)
+                q = q.Where(temp => temp.CustomerName.Contains(customerName));
+            if(productName != null)
+                q = q.Where(p=>p.order.OrderItems.Any(t=>t.Product.ProductName.Contains(productName)));
+            return q;
         }
     }
 }

@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Entities.Enums.DbEnums;
 
 namespace Entities
 {
@@ -20,7 +21,7 @@ namespace Entities
         public DateTime? DateOfBirth { get; set; }
 
         [StringLength(10)]
-        public string? Gender { get; set; }
+        public GenderOptions? Gender { get; set; }
 
         [StringLength(40)]
         public string Province { get; set; }
