@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,11 +12,12 @@ namespace Business.PageList
     {
         public PagedList()
         {
-
+            
         }
         public PagedList(IEnumerable<T> source, int index, int pageSize, int? totalCount = null)
             : this(source.AsQueryable(), index, pageSize, totalCount)
         {
+            
         }
 
         public PagedList(IQueryable<T> source, int index, int pageSize, int? totalCount = null)
@@ -43,6 +45,10 @@ namespace Business.PageList
             IsFirstPage = (PageIndex <= 0);
             IsLastPage = (PageIndex >= (PageCount - 1));
 
+
+            
+            
+
             if (TotalItemCount <= 0)
                 return;
 
@@ -68,16 +74,24 @@ namespace Business.PageList
         public string OrderCol { get; set; }
         public bool OrderAsc { get; set; }
         public object filterValues { get; set; }
+
+        // public object filterValues { get; set; }
+
+
+
         //public ISortable<T> sortModel { get; set; }
         #endregion
-        public static void AddProperty(ExpandoObject expando, string propertyName, object propertyValue)
+        public void AddProperty(ExpandoObject expando, string propertyName, object propertyValue)
         {
-            // ExpandoObject supports IDictionary so we can extend it like this
+            //// ExpandoObject supports IDictionary so we can extend it like this
             var expandoDict = expando as IDictionary<string, object>;
             if (expandoDict.ContainsKey(propertyName))
                 expandoDict[propertyName] = propertyValue;
             else
                 expandoDict.Add(propertyName, propertyValue);
+            filterValues = expandoDict;
         }
+
+   
     }
 }

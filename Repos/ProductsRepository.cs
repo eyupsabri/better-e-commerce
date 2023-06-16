@@ -111,11 +111,14 @@ namespace Repos
             return await _db.Products.Where(temp => temp.ProductName.Contains(name)).CountAsync();
         }
 
-        public IQueryable<Product> GetProducts(string searchString, double? priceUpper = 0, double? priceLower = 0)
+        
+
+        public IQueryable<Product> GetProducts()
         {
-
-            return _db.Products.Where(temp => temp.ProductName.Contains(searchString));
-
+            var products = _db.Products as IQueryable<Product>;
+            
+            return products;
         }
+        
     }
 }

@@ -80,4 +80,21 @@
             })
         })
     </script>
-}*@
+}
+<script>
+    $(".myPagination").click(function () {
+        var pageNumber = $(this).data("pagenumber");
+        $.ajax({
+            url: url = "@Model.Url",
+            method: "post",
+            data: {
+                pageNumber: pageNumber,
+
+            },
+            success: function (data) {
+
+                $("#CustomerContainer").html(data);
+            }
+        })
+    })
+</script>*@

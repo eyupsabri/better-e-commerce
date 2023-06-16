@@ -75,7 +75,7 @@ namespace Business
         {
             var list = _customersRepo.GetCustomersByNameSearch(productName, customerName);
 
-            IPagedList<CustomerResponse> response = list.Select(_ => _.ToCustomerResponse()).ToPagedList(pageIndex, 12);
+            IPagedList<CustomerResponse> response = list.Select(_ => _.ToCustomerResponse()).ToPagedList(pageIndex, 1);
 
             return response;
         }

@@ -1,4 +1,5 @@
 ﻿using Business.DTOs;
+using Business.Filter;
 using Business.PageList;
 using Entities;
 using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
@@ -100,9 +101,12 @@ namespace Business
             return true;
         }
 
-        public IPagedList<ProductResponse> GetProducts(string searchString, int? pageIndex = 0)
+        public IPagedList<ProductResponse> GetProducts(ProductFilter products, int? pageIndex = 0)
         {
-            return productsRepo.GetProducts(searchString).Select(_ => _.ToProductResponse()).ToPagedList(pageIndex.Value, 12);
+            var unfiltered = productsRepo.GetProducts();
+            var filtered = products.Filter(unfiltered);
+            return filtered.Select(_ => _.ToProductResponse()).ToPagedList(pageIndex.Value, 12);
+            
         }
     }
 

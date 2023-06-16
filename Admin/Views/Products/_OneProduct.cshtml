@@ -1,7 +1,7 @@
 ﻿@model ProductUpdateRequest
 
-@*<form data-update="#productContainer_@Model.ProductId" class="ajax-form" asp-controller="Products" asp-action="UpdateProduct">*@
-<form data-ajax-update="#productContainer_@Model.ProductId" data-ajax="true" data-ajax-confirm="Emin misin?" asp-controller="Products" asp-action="UpdateProduct">
+<form data-ajax-update="#productContainer_@Model.ProductId" data-ajax="true" class="ajax-form" data-ajax-confirm="Emin misin?" asp-controller="Products" asp-action="UpdateProduct">
+@*<form data-ajax-update="#productContainer_@Model.ProductId" data-ajax="true" data-ajax-confirm="Emin misin?" asp-controller="Products" asp-action="UpdateProduct">*@
     @Html.HiddenFor(m=>m.ProductId)
     <div class="grid-table">
         <span style="width: 100%;">@Model.ProductId</span>
