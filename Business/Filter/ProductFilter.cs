@@ -19,6 +19,8 @@ namespace Business.Filter
 
         public string? CategoryName { get; set; }
         public int? CategoryId { get; set; }
+        public double? UpperPriceLimit { get; set; }
+        public double? LowerPriceLimit { get; set; }
         
       
 
@@ -33,6 +35,10 @@ namespace Business.Filter
                 list = list.Where(p => p.CategoryId == CategoryId.Value);
             if(!CategoryName.IsNullOrEmpty())
                 list = list.Where(p => p.Category.CategoryName.Contains(CategoryName));
+            if (UpperPriceLimit.HasValue)
+                list = list.Where(p => UpperPriceLimit > p.ProductPrice);
+            if(LowerPriceLimit.HasValue)
+                list = list.Where(p =>  p.ProductPrice >= LowerPriceLimit);
             return list;
                 
 

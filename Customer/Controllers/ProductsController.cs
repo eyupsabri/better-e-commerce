@@ -1,8 +1,13 @@
 ﻿using Business;
 using Business.DTOs;
+using Business.Filter;
 using Business.Helper;
+using Business.PageList;
 using Customer.Models;
+using Entities;
 using Microsoft.AspNetCore.Mvc;
+using System.Dynamic;
+using System.Reflection;
 using System.Text.Json;
 
 namespace Customer.Controllers
@@ -14,7 +19,15 @@ namespace Customer.Controllers
         private ICategoriesService _categoriesService;
         private ICustomersService _customersService;
 
+        public static bool IsAjaxRequest(HttpRequest request)
+        {
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
 
+            if (request.Headers != null)
+                return request.Headers["X-Requested-With"] == "XMLHttpRequest";
+            return false;
+        }
         public ProductsController(IProductsService productsService, ICategoriesService categoriesService, ICustomersService customersService)
         {
             _productsService = productsService;
@@ -25,23 +38,30 @@ namespace Customer.Controllers
 
 
         //Herhangi bir category e bastıgında gelen sayfa 
-        [HttpGet]
+        [HttpGet, HttpPost]
         [Route("[action]/{categoryId}")]
-        public async Task<IActionResult> Index(int categoryId)
+        public async Task<IActionResult> Index(ProductFilter productFilter, int pageIndex = 0)
         {
-            int totalProductsNumber = await _productsService.GetProductsCountByCategoryId(categoryId);
-            
-            int totalPages = TotalPagesCalculator.CalculatingTotalPages(totalProductsNumber);
-
-
-
-            List <CategoryResponse> categoryResponse = await _categoriesService.GetAllCategories();
+            List<CategoryResponse> categoryResponse = await _categoriesService.GetAllCategories();
             ViewBag.Categories = categoryResponse;
 
-            List<ProductResponse> productResponse = await _productsService.GetProductsByPagination(categoryId, 0);
-            SingleProductsPage page = new SingleProductsPage() { Products = productResponse, CurrentPage = 0, TotalPages=totalPages, CategoryId = categoryId, CategoryName = productResponse[0].CategoryName };
+            IPagedList<ProductResponse> products = _productsService.GetProducts(productFilter, pageIndex);
 
-            return View(page);
+            dynamic expendo = new ExpandoObject();
+            foreach (PropertyInfo prop in productFilter.GetType().GetProperties())
+            {
+
+                if (prop.GetValue(productFilter) != null)
+                {
+
+                    products.AddProperty(expendo, prop.Name, prop.GetValue(productFilter));
+                }
+            }
+
+            if (IsAjaxRequest(Request))
+                return PartialView("_ProductsPage", products);
+
+            return View(products);
 
 
 
