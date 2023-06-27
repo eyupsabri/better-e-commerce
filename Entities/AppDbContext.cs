@@ -62,21 +62,25 @@ namespace Entities
 
             modelBuilder.Entity<Category>().HasData(new Category()
             {
+                IsDeleted = false,
                 CategoryId = 1,
                 CategoryName = "Elektronik",
             },
             new Category()
             {
+                IsDeleted = false,
                 CategoryId = 2,
                 CategoryName = "Tuvalet Kağıdı",
             },
             new Category()
             {
+                IsDeleted = false,
                 CategoryId = 3,
                 CategoryName = "Gazete"
             },
             new Category()
             {
+                IsDeleted = false,
                 CategoryId = 4,
                 CategoryName = "Telefon"
             });
@@ -88,6 +92,7 @@ namespace Entities
                 {
                     products.Add(new Product()
                     {
+                        IsDeleted = false,
                         ProductId = i,
                         ProductName = "Samsung-s20",
                         ProductPrice = 10550.6,
@@ -99,6 +104,7 @@ namespace Entities
                 {
                     products.Add(new Product()
                     {
+                        IsDeleted = false,
                         ProductId = i,
                         ProductName = "Hoparlor",
                         ProductPrice = 500,
@@ -110,6 +116,7 @@ namespace Entities
                 {
                     products.Add(new Product()
                     {
+                        IsDeleted = false,
                         ProductId = i,
                         ProductName = "Selpak",
                         ProductPrice = 100,
@@ -122,6 +129,7 @@ namespace Entities
                 {
                     products.Add(new Product()
                     {
+                        IsDeleted = false,
                         ProductId = i,
                         ProductName = "Sozcu",
                         ProductPrice = 2,

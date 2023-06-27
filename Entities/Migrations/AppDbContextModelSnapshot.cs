@@ -35,6 +35,9 @@ namespace Entities.Migrations
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories", (string)null);
@@ -43,22 +46,26 @@ namespace Entities.Migrations
                         new
                         {
                             CategoryId = 1,
-                            CategoryName = "Elektronik"
+                            CategoryName = "Elektronik",
+                            IsDeleted = false
                         },
                         new
                         {
                             CategoryId = 2,
-                            CategoryName = "Tuvalet Kağıdı"
+                            CategoryName = "Tuvalet Kağıdı",
+                            IsDeleted = false
                         },
                         new
                         {
                             CategoryId = 3,
-                            CategoryName = "Gazete"
+                            CategoryName = "Gazete",
+                            IsDeleted = false
                         },
                         new
                         {
                             CategoryId = 4,
-                            CategoryName = "Telefon"
+                            CategoryName = "Telefon",
+                            IsDeleted = false
                         });
                 });
 
@@ -159,6 +166,9 @@ namespace Entities.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("ProductDescription")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -183,6 +193,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 1,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -191,6 +202,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 2,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -199,6 +211,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 3,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -207,6 +220,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 4,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -215,6 +229,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 5,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -223,6 +238,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 6,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -231,6 +247,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 7,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -239,6 +256,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 8,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -247,6 +265,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 9,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -255,6 +274,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 10,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -263,6 +283,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 11,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -271,6 +292,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 12,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -279,6 +301,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 13,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -287,6 +310,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 14,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -295,6 +319,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 15,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -303,6 +328,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 16,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -311,6 +337,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 17,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -319,6 +346,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 18,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -327,6 +355,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 19,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -335,6 +364,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 20,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -343,6 +373,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 21,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -351,6 +382,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 22,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -359,6 +391,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 23,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -367,6 +400,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 24,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -375,6 +409,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 25,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -383,6 +418,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 26,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -391,6 +427,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 27,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -399,6 +436,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 28,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -407,6 +445,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 29,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -415,6 +454,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 30,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -423,6 +463,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 31,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -431,6 +472,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 32,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -439,6 +481,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 33,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -447,6 +490,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 34,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -455,6 +499,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 35,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -463,6 +508,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 36,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -471,6 +517,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 37,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -479,6 +526,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 38,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -487,6 +535,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 39,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -495,6 +544,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 40,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -503,6 +553,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 41,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -511,6 +562,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 42,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -519,6 +571,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 43,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -527,6 +580,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 44,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -535,6 +589,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 45,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -543,6 +598,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 46,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -551,6 +607,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 47,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -559,6 +616,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 48,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -567,6 +625,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 49,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -575,6 +634,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 50,
                             CategoryId = 4,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
                             ProductPrice = 10550.6
@@ -583,6 +643,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 51,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -591,6 +652,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 52,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -599,6 +661,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 53,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -607,6 +670,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 54,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -615,6 +679,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 55,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -623,6 +688,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 56,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -631,6 +697,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 57,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -639,6 +706,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 58,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -647,6 +715,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 59,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -655,6 +724,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 60,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -663,6 +733,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 61,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -671,6 +742,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 62,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -679,6 +751,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 63,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -687,6 +760,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 64,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -695,6 +769,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 65,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -703,6 +778,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 66,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -711,6 +787,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 67,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -719,6 +796,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 68,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -727,6 +805,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 69,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -735,6 +814,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 70,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -743,6 +823,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 71,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -751,6 +832,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 72,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -759,6 +841,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 73,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -767,6 +850,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 74,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -775,6 +859,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 75,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -783,6 +868,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 76,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -791,6 +877,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 77,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -799,6 +886,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 78,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -807,6 +895,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 79,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -815,6 +904,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 80,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -823,6 +913,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 81,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -831,6 +922,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 82,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -839,6 +931,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 83,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -847,6 +940,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 84,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -855,6 +949,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 85,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -863,6 +958,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 86,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -871,6 +967,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 87,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -879,6 +976,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 88,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -887,6 +985,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 89,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -895,6 +994,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 90,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -903,6 +1003,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 91,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -911,6 +1012,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 92,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -919,6 +1021,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 93,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -927,6 +1030,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 94,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -935,6 +1039,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 95,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -943,6 +1048,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 96,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -951,6 +1057,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 97,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -959,6 +1066,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 98,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -967,6 +1075,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 99,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -975,6 +1084,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 100,
                             CategoryId = 1,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
                             ProductPrice = 500.0
@@ -983,6 +1093,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 101,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -991,6 +1102,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 102,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -999,6 +1111,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 103,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1007,6 +1120,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 104,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1015,6 +1129,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 105,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1023,6 +1138,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 106,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1031,6 +1147,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 107,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1039,6 +1156,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 108,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1047,6 +1165,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 109,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1055,6 +1174,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 110,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1063,6 +1183,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 111,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1071,6 +1192,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 112,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1079,6 +1201,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 113,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1087,6 +1210,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 114,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1095,6 +1219,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 115,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1103,6 +1228,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 116,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1111,6 +1237,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 117,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1119,6 +1246,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 118,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1127,6 +1255,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 119,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1135,6 +1264,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 120,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1143,6 +1273,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 121,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1151,6 +1282,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 122,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1159,6 +1291,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 123,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1167,6 +1300,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 124,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1175,6 +1309,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 125,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1183,6 +1318,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 126,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1191,6 +1327,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 127,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1199,6 +1336,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 128,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1207,6 +1345,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 129,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1215,6 +1354,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 130,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1223,6 +1363,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 131,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1231,6 +1372,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 132,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1239,6 +1381,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 133,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1247,6 +1390,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 134,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1255,6 +1399,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 135,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1263,6 +1408,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 136,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1271,6 +1417,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 137,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1279,6 +1426,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 138,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1287,6 +1435,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 139,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1295,6 +1444,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 140,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1303,6 +1453,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 141,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1311,6 +1462,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 142,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1319,6 +1471,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 143,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1327,6 +1480,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 144,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1335,6 +1489,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 145,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1343,6 +1498,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 146,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1351,6 +1507,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 147,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1359,6 +1516,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 148,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1367,6 +1525,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 149,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1375,6 +1534,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 150,
                             CategoryId = 2,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
                             ProductPrice = 100.0
@@ -1383,6 +1543,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 151,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1391,6 +1552,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 152,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1399,6 +1561,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 153,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1407,6 +1570,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 154,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1415,6 +1579,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 155,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1423,6 +1588,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 156,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1431,6 +1597,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 157,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1439,6 +1606,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 158,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1447,6 +1615,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 159,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1455,6 +1624,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 160,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1463,6 +1633,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 161,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1471,6 +1642,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 162,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1479,6 +1651,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 163,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1487,6 +1660,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 164,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1495,6 +1669,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 165,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1503,6 +1678,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 166,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1511,6 +1687,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 167,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1519,6 +1696,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 168,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1527,6 +1705,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 169,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1535,6 +1714,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 170,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1543,6 +1723,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 171,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1551,6 +1732,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 172,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1559,6 +1741,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 173,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1567,6 +1750,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 174,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1575,6 +1759,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 175,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1583,6 +1768,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 176,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1591,6 +1777,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 177,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1599,6 +1786,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 178,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1607,6 +1795,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 179,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1615,6 +1804,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 180,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1623,6 +1813,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 181,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1631,6 +1822,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 182,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1639,6 +1831,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 183,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1647,6 +1840,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 184,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1655,6 +1849,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 185,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1663,6 +1858,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 186,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1671,6 +1867,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 187,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1679,6 +1876,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 188,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1687,6 +1885,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 189,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1695,6 +1894,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 190,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1703,6 +1903,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 191,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1711,6 +1912,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 192,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1719,6 +1921,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 193,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1727,6 +1930,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 194,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1735,6 +1939,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 195,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1743,6 +1948,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 196,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1751,6 +1957,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 197,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1759,6 +1966,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 198,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1767,6 +1975,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 199,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0
@@ -1775,6 +1984,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 200,
                             CategoryId = 3,
+                            IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
                             ProductPrice = 2.0

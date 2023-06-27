@@ -79,14 +79,9 @@ namespace Repos
                 .Take(12)
                 .ToListAsync();
         }
-        public IQueryable<Customer> GetCustomersByNameSearch(string? productName, string? customerName)
+        public IQueryable<Customer> GetCustomers()
         {
-            var q = _db.Customers as IQueryable<Customer>;
-            if (customerName != null)
-                q = q.Where(temp => temp.CustomerName.Contains(customerName));
-            if(productName != null)
-                q = q.Where(p=>p.order.OrderItems.Any(t=>t.Product.ProductName.Contains(productName)));
-            return q;
+            return _db.Customers;
         }
     }
 }

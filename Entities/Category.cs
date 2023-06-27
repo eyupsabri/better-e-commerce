@@ -4,6 +4,7 @@ namespace Entities
 {
     public class Category
     {
+        public bool IsDeleted { get; set; }
         [StringLength(40)]
         public string CategoryName { get; set; }
 

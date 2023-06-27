@@ -28,7 +28,8 @@ namespace Repos
 
         public async Task<bool> DeleteProduct(int id)
         {
-            _db.Products.RemoveRange(_db.Products.Where(temp => temp.ProductId == id));
+            Product? product = _db.Products.Where(temp => temp.ProductId == id).FirstOrDefault();
+            product.IsDeleted = true;
             int rowsDeleted = await _db.SaveChangesAsync();
 
             return rowsDeleted > 0;
@@ -115,7 +116,7 @@ namespace Repos
 
         public IQueryable<Product> GetProducts()
         {
-            var products = _db.Products as IQueryable<Product>;
+            var products = _db.Products.Where(p => p.IsDeleted == false);
             
             return products;
         }

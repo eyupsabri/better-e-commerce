@@ -9,6 +9,7 @@ namespace Entities
 {
     public class Product
     {
+        public bool IsDeleted { get; set; }
         public int ProductId { get; set; }
 
         [StringLength(40)]

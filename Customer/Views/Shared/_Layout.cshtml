@@ -70,17 +70,12 @@
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
-                <form asp-controller="Products" asp-action="SearchProductByNameWithPagination" method="post">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products" name="searchString" value="@ViewBag.CurrentSearchString">
-                        <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary" >
-                                <button class="fa fa-search" type="submit" style="border: 0;color:#D19C97; background-color: transparent;">
-                                   
-                                </button>
-                                
-                            </span>
-                        </div>
+                <form asp-action="Index" asp-controller="Products" class="input-group" method="post">
+                    <input type="text" class="form-control" placeholder="Search for products" name="ProductName" value="@ViewBag.CurrentSearchString">
+                    <div class="input-group-append">
+                        <span class="input-group-text bg-transparent text-primary">
+                            <button class="fa fa-search" type="submit" style="border: 0;color:#D19C97; background-color: transparent;"></button>
+                        </span>
                     </div>
                 </form>
             </div>
@@ -117,7 +112,7 @@
                         </div>*@
                         @foreach (CategoryResponse cat in ViewBag.categories)
                         {
-                            <a href="~/Products/Index/@cat.CategoryId" class="nav-item nav-link">@cat.CategoryName</a>
+                            <a href="~/Products/Index?CategoryId=@cat.CategoryId" class="nav-item nav-link">@cat.CategoryName</a>
                         }
 
                     </div>

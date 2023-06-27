@@ -15,5 +15,15 @@ namespace Business.Helper
             int totalPages = remainder > 0 ? quotient + 1 : quotient;
             return totalPages;
         }
+
+
+        public static string JsonToQuery(this string jsonQuery)
+        {
+            string str = "&";
+            str += jsonQuery.Replace(":", "=").Replace("{", "").
+                        Replace("}", "").Replace(",", "&").
+                            Replace("\"", "");
+            return str;
+        }
     }
 }

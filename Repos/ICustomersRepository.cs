@@ -18,7 +18,7 @@ namespace Repos
         Task<int> CustomersCount();
         Task<int> GetCustomersCountByNameSearch(string search);
         Task<List<Customer>> GetCustomersByNameSearchPaginated(string search, int position);
-        IQueryable<Customer> GetCustomersByNameSearch(string? productName, string? customerName);
+        IQueryable<Customer> GetCustomers();
 
     }
     

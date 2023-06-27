@@ -61,35 +61,17 @@
     </table>
 </div>
 
-@*
-@if (Model.CurrentSearchString == null)
-{
-    <script>
-        $(".myPagination").click(function () {
-            var pageNumber = $(this).data("pagenumber");
-            $.ajax({
-                url: url = "@Url.Action("PaginatedCustomers","Orders")",
-                method: "post",
-                data: {
-                    pageNumber: pageNumber,
-                },
-                success: function (data) {
 
-                    $("#CustomerContainer").html(data);
-                }
-            })
-        })
-    </script>
-}
 <script>
     $(".myPagination").click(function () {
         var pageNumber = $(this).data("pagenumber");
+        var filter = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.filterValues))
         $.ajax({
             url: url = "@Model.Url",
             method: "post",
             data: {
                 pageNumber: pageNumber,
-
+                ...filter
             },
             success: function (data) {
 
@@ -97,4 +79,4 @@
             }
         })
     })
-</script>*@
+</script>

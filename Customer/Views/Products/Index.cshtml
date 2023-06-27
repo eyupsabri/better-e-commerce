@@ -1,14 +1,16 @@
-﻿@{
+﻿@using Business.Helper;
+@{
     ViewBag.Title = "Home";
 }
 @model IPagedList<ProductResponse>
 
-@*@{
-    bool checkIfMainShopPage = (Newtonsoft.Json.JsonConvert.SerializeObject(Model.filterValues)).Contains("CategoryId");
+@{
+    //bool checkIfMainShopPage = (Newtonsoft.Json.JsonConvert.SerializeObject(Model.filterValues)).Contains("CategoryId");
 
-
-}*@
-
+    var json = Newtonsoft.Json.JsonConvert.SerializeObject(Model.filterValues);
+    var temp = Html.Raw(json.JsonToQuery());
+    
+}
 <div>
     <div class="container-fluid bg-secondary mb-5">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
@@ -26,38 +28,74 @@
                 <!-- Price Start -->
                 <div class="border-bottom mb-4 pb-4">
                     <h5 class="font-weight-semi-bold mb-4">Filter by price</h5>
-                    <form>
+                    @*<form>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                    <input type="checkbox" class="custom-control-input" checked id="price-all">
+                    <label class="custom-control-label" for="price-all">All Price</label>
+                    <span class="badge border font-weight-normal">1000</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                    <input type="checkbox" class="custom-control-input" id="price-1">
+                    <label class="custom-control-label" for="price-1">$0 - $100</label>
+                    <span class="badge border font-weight-normal">150</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                    <input type="checkbox" class="custom-control-input" id="price-2">
+                    <label class="custom-control-label" for="price-2">$100 - $200</label>
+                    <span class="badge border font-weight-normal">295</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                    <input type="checkbox" class="custom-control-input" id="price-3">
+                    <label class="custom-control-label" for="price-3">$200 - $300</label>
+                    <span class="badge border font-weight-normal">246</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                    <input type="checkbox" class="custom-control-input" id="price-4">
+                    <label class="custom-control-label" for="price-4">$300 - $400</label>
+                    <span class="badge border font-weight-normal">145</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                    <input type="checkbox" class="custom-control-input" id="price-5">
+                    <label class="custom-control-label" for="price-5">$400 - $500</label>
+                    <span class="badge border font-weight-normal">168</span>
+                    </div>
+                    </form>*@
+
+                    <form class="filter-products">
+                        @*<form data-ajax-update="#productContainer_@Model.ProductId" data-ajax="true" data-ajax-confirm="Emin misin?" asp-controller="Products" asp-action="UpdateProduct">*@
+
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="price-all">
-                            <label class="custom-control-label" for="price-all">All Price</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-1">
+                            <input type="checkbox" class="custom-control-input price-filter" id="price-1" name="Price1" value="@PriceEnums.PriceOptions.Price1">
                             <label class="custom-control-label" for="price-1">$0 - $100</label>
                             <span class="badge border font-weight-normal">150</span>
                         </div>
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-2">
+                            <input type="checkbox" class="custom-control-input price-filter" id="price-2" name="Price2" value="@PriceEnums.PriceOptions.Price2">
                             <label class="custom-control-label" for="price-2">$100 - $200</label>
                             <span class="badge border font-weight-normal">295</span>
                         </div>
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-3">
+                            <input type="checkbox" class="custom-control-input price-filter" id="price-3" name="Price3" value="@PriceEnums.PriceOptions.Price3">
                             <label class="custom-control-label" for="price-3">$200 - $300</label>
                             <span class="badge border font-weight-normal">246</span>
                         </div>
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-4">
+                            <input type="checkbox" class="custom-control-input price-filter" id="price-4" name="Price4" value="@PriceEnums.PriceOptions.Price4">
                             <label class="custom-control-label" for="price-4">$300 - $400</label>
                             <span class="badge border font-weight-normal">145</span>
                         </div>
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                            <input type="checkbox" class="custom-control-input" id="price-5">
+                            <input type="checkbox" class="custom-control-input price-filter" id="price-5" name="Price5" value="@PriceEnums.PriceOptions.Price5">
                             <label class="custom-control-label" for="price-5">$400 - $500</label>
                             <span class="badge border font-weight-normal">168</span>
                         </div>
+
                     </form>
+
+
+
+
+
                 </div>
                 <!-- Price End -->
             </div>
@@ -65,12 +103,12 @@
                 <div class="col-12 pb-1">
 
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <form action="">
+                        <form class="filter-products" >
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search by name">
+                                <input type="text" class="form-control" name="ProductName" placeholder="Search by name">
                                 <div class="input-group-append">
                                     <span class="input-group-text bg-transparent text-primary">
-                                        <i class="fa fa-search"></i>
+                                        <button class="fa fa-search" type="submit" style="border: 0;color:#D19C97; background-color: transparent;"></button>
                                     </span>
                                 </div>
                             </div>
@@ -96,38 +134,42 @@
         </div>
     </div>
 </div>
-@*
+
 <script>
     $(function () {
-        $(".ajax-form").submit(function (e) {
-            console.log(1111);
-            var values = {};
-            e.preventDefault();
-            var updateTargetId = $("[data-update]", $(this)).val();
-            console.log(updateTargetId);
-            var $inputs = $("input", $(this));
-            $inputs.each(function () {
-                values[this.name] = $(this).val();
-            });
-            var url = $(this).attr("action");
+        $(".price-filter").click(function () {
+            var filters = $(".filter-products").serialize()
+            var dic = "@temp"
+            
             $.ajax({
-                url: url,
+                url: "@Url.Action("Index","Products")",
                 method: "post",
-                data: {
-                    ...values
-                },
+                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                data: filters + dic,
                 success: function (data) {
-                    $(updateTargetId).html(data);
-                    alert("İşlem Başarılı!");
+                    $("#ProductsPageContainer").html(data);
+                }
+            })
+        });
+        $(".filter-products").submit(function (e) {
+            e.preventDefault()
+            
+            var filters = $(".filter-products").serialize()
+            var dic = "@temp"
+                $.ajax({
+                url: "@Url.Action("Index","Products")",
+                method: "post",
+                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                data: filters + dic,
+                success: function (data) {
+                    $("#ProductsPageContainer").html(data);
+                    
                 }
 
             });
         });
-
-
-
     });
-</script>*@
+</script>
 
 
 

@@ -39,7 +39,7 @@ namespace Customer.Controllers
 
         //Herhangi bir category e bastıgında gelen sayfa 
         [HttpGet, HttpPost]
-        [Route("[action]/{categoryId}")]
+        [Route("[action]")]
         public async Task<IActionResult> Index(ProductFilter productFilter, int pageIndex = 0)
         {
             List<CategoryResponse> categoryResponse = await _categoriesService.GetAllCategories();
@@ -121,5 +121,8 @@ namespace Customer.Controllers
             return value == null ? default : JsonSerializer.Deserialize<T>(value);
         }
     }
+
+    
+
 
 }

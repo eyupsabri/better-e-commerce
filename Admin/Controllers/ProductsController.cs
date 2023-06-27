@@ -146,33 +146,26 @@ namespace Admin.Controllers
 
         [HttpPost]
         [Route("[action]")]
-        public async Task<IActionResult> RemoveProduct(int productId, string? searchString, int pageNumber, int categoryId)
+        public async Task<IActionResult> RemoveProduct(ProductFilter productFilter, int pageIndex, int ProductIdToBeRemoved, int CategoryIdToBeRemoved)
         {
 
-            await _productsService.DeleteProductById(productId, categoryId);
-            int totalProductsNumber;
-            int totalPages;
-            SingleProductsPage page;
+            await _productsService.DeleteProductById(ProductIdToBeRemoved, CategoryIdToBeRemoved);
 
-            if (searchString == null)
+
+
+            IPagedList<ProductResponse> products = _productsService.GetProducts(productFilter, pageIndex);
+            dynamic expendo = new ExpandoObject();
+            foreach (PropertyInfo prop in productFilter.GetType().GetProperties())
             {
-                totalProductsNumber = await _productsService.GetProductsCountByCategoryId(categoryId);
-                if (totalProductsNumber == 0)
+
+                if (prop.GetValue(productFilter) != null)
                 {
-                    return Json(null);
+
+                    products.AddProperty(expendo, prop.Name, prop.GetValue(productFilter));
                 }
-                List<ProductResponse> productsResponse = await _productsService.GetProductsByPagination(categoryId, pageNumber);
-                totalPages = TotalPagesCalculator.CalculatingTotalPages(totalProductsNumber);
-                if (pageNumber == totalPages)
-                    pageNumber--;
-                page = new SingleProductsPage() { Products = productsResponse, CurrentPage = pageNumber, TotalPages = totalPages, CategoryId = categoryId, CurrentSearchString = null };
-                return PartialView("_ProductsPage", page);
             }
-            List<ProductResponse> paginatedProducts = await _productsService.GetProductsByNameSearchWithPagination(searchString, pageNumber);
-            totalProductsNumber = await _productsService.GetProductsCountByNameSearch(searchString);
-            totalPages = TotalPagesCalculator.CalculatingTotalPages(totalProductsNumber);
-            page = new SingleProductsPage() { Products = paginatedProducts, CurrentPage = pageNumber, TotalPages = (int)totalPages, CurrentSearchString = searchString, CategoryId = null };
-            return PartialView("_ProductsPage", page);
+
+            return PartialView("_ProductsPage", products);
 
         }
     }

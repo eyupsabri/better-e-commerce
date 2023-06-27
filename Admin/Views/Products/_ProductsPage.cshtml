@@ -31,29 +31,154 @@
 
 <script>
     $(function () {
-        $(".ajax-form").submit(function (e) {
-            console.log(1111);
+        //$(".ajax-form").submit(function (e) {
+            
+        //    var button = $(document.activeElement).attr('class');
+        //    var buttonId = $(document.activeElement).attr('id');
+        //    console.log(button + buttonId)
+            
+            
+
+        //    if(button == "button-save"){
+        //        var values = {};
+        //        var updateTargetId = $("[data-update]", $(this)).val();
+        //        console.log(updateTargetId);
+        //        var $inputs = $("input", $(this));
+        //        $inputs.each(function () {
+        //            values[this.name] = $(this).val();
+        //        });
+        //        var url = $(this).attr("action");
+        //        $.ajax({
+        //            url: url,
+        //            method: "post",
+        //            data: {
+        //                ...values
+        //            },
+        //            success: function (data) {
+        //                $(updateTargetId).html(data);
+        //                alert("İşlem Başarılı!");
+        //            }
+
+        //        });
+        //    }else {
+        //        var dic = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.filterValues))
+        //        var pageIndex = @Model.PageIndex;
+        //        var ProductIdToBeRemoved = $(document.activeElement).data("productid");
+        //        var CategoryIdToBeRemoved = $(document.activeElement).data("categoryid");
+        //        console.log(ProductIdToBeRemoved)
+        //        $.ajax({
+        //            url: "@Url.Action("RemoveProduct","Products")",
+        //            method: "post",
+        //            data:
+        //            {
+        //                pageIndex: pageIndex,
+        //                ProductIdToBeRemoved,
+        //                CategoryIdToBeRemoved,
+        //                ...dic
+
+        //            },
+        //            success: function (data) {
+        //                console.log(dic)
+        //                $("#ProductsPageContainer").html(data);
+        //            }
+        //        })
+        //    }
+           
+
+
+
+        //});
+
+        $("#ProductsPageContainer").on("click", ".button-save", function () {
+            var ProductId = $(this).data("productid");
+            
+            var form = $("#productFormContainer_" + ProductId);
+            
+            form.removeData("validator");
+            form.removeData("unobtrusiveValidation");
+            $.validator.unobtrusive.parse(form);
+
+            
+
+            var $inputs = $('#productFormContainer_' + ProductId + ' :input');
             var values = {};
-            e.preventDefault();
-            var updateTargetId = $("[data-update]", $(this)).val();
-            console.log(updateTargetId);
-            var $inputs = $("input", $(this));
             $inputs.each(function () {
                 values[this.name] = $(this).val();
             });
-            var url = $(this).attr("action");
-            $.ajax({
-                url: url,
-                method: "post",
-                data: {
-                    ...values
-                },
-                success: function (data) {
-                    $(updateTargetId).html(data);
-                    alert("İşlem Başarılı!");
+            
+            
+            form.validate();
+            console.log(form.valid());
+            
+            
+            if (form.valid()) {
+                if (window.confirm('Emin misin')) {
+                    $.ajax({
+                        url: "@Url.Action("UpdateProduct","Products")",
+                        method: "post",
+                        data: {
+                            ...values
+                        },
+                        success: function (data) {
+
+                            $("#UpdateProductSaveButton" + ProductId).animate({
+                                backgroundColor: '#AAFF00'
+                            }, {
+                                duration: 200,
+                                complete: function () {
+                                    $("#productContainer_" + ProductId).html(data);
+                                }
+                            });
+
+
+                        }
+                    })
+                }
+                
+            }
+
+        });
+
+        $("#ProductsPageContainer").on("click", ".button-remove", function () {
+            var dic = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.filterValues))
+            var pageIndex = @Model.PageIndex;
+            var ProductIdToBeRemoved = $(this).data("productid");
+            var CategoryIdToBeRemoved = $(this).data("categoryid");
+
+            console.log("#productFormContainer_" + ProductIdToBeRemoved);
+            console.log(dic);
+          
+            var form = $("#productFormContainer_" + ProductIdToBeRemoved);
+
+            form.removeData("validator");
+            form.removeData("unobtrusiveValidation");
+            $.validator.unobtrusive.parse(form);
+
+            form.validate();
+       
+
+            if (form.valid()) {
+                if (window.confirm('Emin misin')) {
+                    $.ajax({
+                        url: "@Url.Action("RemoveProduct","Products")",
+                        method: "post",
+                        data: {
+                            pageIndex: pageIndex,
+                            ProductIdToBeRemoved: ProductIdToBeRemoved,
+                            CategoryIdToBeRemoved: CategoryIdToBeRemoved,
+                            ...dic
+                        },
+                        success: function (data) {
+                            $("#ProductsPageContainer").off("click", ".button-save");
+                            $("#ProductsPageContainer").off("click", ".button-remove");
+                            $("#ProductsPageContainer").html(data);
+                          
+                        }
+                    })
                 }
 
-            });
+            }
+
         });
 
         $(".myPagination").click(function () {
@@ -71,11 +196,15 @@
 
                     },
                     success: function (data) {
-                        console.log(dic)
+                        
+                        $("#ProductsPageContainer").off("click", ".button-save");
+                        $("#ProductsPageContainer").off("click", ".button-remove");
                         $("#ProductsPageContainer").html(data);
                     }
                 })
         });
+
+        
 
     });
 </script>

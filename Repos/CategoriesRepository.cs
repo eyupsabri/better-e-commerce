@@ -25,7 +25,8 @@ namespace Repos
 
         public async Task<bool> DeleteCategory(int id)
         {
-            _db.Categories.RemoveRange(_db.Categories.Where(temp => temp.CategoryId == id));
+            Category? cat = _db.Categories.Where(temp => temp.CategoryId == id).FirstOrDefault();
+            cat.IsDeleted = true;
             int rowsDeleted = await _db.SaveChangesAsync();
 
             return rowsDeleted > 0;

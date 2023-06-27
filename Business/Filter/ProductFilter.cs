@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Entities.Enums.ModelEnums;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -7,12 +8,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Entities.Enums.ModelEnums.PriceEnums;
 
 namespace Business.Filter
 {
     public class ProductFilter : IFilterable<Product>
-    {  
-        
+    {
+
         public string? ProductName { get; set; }
 
         public double? ProductPrice { get; set; }
@@ -21,26 +23,92 @@ namespace Business.Filter
         public int? CategoryId { get; set; }
         public double? UpperPriceLimit { get; set; }
         public double? LowerPriceLimit { get; set; }
-        
-      
+        // public bool? Price1 { get; set; } //0-100
+        // public bool? Price2 { get; set; } //100-200
+        //public bool? Price3 { get; set; } //200-300
+        // public bool? Price4 { get; set; } //300-400
+        //public bool? Price5 { get; set; } //400-500
+
+        public PriceOptions? Price1 { get; set; }
+        public PriceOptions? Price2 { get; set; }
+        public PriceOptions? Price3 { get; set; }
+        public PriceOptions? Price4 { get; set; }
+        public PriceOptions? Price5 { get; set; }
+
+
 
 
         public IQueryable<Product> Filter(IQueryable<Product> list)
         {
-            if (!ProductName.IsNullOrEmpty())         
-                list = list.Where(p => p.ProductName.Contains(ProductName));            
-            if(ProductPrice.HasValue)            
+            if (!ProductName.IsNullOrEmpty())
+                list = list.Where(p => p.ProductName.Contains(ProductName));
+            if (ProductPrice.HasValue)
                 list = list.Where(p => p.ProductPrice == ProductPrice);
-            if(CategoryId.HasValue)
+            if (CategoryId.HasValue)
                 list = list.Where(p => p.CategoryId == CategoryId.Value);
-            if(!CategoryName.IsNullOrEmpty())
+            if (!CategoryName.IsNullOrEmpty())
                 list = list.Where(p => p.Category.CategoryName.Contains(CategoryName));
             if (UpperPriceLimit.HasValue)
                 list = list.Where(p => UpperPriceLimit > p.ProductPrice);
-            if(LowerPriceLimit.HasValue)
-                list = list.Where(p =>  p.ProductPrice >= LowerPriceLimit);
+            if (LowerPriceLimit.HasValue)
+                list = list.Where(p => p.ProductPrice >= LowerPriceLimit);
+
+            list = ProductPriceFilter(list);
+
             return list;
-                
+
+
+        }
+
+        private IQueryable<Product> ProductPriceFilter(IQueryable<Product> list)
+        {
+            IQueryable<Product> final = Enumerable.Empty<Product>().AsQueryable();
+            bool any = false;
+
+            if (Price1 != null)
+            {
+                final = list.Where(p => p.ProductPrice <= 100);
+                any = true;
+            }
+            if (Price2 != null)
+            {
+                if (!any)
+                    final = list.Where(p => p.ProductPrice <= 200 && p.ProductPrice > 100);
+                else
+                    final = final.Concat(list.Where(p => p.ProductPrice <= 200 && p.ProductPrice > 100));
+                any = true;
+            }
+
+            if (Price3 != null)
+            {
+                if (!any)
+                    final = list.Where(p => p.ProductPrice <= 300 && p.ProductPrice > 200);
+                else
+                    final = final.Concat(list.Where(p => p.ProductPrice <= 300 && p.ProductPrice > 200));
+                any = true;
+            }
+
+            if (Price4 != null)
+            {
+                if (!any)
+                    final = list.Where(p => p.ProductPrice <= 400 && p.ProductPrice > 300);
+                else
+                    final = final.Concat(list.Where(p => p.ProductPrice <= 400 && p.ProductPrice > 300));
+                any = true;
+            }
+
+            if (Price5 != null)
+            {
+                if (!any)
+                    final = list.Where(p => p.ProductPrice <= 500 && p.ProductPrice > 400);
+                else
+                    final = final.Concat(list.Where(p => p.ProductPrice <= 500 && p.ProductPrice > 400));
+                any = true;
+            }
+
+            if (any)
+                return final;
+            return list;
 
         }
 

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Business.Filter;
 
 namespace Business
 {
@@ -71,11 +72,13 @@ namespace Business
             return await _customersRepo.CustomersCount();
         }
 
-        public  IPagedList<CustomerResponse> GetCustomers(string? customerName, string? productName, int pageIndex)
+        public  IPagedList<CustomerResponse> GetFilteredCustomers(CustomerFilter filter, int pageIndex)
         {
-            var list = _customersRepo.GetCustomersByNameSearch(productName, customerName);
+            var list = _customersRepo.GetCustomers();
 
-            IPagedList<CustomerResponse> response = list.Select(_ => _.ToCustomerResponse()).ToPagedList(pageIndex, 1);
+            var filtered = filter.Filter(list);
+
+            IPagedList<CustomerResponse> response = filtered.Select(_ => _.ToCustomerResponse()).ToPagedList(pageIndex, 12);
 
             return response;
         }
