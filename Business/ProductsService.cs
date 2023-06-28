@@ -105,7 +105,10 @@ namespace Business
         {
             var unfiltered = productsRepo.GetProducts();
             var filtered = products.Filter(unfiltered);
-            return filtered.Select(_ => _.ToProductResponse()).ToPagedList(pageIndex.Value, 12);
+            var sorted = products.Sort(filtered);
+            return sorted.Select(_ => _.ToProductResponse()).ToPagedList(pageIndex.Value, 12);
+            
+            
             
         }
     }

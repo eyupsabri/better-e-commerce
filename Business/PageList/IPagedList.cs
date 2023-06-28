@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Business.Sorting;
+using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace Business.PageList
     }
     public interface IPagedList<T>: IPagedList, IList<T> where T : class
     {
-        //ISortable<T> sortModel { get; set; }
-        //List<object> filterValues { get; set; }
+        ISortable<T> sortModel { get; set; }
+        
     }
 }

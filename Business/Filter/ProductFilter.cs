@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using Business.Sorting;
+using Entities;
 using Entities.Enums.ModelEnums;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -12,7 +13,7 @@ using static Entities.Enums.ModelEnums.PriceEnums;
 
 namespace Business.Filter
 {
-    public class ProductFilter : IFilterable<Product>
+    public class ProductFilter : BaseFilter, IFilterable<Product>, ISortable<Product>
     {
 
         public string? ProductName { get; set; }
@@ -58,6 +59,20 @@ namespace Business.Filter
             return list;
 
 
+        }
+
+        public IQueryable<Product> Sort(IQueryable<Product> list)
+        {
+            switch (sortBy)
+            {
+                default:
+                    return list;
+                case "productName" :
+                    return sortAsc ? list.OrderBy(p => p.ProductName) : list.OrderByDescending(p => p.ProductName);
+                case "productPrice":
+                    return sortAsc ? list.OrderBy(p => p.ProductPrice) : list.OrderByDescending(p => p.ProductPrice);
+
+            }
         }
 
         private IQueryable<Product> ProductPriceFilter(IQueryable<Product> list)

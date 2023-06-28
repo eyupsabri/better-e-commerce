@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Business.Sorting;
+using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
@@ -54,8 +55,12 @@ namespace Business.PageList
 
             var realTotalPages = (int)Math.Ceiling(realTotalCount / (double)PageSize);
 
-            if (realTotalCount < TotalItemCount && realTotalPages <= PageIndex)
+            if (realTotalPages <= PageIndex) //Degistirdim
+            {
                 AddRange(source.Skip((realTotalPages - 1) * PageSize).Take(PageSize));
+                PageIndex--;
+            }
+                
             else
                 AddRange(source.Skip(PageIndex * PageSize).Take(PageSize));
         }
@@ -74,12 +79,8 @@ namespace Business.PageList
         public string OrderCol { get; set; }
         public bool OrderAsc { get; set; }
         public object filterValues { get; set; }
+        public ISortable<T> sortModel { get; set; }
 
-        // public object filterValues { get; set; }
-
-
-
-        //public ISortable<T> sortModel { get; set; }
         #endregion
         public void AddProperty(ExpandoObject expando, string propertyName, object propertyValue)
         {
