@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using Business.United;
+using Entities;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Business.Filter
 {
-    public class CustomerFilter : IFilterable<Customer>
+    public class CustomerFilter : BaseFilter, IFilterAndSort<Customer>
     {
 
         public string? CustomerName { get; set; }
@@ -24,6 +25,17 @@ namespace Business.Filter
                 list = list.Where(p => p.order.OrderItems.Any(t => t.Product.ProductName.Contains(ProductName)));
             }
             return list;
+        }
+
+        public IQueryable<Customer> Sort(IQueryable<Customer> list)
+        {
+            switch(sortBy)
+            {
+                case "customerName":
+                    return sortAsc ? list.OrderBy(p => p.CustomerName) : list.OrderByDescending(p => p.CustomerName);
+                default:
+                    return list;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Business.Sorting;
+using Business.United;
 using Entities;
 using Entities.Enums.ModelEnums;
 using Microsoft.IdentityModel.Tokens;
@@ -13,7 +14,7 @@ using static Entities.Enums.ModelEnums.PriceEnums;
 
 namespace Business.Filter
 {
-    public class ProductFilter : BaseFilter, IFilterable<Product>, ISortable<Product>
+    public class ProductFilter : BaseFilter, IFilterAndSort<Product>
     {
 
         public string? ProductName { get; set; }

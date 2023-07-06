@@ -19,7 +19,7 @@ namespace Business
         Task<List<ProductResponse>> GetProductsByPagination(int categoryId, int position);
         Task<int> GetProductsCountByCategoryId(int categoryId);
         Task<List<ProductResponse>> GetProductsByNameSearchWithPagination(string name, int position);
-        Task<int> GetProductsCountByNameSearch(string name);
+        Task<ProductResponse> GetProductByProductId(int productId);
         Task<ProductResponse> UpdateProductById(ProductUpdateRequest product);
         Task<bool> DeleteProductById(int productId, int categoryId);
         IPagedList<ProductResponse> GetProducts(ProductFilter products, int? pageIndex);

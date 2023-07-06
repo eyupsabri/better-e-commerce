@@ -77,9 +77,10 @@ namespace Business
         }
 
 
-        public async Task<int> GetProductsCountByNameSearch(string name)
+        public async Task<ProductResponse> GetProductByProductId(int productId)
         {
-            return await productsRepo.GetProductsCountByNameSearch(name);
+            var product = await productsRepo.GetProductById(productId);
+            return product.ToProductResponse();
 
 
         }
@@ -103,14 +104,17 @@ namespace Business
 
         public IPagedList<ProductResponse> GetProducts(ProductFilter products, int? pageIndex = 0)
         {
-            var unfiltered = productsRepo.GetProducts();
-            var filtered = products.Filter(unfiltered);
-            var sorted = products.Sort(filtered);
-            return sorted.Select(_ => _.ToProductResponse()).ToPagedList(pageIndex.Value, 12);
+            var list = productsRepo.GetProducts().FilterAndSort(products);
+            
+            //var filtered = products.Filter(unfiltered);
+            //var sorted = products.Sort(filtered);
+            return list.Select(_ => _.ToProductResponse()).ToPagedList(pageIndex.Value, 12);
             
             
             
         }
+
+        
     }
 
 

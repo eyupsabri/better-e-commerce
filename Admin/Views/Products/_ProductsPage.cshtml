@@ -147,13 +147,13 @@
             form.removeData("unobtrusiveValidation");
             $.validator.unobtrusive.parse(form);
 
+            var formData = new FormData(form);
 
-
-            var $inputs = $('#productFormContainer_' + ProductId + ' :input');
-            var values = {};
-            $inputs.each(function () {
-                values[this.name] = $(this).val();
-            });
+            //var $inputs = $('#productFormContainer_' + ProductId + ' :input');
+            //var values = {};
+            //$inputs.each(function () {
+            //    values[this.name] = $(this).val();
+            //});
 
 
             form.validate();
@@ -165,9 +165,10 @@
                     $.ajax({
                         url: "@Url.Action("UpdateProduct","Products")",
                         method: "post",
-                        data: {
-                            ...values
-                        },
+                        //data: {
+                        //    ...values
+                        //},
+                        data: formData,
                         success: function (data) {
 
                             $("#UpdateProductSaveButton" + ProductId).animate({

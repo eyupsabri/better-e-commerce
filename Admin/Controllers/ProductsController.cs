@@ -20,7 +20,7 @@ namespace Admin.Controllers
         private ICategoriesService _categoriesService;
         private ICustomersService _customersService;
         private IOrderItemsService _orderItemsService;
-
+        private readonly IWebHostEnvironment _webhost;
         public static bool IsAjaxRequest(HttpRequest request)
         {
             if (request == null)
@@ -31,13 +31,13 @@ namespace Admin.Controllers
             return false;
         }
 
-        public ProductsController(IProductsService productsService, ICategoriesService categoriesService, ICustomersService customersService, IOrderItemsService orderItemsService)
+        public ProductsController(IProductsService productsService, ICategoriesService categoriesService, ICustomersService customersService, IOrderItemsService orderItemsService, IWebHostEnvironment webhost)
         {
             _productsService = productsService;
             _categoriesService = categoriesService;
             _customersService = customersService;
             _orderItemsService = orderItemsService;
-
+            _webhost = webhost;
         }
 
         [HttpGet, HttpPost]
@@ -138,9 +138,34 @@ namespace Admin.Controllers
 
         [HttpPost]
         [Route("[action]")]
-        public async Task<IActionResult> UpdateProduct(ProductUpdateRequest product)
+        public async Task<IActionResult> UpdateProduct(ProductUpdateRequest product, IFormFile imgFile)
         {
+            var productResponse = await _productsService.GetProductByProductId(product.ProductId);
+
+            if(!productResponse.ProductName.Equals(product.ProductName))
+            {
+                if(imgFile != null)
+                {
+                    var imgPath = Path.Combine(_webhost.WebRootPath, "products", product.ProductName);
+                    string imgExt = Path.GetExtension(imgFile.FileName);
+                    if (imgExt.Equals(".jpg"))
+                    {
+                        using (var uploading = new FileStream(imgPath, FileMode.Create))
+                        {
+                            await imgFile.CopyToAsync(uploading);
+                            ProductResponse succesfulResponse = await _productsService.UpdateProductById(product);
+                            return PartialView("_OneProduct", succesfulResponse.ToProductUpdateReq());
+                        }
+                    }
+                }else
+                {
+                    return PartialView("_OneProduct", productResponse.ToProductUpdateReq());
+                }
+                
+            }
+
             ProductResponse response = await _productsService.UpdateProductById(product);
+
             return PartialView("_OneProduct", response.ToProductUpdateReq());
         }
 
