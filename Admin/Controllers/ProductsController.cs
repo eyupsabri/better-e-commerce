@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Dynamic;
 using System.Reflection;
+using System.Text.RegularExpressions;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Admin.Controllers
 {
@@ -146,7 +148,11 @@ namespace Admin.Controllers
             {
                 if(imgFile != null)
                 {
-                    var imgPath = Path.Combine(_webhost.WebRootPath, "products", product.ProductName);
+                    var s = Regex.Escape(Path.Combine("Admin", "wwwroot"));
+                    var path = Regex.Replace(_webhost.WebRootPath, s, "assets");
+
+                    var imgPath = Path.Combine(path, "products", Regex.Replace(product.ProductName, @"s", "") + ".jpg");
+
                     string imgExt = Path.GetExtension(imgFile.FileName);
                     if (imgExt.Equals(".jpg"))
                     {
@@ -157,7 +163,12 @@ namespace Admin.Controllers
                             return PartialView("_OneProduct", succesfulResponse.ToProductUpdateReq());
                         }
                     }
-                }else
+                    else
+                    {
+                        return PartialView("_OneProduct", productResponse.ToProductUpdateReq());
+                    }
+                }
+                else
                 {
                     return PartialView("_OneProduct", productResponse.ToProductUpdateReq());
                 }

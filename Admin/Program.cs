@@ -44,7 +44,7 @@ namespace Admin
 
             //app.UseStaticFiles();
 
-            
+            var cemre = Regex.Replace(builder.Environment.ContentRootPath, builder.Environment.ApplicationName, "assets");
 
             app.UseStaticFiles(new StaticFileOptions
             {

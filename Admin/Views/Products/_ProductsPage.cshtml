@@ -141,14 +141,16 @@
         $("#ProductsPageContainer").on("click", ".button-save", function () {
             var ProductId = $(this).data("productid");
 
+            var formWithImg = document.getElementById("productFormContainer_" + ProductId);
+            
             var form = $("#productFormContainer_" + ProductId);
 
             form.removeData("validator");
             form.removeData("unobtrusiveValidation");
             $.validator.unobtrusive.parse(form);
 
-            var formData = new FormData(form);
-
+            var formData = new FormData(formWithImg);
+            console.log(formData)
             //var $inputs = $('#productFormContainer_' + ProductId + ' :input');
             //var values = {};
             //$inputs.each(function () {
@@ -169,6 +171,8 @@
                         //    ...values
                         //},
                         data: formData,
+                        processData: false,
+                        contentType: false,
                         success: function (data) {
 
                             $("#UpdateProductSaveButton" + ProductId).animate({

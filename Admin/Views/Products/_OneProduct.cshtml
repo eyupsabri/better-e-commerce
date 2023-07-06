@@ -1,14 +1,14 @@
 ﻿@model ProductUpdateRequest
 
-<form id="productFormContainer_@Model.ProductId">
+<form id="productFormContainer_@Model.ProductId" >
 @*<form data-ajax-update="#productContainer_@Model.ProductId" data-ajax="true" data-ajax-confirm="Emin misin?" asp-controller="Products" asp-action="UpdateProduct">*@
     @Html.HiddenFor(p => p.ProductId)
     <div class="grid-table">
         <span style="width: 100%;">@Model.ProductId</span>
-        <span>
-            <input style="width: 100%;" asp-for="ProductName" value="@Model.ProductName" />
-            <input style="width: 50%;" type="file" name="imgFile" />
+        <span>           
+            <input style="width: 100%;" asp-for="ProductName" value="@Model.ProductName" />           
             <span asp-validation-for="ProductName"></span>
+            <input style="width: 50%;" type="file" name="imgFile" accept=".jpg" />
         </span>
         <span>
             <input style="width: 100%;" asp-for="ProductDescription" value="@Model.ProductDescription" />
