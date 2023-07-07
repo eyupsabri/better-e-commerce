@@ -25,11 +25,11 @@ namespace Business.DTOs
         public string ProductDescription { get; set; }
 
         public int? CategoryId { get; set; }
-       
+        public Guid ImageGuid { get; set; }
 
         public Product ToProduct()
         {
-            return new Product() { ProductId = ProductId, ProductName = ProductName, ProductPrice = Decimal.ToDouble(ProductPrice), ProductDescription = ProductDescription };
+            return new Product() { ProductId = ProductId, ProductName = ProductName, ProductPrice = Decimal.ToDouble(ProductPrice), ProductDescription = ProductDescription, ImageGuid = ImageGuid };
         }
 
     }

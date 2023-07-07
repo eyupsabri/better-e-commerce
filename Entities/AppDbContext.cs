@@ -86,12 +86,14 @@ namespace Entities
             });
 
             List<Product> products = new List<Product>();
-            for (int i = 1; i <= 200; i++)
+            for (int i = 1; i <= 52; i++)
             {
-                if (i <= 50)
-                {
+                Guid guid = Guid.NewGuid();
+                if (i <= 13)
+                {                  
                     products.Add(new Product()
                     {
+                        ImageGuid = guid,
                         IsDeleted = false,
                         ProductId = i,
                         ProductName = "Samsung-s20",
@@ -99,11 +101,14 @@ namespace Entities
                         ProductDescription = "Cok ucuz",
                         CategoryId = 4,
                     });
+                    //Burayı degistirmen gerek
+                    //File.Copy(@"G:\asplearning\better-clone\e-commerce-asp\assets\products\Samsung-s20.jpg", @"G:\asplearning\better-clone\e-commerce-asp\assets\products\" + guid + ".jpg");
                 }
-                else if (50 < i && i <= 100)
+                else if (13 < i && i <= 26)
                 {
                     products.Add(new Product()
                     {
+                        ImageGuid = guid,
                         IsDeleted = false,
                         ProductId = i,
                         ProductName = "Hoparlor",
@@ -111,11 +116,13 @@ namespace Entities
                         ProductDescription = "Cok ucuz",
                         CategoryId = 1,
                     });
+                    //File.Copy(@"G:\asplearning\better-clone\e-commerce-asp\assets\products\Hoparlor.jpg", @"G:\asplearning\better-clone\e-commerce-asp\assets\products\" + guid + ".jpg");
                 }
-                else if (100 < i && i <= 150)
+                else if (26 < i && i <= 39)
                 {
                     products.Add(new Product()
                     {
+                        ImageGuid = guid,
                         IsDeleted = false,
                         ProductId = i,
                         ProductName = "Selpak",
@@ -124,11 +131,13 @@ namespace Entities
                         CategoryId = 2,
 
                     });
+                    //File.Copy(@"G:\asplearning\better-clone\e-commerce-asp\assets\products\Selpak.jpg", @"G:\asplearning\better-clone\e-commerce-asp\assets\products\" + guid + ".jpg");
                 }
-                else if (150 < i && i <= 200)
+                else if (39 < i && i <= 52)
                 {
                     products.Add(new Product()
                     {
+                        ImageGuid = guid,
                         IsDeleted = false,
                         ProductId = i,
                         ProductName = "Sozcu",
@@ -137,12 +146,14 @@ namespace Entities
                         CategoryId = 3,
 
                     });
+                    //File.Copy(@"G:\asplearning\better-clone\e-commerce-asp\assets\products\Sozcu.jpg", @"G:\asplearning\better-clone\e-commerce-asp\assets\products\" + guid + ".jpg");
                 }
             }
 
             foreach(Product product in products)
             {
                 modelBuilder.Entity<Product>().HasData(product);
+                //File.Copy(@"G:\asplearning\better-clone\e-commerce-asp\assets\products\" + product.ProductName + ".jpg", @"G:\asplearning\better-clone\e-commerce-asp\assets\products\" + product.ImageGuid + ".jpg");
             }
             
         }

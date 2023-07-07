@@ -51,32 +51,32 @@ namespace Admin.Controllers
             ViewBag.Categories = categoryResponse;
 
             IPagedList<ProductResponse> products;
-            
+
             products = _productsService.GetProducts(productFilter, pageIndex);
             dynamic expendo = new ExpandoObject();
             foreach (PropertyInfo prop in productFilter.GetType().GetProperties())
             {
-                          
+
                 if (prop.GetValue(productFilter) != null)
                 {
-                    
-                    products.AddProperty(expendo, prop.Name , prop.GetValue(productFilter));
+
+                    products.AddProperty(expendo, prop.Name, prop.GetValue(productFilter));
                 }
             }
-            
-          
 
-            
+
+
+
             products.Url = string.Empty;
             //ViewBag.ProductFilter = productFilter;
-            
-         
+
+
 
             if (IsAjaxRequest(Request))
                 return PartialView("_ProductsPage", products);
-           
+
             return View(products);
-          
+
 
 
 
@@ -143,38 +143,36 @@ namespace Admin.Controllers
         public async Task<IActionResult> UpdateProduct(ProductUpdateRequest product, IFormFile imgFile)
         {
             var productResponse = await _productsService.GetProductByProductId(product.ProductId);
+            
 
-            if(!productResponse.ProductName.Equals(product.ProductName))
+
+            if (imgFile != null)
             {
-                if(imgFile != null)
+                var guid = Guid.NewGuid();
+                var s = Regex.Escape(Path.Combine("Admin", "wwwroot"));
+                var path = Regex.Replace(_webhost.WebRootPath, s, "assets");
+
+                var imgPath = Path.Combine(path, "products", guid + ".jpg");
+
+                string imgExt = Path.GetExtension(imgFile.FileName);
+                if (imgExt.Equals(".jpg"))
                 {
-                    var s = Regex.Escape(Path.Combine("Admin", "wwwroot"));
-                    var path = Regex.Replace(_webhost.WebRootPath, s, "assets");
-
-                    var imgPath = Path.Combine(path, "products", Regex.Replace(product.ProductName, @"s", "") + ".jpg");
-
-                    string imgExt = Path.GetExtension(imgFile.FileName);
-                    if (imgExt.Equals(".jpg"))
+                    using (var uploading = new FileStream(imgPath, FileMode.Create))
                     {
-                        using (var uploading = new FileStream(imgPath, FileMode.Create))
-                        {
-                            await imgFile.CopyToAsync(uploading);
-                            ProductResponse succesfulResponse = await _productsService.UpdateProductById(product);
-                            return PartialView("_OneProduct", succesfulResponse.ToProductUpdateReq());
-                        }
-                    }
-                    else
-                    {
-                        return PartialView("_OneProduct", productResponse.ToProductUpdateReq());
+                        product.ImageGuid = guid;
+                        await imgFile.CopyToAsync(uploading);
+                        ProductResponse succesfulResponse = await _productsService.UpdateProductById(product);
+                        return PartialView("_OneProduct", succesfulResponse.ToProductUpdateReq());
                     }
                 }
                 else
                 {
-                    return PartialView("_OneProduct", productResponse.ToProductUpdateReq());
+                    //return PartialView("_OneProduct", productResponse.ToProductUpdateReq());
+                    return BadRequest("Extention must be jpg");
                 }
-                
             }
-
+            var oldGuid = productResponse.ImageGuid;
+            product.ImageGuid = oldGuid;
             ProductResponse response = await _productsService.UpdateProductById(product);
 
             return PartialView("_OneProduct", response.ToProductUpdateReq());

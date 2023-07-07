@@ -18,6 +18,9 @@ namespace Entities.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.7")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -166,6 +169,9 @@ namespace Entities.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<Guid>("ImageGuid")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -193,6 +199,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 1,
                             CategoryId = 4,
+                            ImageGuid = new Guid("3d6b26f8-e72c-4a04-92cb-61e69c7cc049"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -202,6 +209,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 2,
                             CategoryId = 4,
+                            ImageGuid = new Guid("4f1e7689-88a4-4a73-9b01-5017918e6e50"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -211,6 +219,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 3,
                             CategoryId = 4,
+                            ImageGuid = new Guid("f5ef19af-814e-480a-93b0-6b0eda1c5bc5"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -220,6 +229,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 4,
                             CategoryId = 4,
+                            ImageGuid = new Guid("b72151b3-4dc5-4308-8550-e5eb73ea9d48"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -229,6 +239,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 5,
                             CategoryId = 4,
+                            ImageGuid = new Guid("26d8a65e-3b7d-4098-9a6f-bfed32df856d"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -238,6 +249,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 6,
                             CategoryId = 4,
+                            ImageGuid = new Guid("cc2518d0-7f0f-4238-a3fa-28a24ee45fb2"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -247,6 +259,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 7,
                             CategoryId = 4,
+                            ImageGuid = new Guid("6c171a22-345f-4684-bde9-401cead1eee0"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -256,6 +269,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 8,
                             CategoryId = 4,
+                            ImageGuid = new Guid("452e13ee-f7f0-425d-aa37-544524bc31ac"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -265,6 +279,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 9,
                             CategoryId = 4,
+                            ImageGuid = new Guid("80899eb2-da1d-4424-8e74-4bcbbf1c50ac"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -274,6 +289,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 10,
                             CategoryId = 4,
+                            ImageGuid = new Guid("63f2a6cb-11fd-498f-a2d5-913e1f180e1b"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -283,6 +299,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 11,
                             CategoryId = 4,
+                            ImageGuid = new Guid("0849f179-949f-4e54-aee0-97121f1d783a"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -292,6 +309,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 12,
                             CategoryId = 4,
+                            ImageGuid = new Guid("4a39f91d-2f2a-4e3f-92c0-455b9ea7efac"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -301,6 +319,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 13,
                             CategoryId = 4,
+                            ImageGuid = new Guid("d9c02f93-ef34-451c-a4c8-866ab0b6f180"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -309,1681 +328,388 @@ namespace Entities.Migrations
                         new
                         {
                             ProductId = 14,
-                            CategoryId = 4,
+                            CategoryId = 1,
+                            ImageGuid = new Guid("a31c5418-cd7e-4526-814c-eeb9946486a4"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Hoparlor",
+                            ProductPrice = 500.0
                         },
                         new
                         {
                             ProductId = 15,
-                            CategoryId = 4,
+                            CategoryId = 1,
+                            ImageGuid = new Guid("960919f9-9e60-4f6d-8ba4-582b871261c1"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Hoparlor",
+                            ProductPrice = 500.0
                         },
                         new
                         {
                             ProductId = 16,
-                            CategoryId = 4,
+                            CategoryId = 1,
+                            ImageGuid = new Guid("fd4d139b-94c9-4159-80cb-9909b4ab0f58"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Hoparlor",
+                            ProductPrice = 500.0
                         },
                         new
                         {
                             ProductId = 17,
-                            CategoryId = 4,
+                            CategoryId = 1,
+                            ImageGuid = new Guid("c6829f85-351d-46e8-8f8a-2d1fd8e20590"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Hoparlor",
+                            ProductPrice = 500.0
                         },
                         new
                         {
                             ProductId = 18,
-                            CategoryId = 4,
+                            CategoryId = 1,
+                            ImageGuid = new Guid("1e5b8eab-ed7a-4995-bbfc-519badcc5439"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Hoparlor",
+                            ProductPrice = 500.0
                         },
                         new
                         {
                             ProductId = 19,
-                            CategoryId = 4,
+                            CategoryId = 1,
+                            ImageGuid = new Guid("ce1bce07-095a-40ae-b9fa-0a3dfb9e575d"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Hoparlor",
+                            ProductPrice = 500.0
                         },
                         new
                         {
                             ProductId = 20,
-                            CategoryId = 4,
+                            CategoryId = 1,
+                            ImageGuid = new Guid("f5cd750e-421d-48b5-bef5-5837c9e73c8e"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Hoparlor",
+                            ProductPrice = 500.0
                         },
                         new
                         {
                             ProductId = 21,
-                            CategoryId = 4,
+                            CategoryId = 1,
+                            ImageGuid = new Guid("c4a57cdf-a74e-4799-b87c-4f128e16d0ef"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Hoparlor",
+                            ProductPrice = 500.0
                         },
                         new
                         {
                             ProductId = 22,
-                            CategoryId = 4,
+                            CategoryId = 1,
+                            ImageGuid = new Guid("4e79d0cb-9b75-4cfb-b530-4a83e1eb8297"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Hoparlor",
+                            ProductPrice = 500.0
                         },
                         new
                         {
                             ProductId = 23,
-                            CategoryId = 4,
+                            CategoryId = 1,
+                            ImageGuid = new Guid("ab43c4bc-1bc6-42f8-8297-c50e7ba3a641"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Hoparlor",
+                            ProductPrice = 500.0
                         },
                         new
                         {
                             ProductId = 24,
-                            CategoryId = 4,
+                            CategoryId = 1,
+                            ImageGuid = new Guid("82ca1768-18db-4867-9dfe-d8ff14fa488e"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Hoparlor",
+                            ProductPrice = 500.0
                         },
                         new
                         {
                             ProductId = 25,
-                            CategoryId = 4,
+                            CategoryId = 1,
+                            ImageGuid = new Guid("f462626d-2f79-4625-80d0-836f05017918"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Hoparlor",
+                            ProductPrice = 500.0
                         },
                         new
                         {
                             ProductId = 26,
-                            CategoryId = 4,
+                            CategoryId = 1,
+                            ImageGuid = new Guid("b09b3bd1-ec67-4169-9428-478cf99fa853"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Hoparlor",
+                            ProductPrice = 500.0
                         },
                         new
                         {
                             ProductId = 27,
-                            CategoryId = 4,
+                            CategoryId = 2,
+                            ImageGuid = new Guid("7fe141d2-ea1c-490c-830c-c7703aff81f2"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
                         },
                         new
                         {
                             ProductId = 28,
-                            CategoryId = 4,
+                            CategoryId = 2,
+                            ImageGuid = new Guid("5a7e96ea-dc10-4191-9e41-7a9f7d22a950"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
                         },
                         new
                         {
                             ProductId = 29,
-                            CategoryId = 4,
+                            CategoryId = 2,
+                            ImageGuid = new Guid("41b08a0d-bfbf-4736-b213-1b03b80b9c72"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
                         },
                         new
                         {
                             ProductId = 30,
-                            CategoryId = 4,
+                            CategoryId = 2,
+                            ImageGuid = new Guid("30f46ece-cdae-40ec-b8ad-f552f50d732d"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
                         },
                         new
                         {
                             ProductId = 31,
-                            CategoryId = 4,
+                            CategoryId = 2,
+                            ImageGuid = new Guid("1d502dfd-b4e2-4318-a68e-4e8f0522361f"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
                         },
                         new
                         {
                             ProductId = 32,
-                            CategoryId = 4,
+                            CategoryId = 2,
+                            ImageGuid = new Guid("30e69ece-232c-4193-b293-59c2208c2833"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
                         },
                         new
                         {
                             ProductId = 33,
-                            CategoryId = 4,
+                            CategoryId = 2,
+                            ImageGuid = new Guid("c31a5c2a-9828-477c-9a84-925158ec2efe"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
                         },
                         new
                         {
                             ProductId = 34,
-                            CategoryId = 4,
+                            CategoryId = 2,
+                            ImageGuid = new Guid("1e9d3293-9674-4db2-b71a-6b2c6ff3a851"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
                         },
                         new
                         {
                             ProductId = 35,
-                            CategoryId = 4,
+                            CategoryId = 2,
+                            ImageGuid = new Guid("43e3dd4d-9ec8-476e-aa66-a6417e401f03"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
                         },
                         new
                         {
                             ProductId = 36,
-                            CategoryId = 4,
+                            CategoryId = 2,
+                            ImageGuid = new Guid("e7ace810-25e7-4958-a715-3572062cb9f3"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
                         },
                         new
                         {
                             ProductId = 37,
-                            CategoryId = 4,
+                            CategoryId = 2,
+                            ImageGuid = new Guid("ae9545e4-bb7d-4ecd-a6c7-c0eeb082f2c9"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
                         },
                         new
                         {
                             ProductId = 38,
-                            CategoryId = 4,
+                            CategoryId = 2,
+                            ImageGuid = new Guid("9d6c9a83-fc7b-4a27-95b7-fbd105d506f0"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
                         },
                         new
                         {
                             ProductId = 39,
-                            CategoryId = 4,
+                            CategoryId = 2,
+                            ImageGuid = new Guid("6121aabd-9225-4a47-b392-642cc37417c3"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Selpak",
+                            ProductPrice = 100.0
                         },
                         new
                         {
                             ProductId = 40,
-                            CategoryId = 4,
+                            CategoryId = 3,
+                            ImageGuid = new Guid("3d53d9b3-4884-46a8-abf0-1ccd6d4519dd"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Sozcu",
+                            ProductPrice = 2.0
                         },
                         new
                         {
                             ProductId = 41,
-                            CategoryId = 4,
+                            CategoryId = 3,
+                            ImageGuid = new Guid("0c3662b5-6fc7-475d-a1bb-28ae5e97002f"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Sozcu",
+                            ProductPrice = 2.0
                         },
                         new
                         {
                             ProductId = 42,
-                            CategoryId = 4,
+                            CategoryId = 3,
+                            ImageGuid = new Guid("35af930f-3dfe-4e7a-ae3d-ee54d351dd9e"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Sozcu",
+                            ProductPrice = 2.0
                         },
                         new
                         {
                             ProductId = 43,
-                            CategoryId = 4,
+                            CategoryId = 3,
+                            ImageGuid = new Guid("d81afe34-4d9a-445f-b4df-41b8d859ed98"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Sozcu",
+                            ProductPrice = 2.0
                         },
                         new
                         {
                             ProductId = 44,
-                            CategoryId = 4,
+                            CategoryId = 3,
+                            ImageGuid = new Guid("0385cba1-d759-44c4-8166-c36e0fbefbd3"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Sozcu",
+                            ProductPrice = 2.0
                         },
                         new
                         {
                             ProductId = 45,
-                            CategoryId = 4,
+                            CategoryId = 3,
+                            ImageGuid = new Guid("c4967a58-61f7-4b09-8367-2b46df988fc3"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Sozcu",
+                            ProductPrice = 2.0
                         },
                         new
                         {
                             ProductId = 46,
-                            CategoryId = 4,
+                            CategoryId = 3,
+                            ImageGuid = new Guid("380232a2-b065-431a-bffe-3cfe4e158938"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Sozcu",
+                            ProductPrice = 2.0
                         },
                         new
                         {
                             ProductId = 47,
-                            CategoryId = 4,
+                            CategoryId = 3,
+                            ImageGuid = new Guid("d062e600-3a15-4891-8609-11b5774d11cc"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Sozcu",
+                            ProductPrice = 2.0
                         },
                         new
                         {
                             ProductId = 48,
-                            CategoryId = 4,
+                            CategoryId = 3,
+                            ImageGuid = new Guid("5045f5c8-1f5f-4853-b587-7f63f0d82b4a"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Sozcu",
+                            ProductPrice = 2.0
                         },
                         new
                         {
                             ProductId = 49,
-                            CategoryId = 4,
+                            CategoryId = 3,
+                            ImageGuid = new Guid("2c408cc5-1c62-42e8-8151-5796274d72f4"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Sozcu",
+                            ProductPrice = 2.0
                         },
                         new
                         {
                             ProductId = 50,
-                            CategoryId = 4,
+                            CategoryId = 3,
+                            ImageGuid = new Guid("3439cbfe-ad5d-4bb4-a355-739f09d68b90"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Samsung-s20",
-                            ProductPrice = 10550.6
+                            ProductName = "Sozcu",
+                            ProductPrice = 2.0
                         },
                         new
                         {
                             ProductId = 51,
-                            CategoryId = 1,
+                            CategoryId = 3,
+                            ImageGuid = new Guid("43426a86-2f53-4c8b-b548-e7207f7394ec"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
+                            ProductName = "Sozcu",
+                            ProductPrice = 2.0
                         },
                         new
                         {
                             ProductId = 52,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 53,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 54,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 55,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 56,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 57,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 58,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 59,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 60,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 61,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 62,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 63,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 64,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 65,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 66,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 67,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 68,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 69,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 70,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 71,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 72,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 73,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 74,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 75,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 76,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 77,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 78,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 79,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 80,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 81,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 82,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 83,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 84,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 85,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 86,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 87,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 88,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 89,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 90,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 91,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 92,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 93,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 94,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 95,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 96,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 97,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 98,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 99,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 100,
-                            CategoryId = 1,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Hoparlor",
-                            ProductPrice = 500.0
-                        },
-                        new
-                        {
-                            ProductId = 101,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 102,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 103,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 104,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 105,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 106,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 107,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 108,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 109,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 110,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 111,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 112,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 113,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 114,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 115,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 116,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 117,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 118,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 119,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 120,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 121,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 122,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 123,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 124,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 125,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 126,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 127,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 128,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 129,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 130,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 131,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 132,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 133,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 134,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 135,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 136,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 137,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 138,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 139,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 140,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 141,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 142,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 143,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 144,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 145,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 146,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 147,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 148,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 149,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 150,
-                            CategoryId = 2,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Selpak",
-                            ProductPrice = 100.0
-                        },
-                        new
-                        {
-                            ProductId = 151,
                             CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 152,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 153,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 154,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 155,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 156,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 157,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 158,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 159,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 160,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 161,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 162,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 163,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 164,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 165,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 166,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 167,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 168,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 169,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 170,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 171,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 172,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 173,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 174,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 175,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 176,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 177,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 178,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 179,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 180,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 181,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 182,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 183,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 184,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 185,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 186,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 187,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 188,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 189,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 190,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 191,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 192,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 193,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 194,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 195,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 196,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 197,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 198,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 199,
-                            CategoryId = 3,
-                            IsDeleted = false,
-                            ProductDescription = "Cok ucuz",
-                            ProductName = "Sozcu",
-                            ProductPrice = 2.0
-                        },
-                        new
-                        {
-                            ProductId = 200,
-                            CategoryId = 3,
+                            ImageGuid = new Guid("f977e36d-7255-4016-bf6e-305593b58fb6"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",

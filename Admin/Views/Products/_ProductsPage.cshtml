@@ -142,15 +142,22 @@
             var ProductId = $(this).data("productid");
 
             var formWithImg = document.getElementById("productFormContainer_" + ProductId);
-            
+            var formData = new FormData(formWithImg);
+
+            //var image = $("#image_" + ProductId).val();
+            //var extension = avatar.split('.').pop().toUpperCase();
+            //if(extension){
+            //    if()
+            //}
+
             var form = $("#productFormContainer_" + ProductId);
 
             form.removeData("validator");
             form.removeData("unobtrusiveValidation");
             $.validator.unobtrusive.parse(form);
 
-            var formData = new FormData(formWithImg);
-            console.log(formData)
+            
+           
             //var $inputs = $('#productFormContainer_' + ProductId + ' :input');
             //var values = {};
             //$inputs.each(function () {
@@ -183,8 +190,9 @@
                                     $("#productContainer_" + ProductId).html(data);
                                 }
                             });
-
-
+                        },
+                        error: function (err) {
+                            alert("Extention must be jpg");  //
                         }
                     })
                 }

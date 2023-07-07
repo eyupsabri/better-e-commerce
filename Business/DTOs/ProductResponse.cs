@@ -16,7 +16,7 @@ namespace Business.DTOs
         public string ProductDescription { get; set; }
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
-
+        public Guid ImageGuid { get; set; }
         public ProductUpdateRequest ToProductUpdateReq()
         {
             return new ProductUpdateRequest() { ProductDescription = ProductDescription, ProductId = ProductId, ProductName = ProductName, ProductPrice = (decimal)ProductPrice, CategoryId = CategoryId };
@@ -28,7 +28,7 @@ namespace Business.DTOs
         public static ProductResponse ToProductResponse(this Product prod)
         {
             return new ProductResponse() { CategoryId = prod.CategoryId, ProductDescription = prod.ProductDescription, 
-                ProductName = prod.ProductName, ProductPrice = prod.ProductPrice, ProductId = prod.ProductId, CategoryName = prod.Category.CategoryName };
+                ProductName = prod.ProductName, ProductPrice = prod.ProductPrice, ProductId = prod.ProductId, CategoryName = prod.Category.CategoryName, ImageGuid = prod.ImageGuid };
         }
     }
 }

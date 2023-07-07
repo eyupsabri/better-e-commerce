@@ -8,7 +8,7 @@
         <span>           
             <input style="width: 100%;" asp-for="ProductName" value="@Model.ProductName" />           
             <span asp-validation-for="ProductName"></span>
-            <input style="width: 50%;" type="file" name="imgFile" accept=".jpg" />
+            <input id="image_@Model.ProductId" style="width: 60%;" type="file" name="imgFile" accept=".jpg" />
         </span>
         <span>
             <input style="width: 100%;" asp-for="ProductDescription" value="@Model.ProductDescription" />

@@ -11,6 +11,7 @@ namespace Entities
     {
         public bool IsDeleted { get; set; }
         public int ProductId { get; set; }
+        public Guid ImageGuid { get; set; }
 
         [StringLength(40)]
         public string ProductName { get; set; }   

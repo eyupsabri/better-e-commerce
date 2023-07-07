@@ -60,6 +60,7 @@ namespace Repos
             matchingProduct.ProductName = prod.ProductName;
             matchingProduct.ProductPrice = prod.ProductPrice;
             matchingProduct.ProductDescription = prod.ProductDescription;
+            matchingProduct.ImageGuid = prod.ImageGuid;
 
 
 
