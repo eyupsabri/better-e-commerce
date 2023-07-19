@@ -194,13 +194,51 @@ namespace Admin.Controllers
 
                 if (prop.GetValue(productFilter) != null)
                 {
-
                     products.AddProperty(expendo, prop.Name, prop.GetValue(productFilter));
                 }
             }
 
             return PartialView("_ProductsPage", products);
+        }
 
+        [HttpGet, HttpPost]
+        [Route("[action]")]
+        public async Task<IActionResult> AddProduct(ProductAddRequest product)
+        {
+            
+            if(IsAjaxRequest(Request))
+            {
+               
+                if (product.ImgFile != null)
+                {
+                    var guid = Guid.NewGuid();
+                    var s = Regex.Escape(Path.Combine("Admin", "wwwroot"));
+                    var path = Regex.Replace(_webhost.WebRootPath, s, "assets");
+
+                    var imgPath = Path.Combine(path, "products", guid + ".jpg");
+
+                    string imgExt = Path.GetExtension(product.ImgFile.FileName);
+                    if (imgExt.Equals(".jpg"))
+                    {
+                        using (var uploading = new FileStream(imgPath, FileMode.Create))
+                        {
+                            product.ImageGuid = guid;
+                            await product.ImgFile.CopyToAsync(uploading);
+                            await _productsService.AddNewProduct(product);
+                        }
+                        return Json("succesfully added");
+                    }
+                    else
+                    {                      
+                        return Json("Extention must be jpg");
+                    }
+                }
+            }
+
+            List<CategoryResponse> categoryResponse = await _categoriesService.GetAllCategories();
+            ViewBag.Categories = categoryResponse;
+
+            return View();
         }
     }
 }

@@ -1,1 +1,57 @@
-﻿
+﻿@model CategoryAddRequest
+<form id="AddCategoryForm">
+    
+    <div class="form-group mb-3">
+        <label asp-for="CategoryName">Category Name</label>
+        <input class="form-control" style="width: 50%;" asp-for="CategoryName" />
+        <span style="color : red;" asp-validation-for="CategoryName"></span>
+
+
+    </div>  
+    <div class="form-group mb-3">
+        <input class="form-control" style="width: 30%;" type="file" asp-for="ImgFile" accept=".jpg" />
+        <span style="color : red;" asp-validation-for="ImgFile"></span>
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox"> Remember me</label>
+    </div>
+    <button id="SaveNewCategory" style="width: 10%;" class="button-save" type="button">Save</button>
+</form>
+
+<script>
+    $("#SaveNewCategory").click(function () {
+        
+        var formWithImg = document.getElementById("AddProductForm");
+        var formData = new FormData(formWithImg);
+
+        var form = $("#AddProductForm");
+
+        form.removeData("validator");
+        form.removeData("unobtrusiveValidation");
+        $.validator.unobtrusive.parse(form);
+
+        form.validate();
+        console.log(form.valid());
+
+        if (form.valid()) {
+            if (window.confirm('Emin misin')) {
+                $.ajax({
+                    url: "@Url.Action("AddCategory","Categories")",
+                    method: "post",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        //var returnedData = JSON.parse(data);
+                        alert(data);
+                    },
+                    error: function (err) {
+                        alert("Something Happened");  //
+                    }
+                })
+            }
+
+        }
+
+    });
+</script>

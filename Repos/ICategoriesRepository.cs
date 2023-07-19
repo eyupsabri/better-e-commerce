@@ -11,7 +11,7 @@ namespace Repos
     {
         Task<List<Category>> GetAllCategories();
         Task<Category> GetCategoryById(int id);
-        Task<Category> AddCategory(Category cat);
+        Task<bool> AddCategory(Category cat);
         Task<Category> UpdateCategory(Category cat);
         Task<bool> DeleteCategory(int id);
         

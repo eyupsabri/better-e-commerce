@@ -18,12 +18,12 @@ namespace Repos
             _db = db;
         }
 
-        public async Task<Product> AddProduct(Product prod)
+        public async Task<bool> AddProduct(Product prod)
         {
             _db.Products.Add(prod);
-            await _db.SaveChangesAsync();
+            int saved = await _db.SaveChangesAsync();
 
-            return prod;
+            return saved > 0 ? true : false;
         }
 
         public async Task<bool> DeleteProduct(int id)
@@ -89,11 +89,11 @@ namespace Repos
                 .Take(12)
                 .ToListAsync();
         }
-
+        //burasi customer home da category count u saymak icin
         public async Task<int> GetProductsCountByCategoryId(int categoryId)
         {
             return await _db.Products
-                    .Where(temp => temp.CategoryId == categoryId)
+                    .Where(temp => temp.CategoryId == categoryId && !temp.IsDeleted)
                     .CountAsync();
         }
 

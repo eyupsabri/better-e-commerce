@@ -23,5 +23,6 @@ namespace Business
         Task<ProductResponse> UpdateProductById(ProductUpdateRequest product);
         Task<bool> DeleteProductById(int productId, int categoryId);
         IPagedList<ProductResponse> GetProducts(ProductFilter products, int? pageIndex);
+        Task<bool> AddNewProduct(ProductAddRequest product);
     }
 }

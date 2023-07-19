@@ -11,6 +11,7 @@ namespace Entities
     {
         public bool IsDeleted { get; set; }
         public int ProductId { get; set; }
+        [Required]
         public Guid ImageGuid { get; set; }
 
         [StringLength(40)]
@@ -21,7 +22,7 @@ namespace Entities
         [StringLength(200)]
         public string ProductDescription { get; set;}
 
-        //Foreign key for Category
+        //Foreign key ekleyerek dependent yapıyorsun. Can't exist without a Category
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
     }

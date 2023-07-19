@@ -15,12 +15,12 @@ namespace Repos
 
         }
 
-        public async Task<Category> AddCategory(Category cat)
+        public async Task<bool> AddCategory(Category cat)
         {
             _db.Categories.Add(cat);
-            await _db.SaveChangesAsync();
+            int i = await _db.SaveChangesAsync();
 
-            return cat;
+            return i > 0;
         }
 
         public async Task<bool> DeleteCategory(int id)

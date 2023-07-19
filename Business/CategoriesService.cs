@@ -28,5 +28,10 @@ namespace Business
         {
             return await CategoriesRepo.DeleteCategory(id);
         }
+
+        public async Task <bool> AddCategory(CategoryAddRequest cat)
+        {
+            return await CategoriesRepo.AddCategory(cat.ToCategory());
+        }
     }
 }

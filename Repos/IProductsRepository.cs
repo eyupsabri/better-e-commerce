@@ -13,7 +13,7 @@ namespace Repos
         Task<List<Product>> GetAllProducts();
         Task<List<Product>> GetAllProductsByCategoryId(int categoryId);
         Task<Product> GetProductById(int id);
-        Task<Product> AddProduct(Product prod);
+        Task<bool> AddProduct(Product prod);
         Task<Product> UpdateProduct(Product prod);
         Task<bool> DeleteProduct(int id);
         Task<List<Product>> GetFilteredProducts(Expression<Func<Product, bool>> predicate);

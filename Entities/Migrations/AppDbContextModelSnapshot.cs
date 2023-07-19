@@ -38,6 +38,9 @@ namespace Entities.Migrations
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
 
+                    b.Property<Guid>("ImageGuid")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -50,24 +53,28 @@ namespace Entities.Migrations
                         {
                             CategoryId = 1,
                             CategoryName = "Elektronik",
+                            ImageGuid = new Guid("d97b8028-c1d4-4ca9-9335-682f3abcee5b"),
                             IsDeleted = false
                         },
                         new
                         {
                             CategoryId = 2,
                             CategoryName = "Tuvalet Kağıdı",
+                            ImageGuid = new Guid("994c7de4-62bf-43d8-9ac2-a34a9aecc1a1"),
                             IsDeleted = false
                         },
                         new
                         {
                             CategoryId = 3,
                             CategoryName = "Gazete",
+                            ImageGuid = new Guid("c65256f5-e2cc-4468-a00b-d88147491ef0"),
                             IsDeleted = false
                         },
                         new
                         {
                             CategoryId = 4,
                             CategoryName = "Telefon",
+                            ImageGuid = new Guid("d602d2b1-be06-464d-aa5f-cb1daf4567ed"),
                             IsDeleted = false
                         });
                 });
@@ -199,7 +206,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 1,
                             CategoryId = 4,
-                            ImageGuid = new Guid("3d6b26f8-e72c-4a04-92cb-61e69c7cc049"),
+                            ImageGuid = new Guid("84995a21-6716-455b-adcf-1198064f5f00"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -209,7 +216,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 2,
                             CategoryId = 4,
-                            ImageGuid = new Guid("4f1e7689-88a4-4a73-9b01-5017918e6e50"),
+                            ImageGuid = new Guid("8ac06164-49ee-40a8-8fa9-202bad934ddb"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -219,7 +226,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 3,
                             CategoryId = 4,
-                            ImageGuid = new Guid("f5ef19af-814e-480a-93b0-6b0eda1c5bc5"),
+                            ImageGuid = new Guid("7b775281-41d8-46b2-9da4-420360a8752a"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -229,7 +236,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 4,
                             CategoryId = 4,
-                            ImageGuid = new Guid("b72151b3-4dc5-4308-8550-e5eb73ea9d48"),
+                            ImageGuid = new Guid("5f11a9b2-03c2-4d00-bdc3-3c769a762eeb"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -239,7 +246,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 5,
                             CategoryId = 4,
-                            ImageGuid = new Guid("26d8a65e-3b7d-4098-9a6f-bfed32df856d"),
+                            ImageGuid = new Guid("11d5253a-6d25-4a4a-9cb9-c00c33bd7ca1"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -249,7 +256,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 6,
                             CategoryId = 4,
-                            ImageGuid = new Guid("cc2518d0-7f0f-4238-a3fa-28a24ee45fb2"),
+                            ImageGuid = new Guid("2118fa77-051d-41ea-bf90-25e5fdc9f010"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -259,7 +266,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 7,
                             CategoryId = 4,
-                            ImageGuid = new Guid("6c171a22-345f-4684-bde9-401cead1eee0"),
+                            ImageGuid = new Guid("cc09a85a-1be6-4e67-8456-2ece21ed6994"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -269,7 +276,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 8,
                             CategoryId = 4,
-                            ImageGuid = new Guid("452e13ee-f7f0-425d-aa37-544524bc31ac"),
+                            ImageGuid = new Guid("f3bed46c-69b7-4739-8c14-0d16a1270d51"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -279,7 +286,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 9,
                             CategoryId = 4,
-                            ImageGuid = new Guid("80899eb2-da1d-4424-8e74-4bcbbf1c50ac"),
+                            ImageGuid = new Guid("4a716540-5cfb-4486-84ba-fd782a977413"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -289,7 +296,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 10,
                             CategoryId = 4,
-                            ImageGuid = new Guid("63f2a6cb-11fd-498f-a2d5-913e1f180e1b"),
+                            ImageGuid = new Guid("436e90f4-2c3a-4cda-bb6a-80550a3acbaa"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -299,7 +306,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 11,
                             CategoryId = 4,
-                            ImageGuid = new Guid("0849f179-949f-4e54-aee0-97121f1d783a"),
+                            ImageGuid = new Guid("0e3520f7-ea8a-4d75-8905-e7f990f759ab"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -309,7 +316,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 12,
                             CategoryId = 4,
-                            ImageGuid = new Guid("4a39f91d-2f2a-4e3f-92c0-455b9ea7efac"),
+                            ImageGuid = new Guid("ec0fe141-440b-4931-b746-123318fc695d"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -319,7 +326,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 13,
                             CategoryId = 4,
-                            ImageGuid = new Guid("d9c02f93-ef34-451c-a4c8-866ab0b6f180"),
+                            ImageGuid = new Guid("14666dbc-eaaf-4a0a-a17e-6e36a8e056d5"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Samsung-s20",
@@ -329,7 +336,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 14,
                             CategoryId = 1,
-                            ImageGuid = new Guid("a31c5418-cd7e-4526-814c-eeb9946486a4"),
+                            ImageGuid = new Guid("e2890e97-f6b5-42a7-aa2e-b0b0204867dd"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
@@ -339,7 +346,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 15,
                             CategoryId = 1,
-                            ImageGuid = new Guid("960919f9-9e60-4f6d-8ba4-582b871261c1"),
+                            ImageGuid = new Guid("d341c1c7-61db-4261-8905-4a1f9ba6658f"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
@@ -349,7 +356,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 16,
                             CategoryId = 1,
-                            ImageGuid = new Guid("fd4d139b-94c9-4159-80cb-9909b4ab0f58"),
+                            ImageGuid = new Guid("81a5f8ef-9d57-4567-9d00-ca4b44673640"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
@@ -359,7 +366,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 17,
                             CategoryId = 1,
-                            ImageGuid = new Guid("c6829f85-351d-46e8-8f8a-2d1fd8e20590"),
+                            ImageGuid = new Guid("f237c5f4-fdd5-4ca6-86cf-71df7335626c"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
@@ -369,7 +376,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 18,
                             CategoryId = 1,
-                            ImageGuid = new Guid("1e5b8eab-ed7a-4995-bbfc-519badcc5439"),
+                            ImageGuid = new Guid("4a8691d5-f711-4ddd-9968-65eb4771d964"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
@@ -379,7 +386,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 19,
                             CategoryId = 1,
-                            ImageGuid = new Guid("ce1bce07-095a-40ae-b9fa-0a3dfb9e575d"),
+                            ImageGuid = new Guid("b947ac00-d20b-410c-8116-1054597e43dc"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
@@ -389,7 +396,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 20,
                             CategoryId = 1,
-                            ImageGuid = new Guid("f5cd750e-421d-48b5-bef5-5837c9e73c8e"),
+                            ImageGuid = new Guid("3b229596-1c6f-4847-be4c-6c332146dc94"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
@@ -399,7 +406,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 21,
                             CategoryId = 1,
-                            ImageGuid = new Guid("c4a57cdf-a74e-4799-b87c-4f128e16d0ef"),
+                            ImageGuid = new Guid("b5071cf2-931c-4924-b65d-568bfea8b483"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
@@ -409,7 +416,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 22,
                             CategoryId = 1,
-                            ImageGuid = new Guid("4e79d0cb-9b75-4cfb-b530-4a83e1eb8297"),
+                            ImageGuid = new Guid("0004de2e-e375-43c8-b244-f98e20ef6b16"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
@@ -419,7 +426,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 23,
                             CategoryId = 1,
-                            ImageGuid = new Guid("ab43c4bc-1bc6-42f8-8297-c50e7ba3a641"),
+                            ImageGuid = new Guid("595177d3-2e48-4ea2-ae7c-2675d8015b89"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
@@ -429,7 +436,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 24,
                             CategoryId = 1,
-                            ImageGuid = new Guid("82ca1768-18db-4867-9dfe-d8ff14fa488e"),
+                            ImageGuid = new Guid("abb7621e-ede9-4414-8180-166056e07695"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
@@ -439,7 +446,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 25,
                             CategoryId = 1,
-                            ImageGuid = new Guid("f462626d-2f79-4625-80d0-836f05017918"),
+                            ImageGuid = new Guid("b9ec1571-f2c0-43b2-9e12-f4ccd4bfb372"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
@@ -449,7 +456,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 26,
                             CategoryId = 1,
-                            ImageGuid = new Guid("b09b3bd1-ec67-4169-9428-478cf99fa853"),
+                            ImageGuid = new Guid("b2a3fe3f-975b-4a91-ae8d-3d19339a3972"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Hoparlor",
@@ -459,7 +466,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 27,
                             CategoryId = 2,
-                            ImageGuid = new Guid("7fe141d2-ea1c-490c-830c-c7703aff81f2"),
+                            ImageGuid = new Guid("08d919c2-8aca-4b59-ac07-8f695728d9db"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
@@ -469,7 +476,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 28,
                             CategoryId = 2,
-                            ImageGuid = new Guid("5a7e96ea-dc10-4191-9e41-7a9f7d22a950"),
+                            ImageGuid = new Guid("5969dea5-6d66-4a3c-a5dc-4902354b7b1a"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
@@ -479,7 +486,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 29,
                             CategoryId = 2,
-                            ImageGuid = new Guid("41b08a0d-bfbf-4736-b213-1b03b80b9c72"),
+                            ImageGuid = new Guid("f95f9ce2-e441-4737-9623-47d687d96c31"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
@@ -489,7 +496,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 30,
                             CategoryId = 2,
-                            ImageGuid = new Guid("30f46ece-cdae-40ec-b8ad-f552f50d732d"),
+                            ImageGuid = new Guid("4e402306-34f5-4155-8265-1f9247025796"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
@@ -499,7 +506,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 31,
                             CategoryId = 2,
-                            ImageGuid = new Guid("1d502dfd-b4e2-4318-a68e-4e8f0522361f"),
+                            ImageGuid = new Guid("2f4be453-bbac-4f86-ba9b-a142d69c376f"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
@@ -509,7 +516,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 32,
                             CategoryId = 2,
-                            ImageGuid = new Guid("30e69ece-232c-4193-b293-59c2208c2833"),
+                            ImageGuid = new Guid("103b474c-d6ad-4195-984e-2b8d25909f66"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
@@ -519,7 +526,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 33,
                             CategoryId = 2,
-                            ImageGuid = new Guid("c31a5c2a-9828-477c-9a84-925158ec2efe"),
+                            ImageGuid = new Guid("53e4260c-9f93-4f8e-b1ee-b8a253ee8ab6"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
@@ -529,7 +536,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 34,
                             CategoryId = 2,
-                            ImageGuid = new Guid("1e9d3293-9674-4db2-b71a-6b2c6ff3a851"),
+                            ImageGuid = new Guid("8116335a-998a-4221-9eb6-6b42501e8ea2"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
@@ -539,7 +546,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 35,
                             CategoryId = 2,
-                            ImageGuid = new Guid("43e3dd4d-9ec8-476e-aa66-a6417e401f03"),
+                            ImageGuid = new Guid("ead4efd9-9e0f-4879-97df-e99c42b84b1a"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
@@ -549,7 +556,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 36,
                             CategoryId = 2,
-                            ImageGuid = new Guid("e7ace810-25e7-4958-a715-3572062cb9f3"),
+                            ImageGuid = new Guid("97970932-cf2a-486e-86fe-bca5fec45abb"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
@@ -559,7 +566,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 37,
                             CategoryId = 2,
-                            ImageGuid = new Guid("ae9545e4-bb7d-4ecd-a6c7-c0eeb082f2c9"),
+                            ImageGuid = new Guid("f6edce86-a599-46a8-9667-a5940c073351"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
@@ -569,7 +576,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 38,
                             CategoryId = 2,
-                            ImageGuid = new Guid("9d6c9a83-fc7b-4a27-95b7-fbd105d506f0"),
+                            ImageGuid = new Guid("fc747306-bdf5-4b2f-adf4-918df67ea78f"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
@@ -579,7 +586,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 39,
                             CategoryId = 2,
-                            ImageGuid = new Guid("6121aabd-9225-4a47-b392-642cc37417c3"),
+                            ImageGuid = new Guid("035b164f-d1e9-49f2-8120-8f53e4081872"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Selpak",
@@ -589,7 +596,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 40,
                             CategoryId = 3,
-                            ImageGuid = new Guid("3d53d9b3-4884-46a8-abf0-1ccd6d4519dd"),
+                            ImageGuid = new Guid("d2de5c0c-bc0f-450a-a717-cd65538e6416"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
@@ -599,7 +606,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 41,
                             CategoryId = 3,
-                            ImageGuid = new Guid("0c3662b5-6fc7-475d-a1bb-28ae5e97002f"),
+                            ImageGuid = new Guid("c49c3def-84d6-4ab1-8c27-5a55e3e91812"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
@@ -609,7 +616,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 42,
                             CategoryId = 3,
-                            ImageGuid = new Guid("35af930f-3dfe-4e7a-ae3d-ee54d351dd9e"),
+                            ImageGuid = new Guid("1ffda730-5e4f-4aab-9fc1-c8300cbabf8e"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
@@ -619,7 +626,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 43,
                             CategoryId = 3,
-                            ImageGuid = new Guid("d81afe34-4d9a-445f-b4df-41b8d859ed98"),
+                            ImageGuid = new Guid("266edc31-96e6-4987-aec4-0d8b6d019023"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
@@ -629,7 +636,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 44,
                             CategoryId = 3,
-                            ImageGuid = new Guid("0385cba1-d759-44c4-8166-c36e0fbefbd3"),
+                            ImageGuid = new Guid("27ee6288-c426-4e93-9e8f-42af5b65925d"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
@@ -639,7 +646,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 45,
                             CategoryId = 3,
-                            ImageGuid = new Guid("c4967a58-61f7-4b09-8367-2b46df988fc3"),
+                            ImageGuid = new Guid("28bb88d6-699e-47a5-9857-a46b0f59f8a9"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
@@ -649,7 +656,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 46,
                             CategoryId = 3,
-                            ImageGuid = new Guid("380232a2-b065-431a-bffe-3cfe4e158938"),
+                            ImageGuid = new Guid("2cac8dc9-4e3c-4952-b13f-e163556b88d7"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
@@ -659,7 +666,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 47,
                             CategoryId = 3,
-                            ImageGuid = new Guid("d062e600-3a15-4891-8609-11b5774d11cc"),
+                            ImageGuid = new Guid("98f0bc89-cec0-41f0-9956-59ad8880ac98"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
@@ -669,7 +676,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 48,
                             CategoryId = 3,
-                            ImageGuid = new Guid("5045f5c8-1f5f-4853-b587-7f63f0d82b4a"),
+                            ImageGuid = new Guid("d6de667f-3f87-485d-be13-928f0402c259"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
@@ -679,7 +686,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 49,
                             CategoryId = 3,
-                            ImageGuid = new Guid("2c408cc5-1c62-42e8-8151-5796274d72f4"),
+                            ImageGuid = new Guid("c3ded1d0-12f9-400e-8ec3-2ba11367d327"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
@@ -689,7 +696,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 50,
                             CategoryId = 3,
-                            ImageGuid = new Guid("3439cbfe-ad5d-4bb4-a355-739f09d68b90"),
+                            ImageGuid = new Guid("9d2070f2-7319-4d34-998a-c5144ea1ac05"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
@@ -699,7 +706,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 51,
                             CategoryId = 3,
-                            ImageGuid = new Guid("43426a86-2f53-4c8b-b548-e7207f7394ec"),
+                            ImageGuid = new Guid("28afe6ef-723d-494d-bc09-9e8ec1a4b8f4"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",
@@ -709,7 +716,7 @@ namespace Entities.Migrations
                         {
                             ProductId = 52,
                             CategoryId = 3,
-                            ImageGuid = new Guid("f977e36d-7255-4016-bf6e-305593b58fb6"),
+                            ImageGuid = new Guid("ecfc1b83-c6ad-499f-9cbf-31ec487b6ca8"),
                             IsDeleted = false,
                             ProductDescription = "Cok ucuz",
                             ProductName = "Sozcu",

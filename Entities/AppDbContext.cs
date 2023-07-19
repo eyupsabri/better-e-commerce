@@ -65,24 +65,28 @@ namespace Entities
                 IsDeleted = false,
                 CategoryId = 1,
                 CategoryName = "Elektronik",
+                ImageGuid = Guid.NewGuid(),
             },
             new Category()
             {
                 IsDeleted = false,
                 CategoryId = 2,
                 CategoryName = "Tuvalet Kağıdı",
+                ImageGuid = Guid.NewGuid(),
             },
             new Category()
             {
                 IsDeleted = false,
                 CategoryId = 3,
-                CategoryName = "Gazete"
+                CategoryName = "Gazete",
+                ImageGuid = Guid.NewGuid(),
             },
             new Category()
             {
                 IsDeleted = false,
                 CategoryId = 4,
-                CategoryName = "Telefon"
+                CategoryName = "Telefon",
+                ImageGuid = Guid.NewGuid(),
             });
 
             List<Product> products = new List<Product>();

@@ -1,0 +1,88 @@
+﻿@model ProductAddRequest
+
+
+@*<div class="input-group mb-3">
+    <span class="input-group-text" id="inputGroup-sizing-default">Default</span>
+    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+</div>*@
+
+<form id="AddProductForm" >
+    <div class="form-group mb-3">
+        <label asp-for="CategoryId">Category Name</label>
+        <select class="form-select" asp-for="CategoryId" size="3" aria-label="size 3 select example">
+            @*<option >Open this select menu</option>*@
+            @foreach (CategoryResponse cat in ViewBag.Categories)
+            {
+                <option value="@cat.CategoryId">@cat.CategoryName</option>
+            }
+        </select>
+        <span style="color : red;" asp-validation-for="CategoryId"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="ProductName">Product Name</label>
+        <input class="form-control" style="width: 50%;" asp-for="ProductName" />
+        <span style="color : red;" asp-validation-for="ProductName"></span>
+
+
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="ProductDescription">Product Description</label>
+        <input class="form-control" style="width: 50%;" asp-for="ProductDescription" />
+        <span style="color : red;" asp-validation-for="ProductDescription"></span>
+
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="ProductPrice">Product Price</label>
+        <input class="form-control" style="width: 50%;" name="ProductPrice" type="text" />
+        <span style="color : red;" asp-validation-for="ProductPrice"></span>
+
+    </div>
+    <div class="form-group mb-3">
+        <input class="form-control" style="width: 30%;" type="file" asp-for="ImgFile" accept=".jpg" />
+        <span style="color : red;" asp-validation-for="ImgFile"></span>
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox"> Remember me</label>
+    </div>
+    <button id="SaveNewProduct"  style="width: 10%;" class="button-save"  type="button">Save</button>
+</form>
+
+<script>
+    $("#SaveNewProduct").click(function () {
+            
+
+            var formWithImg = document.getElementById("AddProductForm");
+            var formData = new FormData(formWithImg);
+
+            var form = $("#AddProductForm");
+
+            form.removeData("validator");
+            form.removeData("unobtrusiveValidation");
+            $.validator.unobtrusive.parse(form);
+
+            form.validate();
+            console.log(form.valid());
+
+            if (form.valid()) {
+                if (window.confirm('Emin misin')) {
+                    $.ajax({
+                        url: "@Url.Action("AddProduct","Products")",
+                        method: "post",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function (data) {
+                            //var returnedData = JSON.parse(data);
+                            alert(data);
+                        },
+                        error: function (err) {
+                            alert("Something Happened");  //
+                        }
+                    })
+                }
+
+            }
+
+        });
+</script>

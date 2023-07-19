@@ -11,5 +11,6 @@ namespace Business
     {
         Task<List<CategoryResponse>> GetAllCategories();
         Task<bool> DeleteCategoryById(int id);
+        Task<bool> AddCategory(CategoryAddRequest cat);
     }
 }

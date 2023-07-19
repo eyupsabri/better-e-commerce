@@ -109,9 +109,12 @@ namespace Business
             //var filtered = products.Filter(unfiltered);
             //var sorted = products.Sort(filtered);
             return list.Select(_ => _.ToProductResponse()).ToPagedList(pageIndex.Value, 12);
-            
-            
-            
+                                
+        }
+        public async Task<bool> AddNewProduct(ProductAddRequest product)
+        {
+            Product pro = product.ToProduct();
+            return await productsRepo.AddProduct(pro);
         }
 
         
