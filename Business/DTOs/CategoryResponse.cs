@@ -12,13 +12,14 @@ namespace Business.DTOs
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
         public int? ProductsCount { get; set; }
+        public Guid ImageGuid { get; set; }
     }
 
     public static class CategoryExtensions
     {
         public static CategoryResponse ToCategoryResponse(this Category category)
         {
-            return new CategoryResponse() { CategoryId = category.CategoryId, CategoryName = category.CategoryName };
+            return new CategoryResponse() { CategoryId = category.CategoryId, CategoryName = category.CategoryName, ImageGuid = category.ImageGuid };
         }
     }
 }

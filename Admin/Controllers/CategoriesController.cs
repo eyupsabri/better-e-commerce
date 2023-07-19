@@ -40,7 +40,7 @@ namespace Admin.Controllers
                     var s = Regex.Escape(Path.Combine("Admin", "wwwroot"));
                     var path = Regex.Replace(_webhost.WebRootPath, s, "assets");
 
-                    var imgPath = Path.Combine(path, "products", guid + ".jpg");
+                    var imgPath = Path.Combine(path, "category-img", guid + ".jpg");
 
                     string imgExt = Path.GetExtension(cat.ImgFile.FileName);
                     if (imgExt.Equals(".jpg"))
@@ -59,7 +59,8 @@ namespace Admin.Controllers
                     }
                 }
             }
-                
+            List<CategoryResponse> categoryResponse = await _categoriesService.GetAllCategories();
+            ViewBag.Categories = categoryResponse;
 
             return View();
         }
