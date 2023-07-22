@@ -364,6 +364,7 @@ FodyWeavers.xsd
 
 Entities/Migrations/
 
-assets/
+assets/category-img/
 
+assets/products/
 appsettings.json
