@@ -8,7 +8,9 @@ using Customer.Models;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Collections.Generic;
 using System.Dynamic;
+using System.Globalization;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using static System.Net.Mime.MediaTypeNames;
@@ -140,42 +142,28 @@ namespace Admin.Controllers
 
         [HttpPost]
         [Route("[action]")]
-        public async Task<IActionResult> UpdateProduct(ProductUpdateRequest product, IFormFile imgFile)
+        public async Task<IActionResult> UpdateProduct(ProductUpdateRequest product)
         {
             var productResponse = await _productsService.GetProductByProductId(product.ProductId);
-            
+            var rootPath = _webhost.WebRootPath;
+            string response = await product.SaveImage(rootPath);
 
-
-            if (imgFile != null)
+            switch (response)
             {
-                var guid = Guid.NewGuid();
-                var s = Regex.Escape(Path.Combine("Admin", "wwwroot"));
-                var path = Regex.Replace(_webhost.WebRootPath, s, "assets");
-
-                var imgPath = Path.Combine(path, "products", guid + ".jpg");
-
-                string imgExt = Path.GetExtension(imgFile.FileName);
-                if (imgExt.Equals(".jpg"))
-                {
-                    using (var uploading = new FileStream(imgPath, FileMode.Create))
-                    {
-                        product.ImageGuid = guid;
-                        await imgFile.CopyToAsync(uploading);
-                        ProductResponse succesfulResponse = await _productsService.UpdateProductById(product);
-                        return PartialView("_OneProduct", succesfulResponse.ToProductUpdateReq());
-                    }
-                }
-                else
-                {
-                    //return PartialView("_OneProduct", productResponse.ToProductUpdateReq());
-                    return BadRequest("Extention must be jpg");
-                }
+                case "succesfully added":                  
+                    ProductResponse succesfulResponse = await _productsService.UpdateProductById(product);
+                    return PartialView("_OneProduct", succesfulResponse.ToProductUpdateReq());                   
+                case "Extention must be jpg":
+                    return Json(response);
+                default:
+                    var oldGuid = productResponse.ImageGuid;
+                    product.ImageGuid = oldGuid;
+                    ProductResponse updatedProduct = await _productsService.UpdateProductById(product);
+                    return PartialView("_OneProduct", updatedProduct.ToProductUpdateReq());
+                    
             }
-            var oldGuid = productResponse.ImageGuid;
-            product.ImageGuid = oldGuid;
-            ProductResponse response = await _productsService.UpdateProductById(product);
 
-            return PartialView("_OneProduct", response.ToProductUpdateReq());
+           
         }
 
         [HttpPost]
@@ -205,34 +193,53 @@ namespace Admin.Controllers
         [Route("[action]")]
         public async Task<IActionResult> AddProduct(ProductAddRequest product)
         {
+            string s = string.Empty;
             
             if(IsAjaxRequest(Request))
             {
-               
-                if (product.ImgFile != null)
+                var rootPath = _webhost.WebRootPath;
+                string response =await product.SaveImage(rootPath);
+
+                switch (response)
                 {
-                    var guid = Guid.NewGuid();
-                    var s = Regex.Escape(Path.Combine("Admin", "wwwroot"));
-                    var path = Regex.Replace(_webhost.WebRootPath, s, "assets");
+                    //default:
+                    //    return list;
+                    case "succesfully added":
+                         await _productsService.AddNewProduct(product);
+                        break;
+                    case "Extention must be jpg":
+                        break;
+                    case "Image can' t be empty":
+                        break;
 
-                    var imgPath = Path.Combine(path, "products", guid + ".jpg");
-
-                    string imgExt = Path.GetExtension(product.ImgFile.FileName);
-                    if (imgExt.Equals(".jpg"))
-                    {
-                        using (var uploading = new FileStream(imgPath, FileMode.Create))
-                        {
-                            product.ImageGuid = guid;
-                            await product.ImgFile.CopyToAsync(uploading);
-                            await _productsService.AddNewProduct(product);
-                        }
-                        return Json("succesfully added");
-                    }
-                    else
-                    {                      
-                        return Json("Extention must be jpg");
-                    }
                 }
+
+                return Json(response);
+
+                //if (product.ImgFile != null)
+                //{
+                //    var guid = Guid.NewGuid();
+                //    var s = Regex.Escape(Path.Combine("Admin", "wwwroot"));
+                //    var path = Regex.Replace(_webhost.WebRootPath, s, "assets");
+
+                //    var imgPath = Path.Combine(path, "products", guid + ".jpg");
+
+                //    string imgExt = Path.GetExtension(product.ImgFile.FileName);
+                //    if (imgExt.Equals(".jpg"))
+                //    {
+                //        using (var uploading = new FileStream(imgPath, FileMode.Create))
+                //        {
+                //            product.ImageGuid = guid;
+                //            await product.ImgFile.CopyToAsync(uploading);
+                //            await _productsService.AddNewProduct(product);
+                //        }
+                //        return Json("succesfully added");
+                //    }
+                //    else
+                //    {                      
+                //        return Json("Extention must be jpg");
+                //    }
+                //}
             }
 
             List<CategoryResponse> categoryResponse = await _categoriesService.GetAllCategories();

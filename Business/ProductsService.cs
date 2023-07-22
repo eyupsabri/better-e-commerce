@@ -5,6 +5,7 @@ using Entities;
 using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 using Repos;
 using System.Linq.Expressions;
+using System.Text.RegularExpressions;
 
 namespace Business
 {
@@ -12,6 +13,8 @@ namespace Business
     {
         private  IProductsRepository productsRepo;
         private ICategoriesService categoriesService;
+        
+
 
         public ProductsService(IProductsRepository productsRepository, ICategoriesService categoriesService)
         {
@@ -115,6 +118,7 @@ namespace Business
         {
             Product pro = product.ToProduct();
             return await productsRepo.AddProduct(pro);
+
         }
 
         

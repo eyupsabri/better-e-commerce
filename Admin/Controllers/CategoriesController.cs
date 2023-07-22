@@ -32,32 +32,18 @@ namespace Admin.Controllers
         [Route("[action]")]
         public async Task<IActionResult> Index(CategoryAddRequest cat)
         {
+            string response = string.Empty;
             if (IsAjaxRequest(Request))
             {
-                if (cat.ImgFile != null)
+                response = await cat.SaveImage(_webhost.WebRootPath);
+                switch (response)
                 {
-                    var guid = Guid.NewGuid();
-                    var s = Regex.Escape(Path.Combine("Admin", "wwwroot"));
-                    var path = Regex.Replace(_webhost.WebRootPath, s, "assets");
-
-                    var imgPath = Path.Combine(path, "category-img", guid + ".jpg");
-
-                    string imgExt = Path.GetExtension(cat.ImgFile.FileName);
-                    if (imgExt.Equals(".jpg"))
-                    {
-                        using (var uploading = new FileStream(imgPath, FileMode.Create))
-                        {
-                            cat.ImageGuid = guid;
-                            await cat.ImgFile.CopyToAsync(uploading);
-                            await _categoriesService.AddCategory(cat);
-                        }
-                        return Json("succesfully added");
-                    }
-                    else
-                    {
-                        return Json("Extention must be jpg");
-                    }
+                    case "succesfully added":
+                        await _categoriesService.AddCategory(cat);
+                        break;
                 }
+                return Json(response);
+
             }
             List<CategoryResponse> categoryResponse = await _categoriesService.GetAllCategories();
             ViewBag.Categories = categoryResponse;

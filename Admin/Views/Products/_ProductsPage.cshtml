@@ -181,19 +181,21 @@
                         processData: false,
                         contentType: false,
                         success: function (data) {
-
-                            $("#UpdateProductSaveButton" + ProductId).animate({
-                                backgroundColor: '#AAFF00'
-                            }, {
-                                duration: 200,
-                                complete: function () {
-                                    $("#productContainer_" + ProductId).html(data);
-                                }
-                            });
-                        },
-                        error: function (err) {
-                            alert("Extention must be jpg");  //
+                            if (data.includes("<")) {                              
+                                $("#UpdateProductSaveButton" + ProductId).animate({
+                                    backgroundColor: '#AAFF00'
+                                }, {
+                                    duration: 200,
+                                    complete: function () {
+                                        $("#productContainer_" + ProductId).html(data);
+                                    }
+                                });
+                            }
+                            else
+                                alert(data);
+                            
                         }
+
                     })
                 }
 
