@@ -4,7 +4,7 @@ using Business.Filter;
 using Business.Helper;
 using Business.PageList;
 using Castle.Core.Resource;
-using Customer.Models;
+
 using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
