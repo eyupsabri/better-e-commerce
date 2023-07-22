@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Business.Filter;
+using Business.United;
 
 namespace Business
 {
@@ -72,11 +73,13 @@ namespace Business
         //    return await _customersRepo.CustomersCount();
         //}
 
-        public  IPagedList<CustomerResponse> GetFilteredCustomers(CustomerFilter filter, int pageIndex)
+        public  IPagedList<CustomerResponse> GetFilteredCustomers(IFilterAndSort<Customer> filter, int pageIndex)
         {
             var list = _customersRepo.GetCustomers();
 
-            var filtered = filter.Filter(list);
+            var filtered = list.FilterAndSort(filter);
+
+            //var filtered = filter.Filter(list);
 
             IPagedList<CustomerResponse> response = filtered.Select(_ => _.ToCustomerResponse()).ToPagedList(pageIndex, 12);
 
