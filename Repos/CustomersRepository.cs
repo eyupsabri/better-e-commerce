@@ -19,10 +19,10 @@ namespace Repos
         }
 
        
-        public async Task<Customer> GetCustomerById(int CustomerId)
-        {
-            return await _db.Customers.FirstOrDefaultAsync(temp => temp.CustomerId == CustomerId);
-        }
+        //public async Task<Customer> GetCustomerById(int CustomerId)
+        //{
+        //    return await _db.Customers.FirstOrDefaultAsync(temp => temp.CustomerId == CustomerId);
+        //}
 
         public async Task<bool> AddCustomerWithoutOrderId(Customer customer)
         {
@@ -70,15 +70,15 @@ namespace Repos
              .CountAsync();
         }
 
-        public async Task<List<Customer>> GetCustomersByNameSearchPaginated(string search,int position)
-        {
-            return await _db.Customers
-                .Where(temp =>temp.CustomerName.Contains(search))
-                .Skip(position * 12)
-                .Include("order")
-                .Take(12)
-                .ToListAsync();
-        }
+        //public async Task<List<Customer>> GetCustomersByNameSearchPaginated(string search,int position)
+        //{
+        //    return await _db.Customers
+        //        .Where(temp =>temp.CustomerName.Contains(search))
+        //        .Skip(position * 12)
+        //        .Include("order")
+        //        .Take(12)
+        //        .ToListAsync();
+        //}
         public IQueryable<Customer> GetCustomers()
         {
             return _db.Customers;

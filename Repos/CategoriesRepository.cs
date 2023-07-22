@@ -38,24 +38,24 @@ namespace Repos
             return await _db.Categories.ToListAsync();
         }
 
-        public async Task<Category?> GetCategoryById(int id)
-        {
-            return await _db.Categories.FirstOrDefaultAsync(temp => temp.CategoryId == id);
-        }
+        //public async Task<Category?> GetCategoryById(int id)
+        //{
+        //    return await _db.Categories.FirstOrDefaultAsync(temp => temp.CategoryId == id);
+        //}
 
-        public async Task<Category> UpdateCategory(Category cat)
-        {
-            Category? matchingCategory = await _db.Categories.FirstOrDefaultAsync(temp => temp.CategoryId == cat.CategoryId);
+        //public async Task<Category> UpdateCategory(Category cat)
+        //{
+        //    Category? matchingCategory = await _db.Categories.FirstOrDefaultAsync(temp => temp.CategoryId == cat.CategoryId);
 
-            if (matchingCategory == null)
-                return cat;
+        //    if (matchingCategory == null)
+        //        return cat;
 
-            matchingCategory.CategoryName = cat.CategoryName;
+        //    matchingCategory.CategoryName = cat.CategoryName;
           
 
-            int countUpdated = await _db.SaveChangesAsync();
+        //    int countUpdated = await _db.SaveChangesAsync();
 
-            return matchingCategory;
-        }
+        //    return matchingCategory;
+        //}
     }
 }

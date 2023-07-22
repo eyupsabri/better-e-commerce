@@ -41,36 +41,36 @@ namespace Business
 
 
 
-        public async Task<List<CustomerResponse>> GetAllCustomers()
-        {
-            List<Customer> customers = await _customersRepo.GetAllCustomers();
-            List<CustomerResponse> customerRespones = new List<CustomerResponse>();
-            if (customers.Count > 0)
-            {
-                foreach (Customer customer in customers)
-                {
-                    customerRespones.Add(customer.ToCustomerResponse());
-                }
-            }
-            return customerRespones;
+        //public async Task<List<CustomerResponse>> GetAllCustomers()
+        //{
+        //    List<Customer> customers = await _customersRepo.GetAllCustomers();
+        //    List<CustomerResponse> customerRespones = new List<CustomerResponse>();
+        //    if (customers.Count > 0)
+        //    {
+        //        foreach (Customer customer in customers)
+        //        {
+        //            customerRespones.Add(customer.ToCustomerResponse());
+        //        }
+        //    }
+        //    return customerRespones;
 
-        }
+        //}
 
-        public async Task<List<CustomerResponse>> GetPaginatedCustomers(int position)
-        {
-            List<Customer> customers = await _customersRepo.GetPaginatedCustomers(position);
-            return customers.Select(x => x.ToCustomerResponse()).ToList();
-        }
+        //public async Task<List<CustomerResponse>> GetPaginatedCustomers(int position)
+        //{
+        //    List<Customer> customers = await _customersRepo.GetPaginatedCustomers(position);
+        //    return customers.Select(x => x.ToCustomerResponse()).ToList();
+        //}
 
-        public async Task<int> GetCustomersCountByNameSearch(string search)
-        {
-            return await _customersRepo.GetCustomersCountByNameSearch(search);
-        }
+        //public async Task<int> GetCustomersCountByNameSearch(string search)
+        //{
+        //    return await _customersRepo.GetCustomersCountByNameSearch(search);
+        //}
 
-        public async Task<int> CustomersCount()
-        {
-            return await _customersRepo.CustomersCount();
-        }
+        //public async Task<int> CustomersCount()
+        //{
+        //    return await _customersRepo.CustomersCount();
+        //}
 
         public  IPagedList<CustomerResponse> GetFilteredCustomers(CustomerFilter filter, int pageIndex)
         {

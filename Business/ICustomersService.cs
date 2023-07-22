@@ -12,11 +12,11 @@ namespace Business
     public interface ICustomersService
     {
         Task<CustomerResponse> AddCustomerWithOrder(CustomerAddRequest customer, List<SessionOrder> order);
-        Task<List<CustomerResponse>> GetAllCustomers();
-        Task<List<CustomerResponse>> GetPaginatedCustomers(int position);
-        Task<int> CustomersCount();
+        //Task<List<CustomerResponse>> GetAllCustomers();
+        //Task<List<CustomerResponse>> GetPaginatedCustomers(int position);
+        //Task<int> CustomersCount();
         //Task<List<CustomerResponse>> GetCustomersByNameSearchPaginated(string search, int position);
         IPagedList<CustomerResponse> GetFilteredCustomers(CustomerFilter filter, int pageIndex);
-        Task<int> GetCustomersCountByNameSearch(string search);
+        //Task<int> GetCustomersCountByNameSearch(string search);
     }
 }

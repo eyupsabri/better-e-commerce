@@ -13,7 +13,8 @@ namespace Business
     {
         private ICategoriesRepository CategoriesRepo;
 
-        public CategoriesService(ICategoriesRepository categoriesRepository) {
+        public CategoriesService(ICategoriesRepository categoriesRepository)
+        {
             this.CategoriesRepo = categoriesRepository;
         }
 

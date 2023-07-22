@@ -35,10 +35,10 @@ namespace Repos
             return rowsDeleted > 0;
         }
 
-        public async Task<List<Product>> GetAllProducts()
-        {
-            return await _db.Products.ToListAsync();
-        }
+        //public async Task<List<Product>> GetAllProducts()
+        //{
+        //    return await _db.Products.ToListAsync();
+        //}
 
         public async Task<List<Product>> GetAllProductsByCategoryId(int categoryId)
         {
@@ -108,10 +108,10 @@ namespace Repos
                     .ToListAsync();
         }
 
-        public async Task<int> GetProductsCountByNameSearch(string name)
-        {
-            return await _db.Products.Where(temp => temp.ProductName.Contains(name)).CountAsync();
-        }
+        //public async Task<int> GetProductsCountByNameSearch(string name)
+        //{
+        //    return await _db.Products.Where(temp => temp.ProductName.Contains(name)).CountAsync();
+        //}
 
         
 
