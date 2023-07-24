@@ -2,7 +2,6 @@
 using Business.PageList;
 using Entities;
 using Repos;
-using Business.PageList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +16,12 @@ namespace Business
     {
 
         private ICustomersRepository _customersRepo;
-        private IOrderItemsService _orderItemsService;
+        //private IOrderItemsService _orderItemsService;
 
-        public CustomersService(ICustomersRepository repository, IOrderItemsService orderItemsService)
+        public CustomersService(ICustomersRepository repository)
         {
             _customersRepo = repository;
-            _orderItemsService = orderItemsService;
+            //_orderItemsService = orderItemsService;
         }
 
 
