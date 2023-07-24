@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+//BU SINIFI PATLATTIM
 namespace Business.DTOs
 {
     public class OrderItemRequest
@@ -14,11 +16,11 @@ namespace Business.DTOs
 
         public int ProductId { get; set; }
 
-        public int OrderId { get; set; }
+       // public int OrderId { get; set; }
 
         public OrderItem ToOrderItem()
         {
-            return new OrderItem() { Quantity = Quantity, ProductId = ProductId, OrderId = OrderId };
+            return new OrderItem() { Quantity = Quantity, ProductId = ProductId };
         }
     }
 

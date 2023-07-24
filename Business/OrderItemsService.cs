@@ -21,19 +21,19 @@ namespace Business
 
 
 
-        public async Task<bool> AddOrderItems(List<SessionOrder> items)
-        {
-            int OrderId = await _orderItemsRepo.GetLatestOrderId();
+        //public async Task<bool> AddOrderItems(List<SessionOrder> items)
+        //{
+        //    int OrderId = await _orderItemsRepo.GetLatestOrderId();
 
-            List<OrderItem> orderItems = new List<OrderItem>();
+        //    List<OrderItem> orderItems = new List<OrderItem>();
 
-            foreach (SessionOrder item in items)
-            {
-                orderItems.Add(item.SessionOrderToOrderItemRequest(OrderId).ToOrderItem());
-            }
-            return await _orderItemsRepo.CreateOrderItems(orderItems);
+        //    foreach (SessionOrder item in items)
+        //    {
+        //        orderItems.Add(item.SessionOrderToOrderItemRequest(OrderId).ToOrderItem());
+        //    }
+        //    return await _orderItemsRepo.CreateOrderItems(orderItems);
                      
-        }
+        //}
 
         public async Task<bool> CreateOrders(Customer customer)
         {

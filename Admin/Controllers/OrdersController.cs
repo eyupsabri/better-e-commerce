@@ -57,11 +57,11 @@ namespace Admin.Controllers
             customers.Url = Url.Action("Index");
             
 
-            foreach (CustomerResponse customer in customers)
-            {
-                List<SessionOrder> orders = await _orderItemsService.GetAllOrderItemsByOrderId(customer.OrderId);
-                customer.Items = orders;
-            }
+            //foreach (CustomerResponse customer in customers)
+            //{
+            //    List<SessionOrder> orders = await _orderItemsService.GetAllOrderItemsByOrderId(customer.OrderId);
+            //    customer.Items = orders;
+            //}
 
             if (IsAjaxRequest(Request))
                 return PartialView("_OrdersPage", customers);

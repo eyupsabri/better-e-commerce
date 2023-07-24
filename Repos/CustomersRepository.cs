@@ -19,16 +19,17 @@ namespace Repos
         }
 
        
-        //public async Task<Customer> GetCustomerById(int CustomerId)
-        //{
-        //    return await _db.Customers.FirstOrDefaultAsync(temp => temp.CustomerId == CustomerId);
-        //}
+        public async Task<Customer> GetCustomerById(int CustomerId)
+        {
+            return await _db.Customers.Include(c => c.order.OrderItems).ThenInclude(o => o.Product).FirstOrDefaultAsync(temp => temp.CustomerId == CustomerId);
+        }
 
-        public async Task<bool> AddCustomerWithoutOrderId(Customer customer)
+        public async Task<int> AddCustomer(Customer customer)
         {
             _db.Customers.Add(customer);
             int success = await _db.SaveChangesAsync();
-            return success > 0;
+           
+            return success > 0 ? customer.CustomerId : -1;
         }
 
         public async Task<Customer>? GetLatestCustomer()
@@ -83,5 +84,7 @@ namespace Repos
         {
             return _db.Customers;
         }
+
+        
     }
 }

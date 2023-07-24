@@ -31,7 +31,7 @@ namespace Business.DTOs
     {
         public static CustomerResponse ToCustomerResponse(this Customer customer)
         {
-            return new CustomerResponse()
+            var response =  new CustomerResponse()
             {
                 CustomerId = customer.CustomerId,
                 CustomerName = customer.CustomerName,
@@ -42,8 +42,19 @@ namespace Business.DTOs
                 City = customer.City,
                 StreetAddress = customer.StreetAddress,
                 PhoneNumber = customer.PhoneNumber,
-                OrderId = customer.order.OrderId
+                OrderId = customer.order.OrderId,               
             };
+
+            
+
+            if (response.Items == null ) {
+                response.Items = new List<SessionOrder>();
+                foreach (var item in customer.order.OrderItems)
+                {
+                    response.Items.Add(item.OrderItemToOrderItemResponse().OrderItemResponseToSessionOrder());
+                }
+            }          
+            return response;
         }
     } 
 }

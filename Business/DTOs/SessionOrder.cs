@@ -12,13 +12,14 @@ namespace Business.DTOs
         public ProductResponse Product { get; set; }
         public int Quantity { get; set; }
 
-        public OrderItemRequest SessionOrderToOrderItemRequest(int OrderId)
+        public OrderItem SessionToOrderItem()
         {
-            OrderItemRequest orderItemRequest = new OrderItemRequest() { };
-            orderItemRequest.OrderId = OrderId;
-            orderItemRequest.ProductId = Product.ProductId;
-            orderItemRequest.Quantity = Quantity;
-            return orderItemRequest;
+            OrderItem orderItem = new OrderItem() { };
+            //orderItemRequest.OrderId = OrderId;
+            
+            orderItem.ProductId = Product.ProductId;
+            orderItem.Quantity = Quantity;
+            return orderItem;
         }
 
         public override bool Equals(object? obj)

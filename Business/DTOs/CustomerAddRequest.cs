@@ -39,12 +39,29 @@ namespace Business.DTOs
 
         //public IEnumerable<Order>? Orders { get; set; }
 
+        public List<SessionOrder> Session { get; set; }
+
         public Customer ToCustomer()
         {//Burada enum null mu diye bak null olarak gir yoksa empty string atıyor
-            return new Customer() { CustomerName = CustomerName, Email = Email, DateOfBirth = DateOfBirth, 
-                Gender = Gender, Province = Province, City = City, 
-                StreetAddress = StreetAddress, PhoneNumber = PhoneNumber };
 
+
+            List<OrderItem> items = new List<OrderItem>();
+            foreach (var item in Session)
+            {
+                items.Add(item.SessionToOrderItem());
+            }
+
+
+            var custo = new Customer() { CustomerName = CustomerName, Email = Email, DateOfBirth = DateOfBirth, 
+                Gender = Gender, Province = Province, City = City, 
+                StreetAddress = StreetAddress, PhoneNumber = PhoneNumber,
+                order = new Order()
+                {
+                    OrderItems = new List<OrderItem>(items)
+                }
+            };
+            return custo;
         }
+        
     }
 }

@@ -10,7 +10,7 @@ namespace Business
 {
     public interface IOrderItemsService
     {
-        Task<bool> AddOrderItems(List<SessionOrder> items);
+        //Task<bool> AddOrderItems(List<SessionOrder> items);
         Task<bool> CreateOrders(Customer customer);
         //Task<int> GetLatestOrderId();
         Task<List<SessionOrder>> GetAllOrderItemsByOrderId(int orderId);

@@ -15,6 +15,7 @@ namespace Customer
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddDbContext<AppDbContext>(options => {
+                options.UseLazyLoadingProxies();
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 

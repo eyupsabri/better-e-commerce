@@ -28,15 +28,23 @@ namespace Business
 
         public async Task<CustomerResponse> AddCustomerWithOrder(CustomerAddRequest customerAddReq, List<SessionOrder> order)
         {
-            await _customersRepo.AddCustomerWithoutOrderId(customerAddReq.ToCustomer());//Order no olmadan ekliyorum.
-            Customer? customer = await _customersRepo.GetLatestCustomer();//Eklenen Customer ı alıyorum
-            if (customer != null)
-            {
-                await _orderItemsService.CreateOrders(customer); //Customer ile order yaratıyorum
-                await _orderItemsService.AddOrderItems(order);//order item ekleme
-            }
-            CustomerResponse response = customer.ToCustomerResponse();
-            response.Items = order;
+            customerAddReq.Session = new List<SessionOrder>();
+            customerAddReq.Session = order;
+
+            var custoId = await _customersRepo.AddCustomer(customerAddReq.ToCustomer());
+            var custo = await _customersRepo.GetCustomerById(custoId);
+            var response = custo.ToCustomerResponse();
+           
+
+            //await _customersRepo.AddCustomerWithoutOrderId(customerAddReq.ToCustomer());//Order no olmadan ekliyorum.
+            //Customer? customer = await _customersRepo.GetLatestCustomer();//Eklenen Customer ı alıyorum
+            //if (customer != null)
+            //{
+            //    await _orderItemsService.CreateOrders(customer); //Customer ile order yaratıyorum
+            //    await _orderItemsService.AddOrderItems(order);//order item ekleme
+            //}
+            //CustomerResponse response = customer.ToCustomerResponse();
+            //response.Items = order;
             return response;
         }
 

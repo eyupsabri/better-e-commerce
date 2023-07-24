@@ -10,15 +10,18 @@ namespace Repos
 {
     public interface ICustomersRepository
     {
-        //Task<Customer> GetCustomerById(int CustomerId);
+        Task<Customer> GetCustomerById(int CustomerId);
         Task<Customer>? GetLatestCustomer();
-        Task<bool> AddCustomerWithoutOrderId(Customer customer);
+       
         Task<List<Customer>> GetAllCustomers();
         Task<List<Customer>> GetPaginatedCustomers(int position);
         Task<int> CustomersCount();
         Task<int> GetCustomersCountByNameSearch(string search);
         //Task<List<Customer>> GetCustomersByNameSearchPaginated(string search, int position);
         IQueryable<Customer> GetCustomers();
+
+        Task<int> AddCustomer(Customer customer);// old one with gradual adding
+        
 
     }
     
