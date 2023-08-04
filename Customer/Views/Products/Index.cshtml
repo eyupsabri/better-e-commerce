@@ -120,7 +120,7 @@
 
                                 <select name="sortAsc" class="form-select form-select-sm sortByPrice" aria-label=".form-select-sm example">
                                     
-                                    <option  selected>Fiyata Göre Sırala</option>
+                                    <option value="1"  selected>Fiyata Göre Sırala</option>
                                     <option value="true">Önce En Düşük</option>
                                     <option value="false">Önce En Yüksek</option>
                                 </select>
@@ -160,7 +160,7 @@
                 url: "@Url.Action("Index","Products")",
                 method: "post",
                 contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-                data: filters + dic,
+                data: filters + dic ,
                 success: function (data) {
                     $("#ProductsPageContainer").html(data);
                 }
@@ -175,7 +175,7 @@
                 url: "@Url.Action("Index","Products")",
                 method: "post",
                 contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-                data: filters + dic,
+                data: filters + dic ,
                 success: function (data) {
                     $("#ProductsPageContainer").html(data);
 
@@ -184,18 +184,22 @@
             });
         });
         $(".sortByPrice").change(function () {
-            var filters = $(".filter-products").serialize()
-            var dic = "@temp"
+            var value = $(".sortByPrice").val();
+            if(value != "1"){
+                var filters = $(".filter-products").serialize()
+                var dic = "@temp"
 
-            $.ajax({
-                url: "@Url.Action("Index","Products")",
-                method: "post",
-                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-                data: filters + dic,
-                success: function (data) {
-                    $("#ProductsPageContainer").html(data);
-                }
-            })
+                $.ajax({
+                    url: "@Url.Action("Index","Products")",
+                    method: "post",
+                    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                    data: filters + dic,
+                    success: function (data) {
+                        $("#ProductsPageContainer").html(data);
+                    }
+                })
+            }
+            
         });
     });
 </script>

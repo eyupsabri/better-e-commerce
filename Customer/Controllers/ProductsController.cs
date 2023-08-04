@@ -37,7 +37,7 @@ namespace Customer.Controllers
         }
 
 
-        //Herhangi bir category e bastıgında gelen sayfa 
+        
         [HttpGet, HttpPost]
         [Route("[action]")]
         public async Task<IActionResult> Index(ProductFilter productFilter, int pageIndex = 0)
@@ -47,7 +47,7 @@ namespace Customer.Controllers
 
             IPagedList<ProductResponse> products = _productsService.GetProducts(productFilter, pageIndex);
 
-            dynamic expendo = new ExpandoObject();
+            dynamic expendo = new ExpandoObject(); // Tek ihtiyacım olan categoryid
             foreach (PropertyInfo prop in productFilter.GetType().GetProperties())
             {
 
