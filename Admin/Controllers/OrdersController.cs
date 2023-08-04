@@ -1,7 +1,7 @@
 ﻿using Business;
 using Business.DTOs;
 using Microsoft.AspNetCore.Mvc;
-using Admin.Models;
+
 using Business.Helper;
 using Business.PageList;
 using Business.Filter;
@@ -15,7 +15,7 @@ namespace Admin.Controllers
     public class OrdersController : Controller
     {
         private ICategoriesService _categoriesService;
-        private IOrderItemsService _orderItemsService;
+        //private IOrderItemsService _orderItemsService;
         private ICustomersService _customersService;
         public static bool IsAjaxRequest(HttpRequest request)
         {
@@ -26,11 +26,11 @@ namespace Admin.Controllers
                 return request.Headers["X-Requested-With"] == "XMLHttpRequest";
             return false;
         }
-        public OrdersController(ICategoriesService categoriesService, IOrderItemsService orderItemsService, ICustomersService customersService)
+        public OrdersController(ICategoriesService categoriesService, ICustomersService customersService)
         {
 
             _categoriesService = categoriesService;
-            _orderItemsService = orderItemsService;
+            //_orderItemsService = orderItemsService;
             _customersService = customersService;
         }
 
@@ -57,11 +57,11 @@ namespace Admin.Controllers
             customers.Url = Url.Action("Index");
             
 
-            foreach (CustomerResponse customer in customers)
-            {
-                List<SessionOrder> orders = await _orderItemsService.GetAllOrderItemsByOrderId(customer.OrderId);
-                customer.Items = orders;
-            }
+            //foreach (CustomerResponse customer in customers)
+            //{
+            //    List<SessionOrder> orders = await _orderItemsService.GetAllOrderItemsByOrderId(customer.OrderId);
+            //    customer.Items = orders;
+            //}
 
             if (IsAjaxRequest(Request))
                 return PartialView("_OrdersPage", customers);

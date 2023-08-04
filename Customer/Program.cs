@@ -15,6 +15,7 @@ namespace Customer
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddDbContext<AppDbContext>(options => {
+                options.UseLazyLoadingProxies();
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 
@@ -29,8 +30,8 @@ namespace Customer
             builder.Services.AddScoped<ICustomersRepository, CustomersRepository>();
             builder.Services.AddScoped<ICustomersService, CustomersService>();
 
-            builder.Services.AddScoped<IOrderItemsRepository, OrderItemsRepository>();
-            builder.Services.AddScoped<IOrderItemsService, OrderItemsService>();
+            //builder.Services.AddScoped<IOrderItemsRepository, OrderItemsRepository>();
+            //builder.Services.AddScoped<IOrderItemsService, OrderItemsService>();
 
             builder.Services.AddSession(options =>
             {

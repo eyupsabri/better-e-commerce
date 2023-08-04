@@ -4,7 +4,7 @@ using Business.Filter;
 using Business.Helper;
 using Business.PageList;
 using Castle.Core.Resource;
-using Customer.Models;
+
 using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -23,7 +23,7 @@ namespace Admin.Controllers
         private IProductsService _productsService;
         private ICategoriesService _categoriesService;
         private ICustomersService _customersService;
-        private IOrderItemsService _orderItemsService;
+        //private IOrderItemsService _orderItemsService;
         private readonly IWebHostEnvironment _webhost;
         public static bool IsAjaxRequest(HttpRequest request)
         {
@@ -35,12 +35,12 @@ namespace Admin.Controllers
             return false;
         }
 
-        public ProductsController(IProductsService productsService, ICategoriesService categoriesService, ICustomersService customersService, IOrderItemsService orderItemsService, IWebHostEnvironment webhost)
+        public ProductsController(IProductsService productsService, ICategoriesService categoriesService, ICustomersService customersService, IWebHostEnvironment webhost)
         {
             _productsService = productsService;
             _categoriesService = categoriesService;
             _customersService = customersService;
-            _orderItemsService = orderItemsService;
+            //_orderItemsService = orderItemsService;
             _webhost = webhost;
         }
 
