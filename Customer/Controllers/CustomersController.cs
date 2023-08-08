@@ -41,12 +41,15 @@ namespace Customer.Controllers
         {
             //List<CategoryResponse> categoryResponse = await CategoriesService.GetAllCategories();
             //ViewBag.Categories = categoryResponse;
+            
 
             List<SessionOrder> orders = HttpContext.Session.Get<List<SessionOrder>>("Products");
+            
 
             CustomerResponse customer = await CustomersService.AddCustomerWithOrder(customerAddReq, orders);
 
             HttpContext.Session.Clear();
+           
             return PartialView("_OrderCompleted", customer);
         }
     }

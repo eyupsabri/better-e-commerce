@@ -86,7 +86,15 @@
 </div>
 <!-- Cart End -->
 
-
+<script>
+    $.ajax({
+        url: "@Url.Action("UpdateCardIcon","Cards")",
+        method: "get",
+        success: function(data){
+            document.getElementById("card_quantity").innerHTML = data;
+        }
+    })
+</script>
 
 
 <script>

@@ -86,7 +86,7 @@
                 </a>
                 <a href="~/Cards/Index" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
-                    <span class="badge">0</span>
+                    <span id="card_quantity" class="badge">0</span>
                 </a>
             </div>
         </div>
@@ -236,6 +236,15 @@
 
     <!-- Template Javascript -->
     <script src="~/assets/js/main.js"></script>
+    <script>
+        $.ajax({
+            url: "@Url.Action("UpdateCardIcon","Cards")",
+            method: "get",
+            success: function (data) {
+                document.getElementById("card_quantity").innerHTML = data;
+            }
+        })
+    </script>
 </body>
 
 </html>

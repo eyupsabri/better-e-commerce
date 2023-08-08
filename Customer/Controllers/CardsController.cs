@@ -3,6 +3,7 @@ using Business.DTOs;
 using Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Customer.Controllers
 {
@@ -103,5 +104,20 @@ namespace Customer.Controllers
             }
             return PartialView("_OrderCard", products);
         }
+
+        [HttpGet]
+        [Route("[action]")]
+        public IActionResult UpdateCardIcon()
+        {
+            List<SessionOrder>? products = HttpContext.Session.Get<List<SessionOrder>>("Products");
+            if(products != null)
+            {
+                var sum = products.Sum(x => x.Quantity);
+                return Json(sum);
+            }
+            return Json(0);
+            
+        }
+
     }
 }
