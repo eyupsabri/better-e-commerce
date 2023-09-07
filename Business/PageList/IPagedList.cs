@@ -24,6 +24,8 @@ namespace Business.PageList
         public object filterValues { get; set; }
 
         
+
+        
         void AddProperty(ExpandoObject expando, string propertyName, object propertyValue);
         
         
