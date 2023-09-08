@@ -1,4 +1,5 @@
 ﻿using Business;
+using Business.APIPaging;
 using Business.DTOs;
 using Business.Filter;
 using Business.PageList;
@@ -25,12 +26,13 @@ namespace Customer_API.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(200, Type = typeof(IPagedList<ProductResponse>))]
-        public ActionResult<IPagedList<ProductResponse>> GetSearch(ProductFilter productFilter, int pageIndex = 0)
+        [ProducesResponseType(200, Type = typeof(Paging<ProductResponse>))]
+        public IActionResult GetSearch(ProductFilter productFilter, int pageIndex = 0)
         {
             IPagedList<ProductResponse> products = _productsService.GetProducts(productFilter, pageIndex);
+
             
-            return Ok(products);
+            return Ok(new Paging<ProductResponse>(products));
         }
 
     }
