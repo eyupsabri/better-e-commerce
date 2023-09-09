@@ -25,9 +25,9 @@ namespace Customer_API.Controllers
             _customersService = customersService;
         }
 
-        [HttpPost]
+        [HttpGet]
         [ProducesResponseType(200, Type = typeof(Paging<ProductResponse>))]
-        public IActionResult GetSearch(ProductFilter productFilter, int pageIndex = 0)
+        public IActionResult GetSearch([FromQuery] ProductFilter productFilter,[FromQuery] int pageIndex = 0)
         {
             IPagedList<ProductResponse> products = _productsService.GetProducts(productFilter, pageIndex);
 
