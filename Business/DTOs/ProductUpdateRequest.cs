@@ -26,7 +26,7 @@ namespace Business.DTOs
         [Required]
         [StringLength(200)]
         public string ProductDescription { get; set; }
-        public IFormFile ImgFile { get; set; }
+        public IFormFile? ImgFile { get; set; }
 
         public int? CategoryId { get; set; }
         public Guid ImageGuid { get; set; }

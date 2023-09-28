@@ -45,6 +45,15 @@ namespace Customer_API.Controllers
             return Ok("okay");
         }
 
+        [HttpGet]
+        [Authorize]
+        [Route("isLoggedIn")]
+        public ActionResult Get()
+        {
+            return Ok(true);
+        }
+
+
 
         //private string GenerateToken(UserModel user)
         //{
