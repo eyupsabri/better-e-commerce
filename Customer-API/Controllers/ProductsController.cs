@@ -41,7 +41,6 @@ namespace Customer_API.Controllers
 
 
         [HttpPost]
-        
         [Route("update")]
         [ProducesResponseType(200, Type = typeof(Paging<ProductResponse>))]
         
