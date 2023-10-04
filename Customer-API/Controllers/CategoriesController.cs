@@ -49,6 +49,7 @@ namespace Customer_API.Controllers
             DummyCat dum1 = new DummyCat() { Id = 1, Title = "birinci"};
             DummyCat dum2 = new DummyCat() { Id = 2, Title = "ikinci" };
             DummyCat dum3 = new DummyCat() { Id = 3, Title = "ucuncu" };
+            DummyCat dum22 = new DummyCat() { Id = 22, Title = "Birincinin 10", ParentMenuItemId = 1, Url = "cekoslavakya" };
 
             DummyCat dum4 = new DummyCat() { Id = 4, Title = "Birincinin 1", ParentMenuItemId = 1, Url = "cekoslavakya" };
             DummyCat dum5 = new DummyCat() { Id = 5, Title = "ikincinin 1", ParentMenuItemId = 2, Url = "cekoslavakya" };
@@ -99,6 +100,7 @@ namespace Customer_API.Controllers
             cats.Add(dum19);
             cats.Add(dum20);
             cats.Add(dum21);
+            cats.Add(dum22);
 
             return Ok(cats);
         }
