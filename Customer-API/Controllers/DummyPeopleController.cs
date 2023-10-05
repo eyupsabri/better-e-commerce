@@ -20,9 +20,9 @@ namespace Customer_API.Controllers
         }
 
         [Authorize]
-        [HttpGet]
-        [ProducesResponseType(200, Type = typeof(List<DummyPerson>))]
-        public ActionResult GetDummyPeople()
+        [HttpPost]
+        [ProducesResponseType(200, Type = typeof(Pagination))]
+        public ActionResult GetDummyPeople(OnlyCurrentPage model)
         {
             DummyPerson dum1 = new DummyPerson() {Id=1, Address = "aaaaa aaaaaa aaaa", BirthDate = new DateTime(2011, 1, 21), DateOfRecruitment= new DateTime(2012,1,1), Departman="Saglik", Name="Osman", Overtime=2, PlaceOfBirth="Izmır", SirName="Igne"};
             DummyPerson dum2 = new DummyPerson() {Id=2, Address = "baaaa aaaaaa aaaa", BirthDate = new DateTime(2010, 1, 21), DateOfRecruitment = new DateTime(2013, 1, 1), Departman = "Temizlik", Name = "Nilgun", Overtime = 2, PlaceOfBirth = "Manisa", SirName = "Brightside" };
@@ -54,9 +54,24 @@ namespace Customer_API.Controllers
             DummyPerson dum27 = new DummyPerson() { Id = 27, Address = "paaaa aaaaaa aaaa", BirthDate = new DateTime(1999, 1, 21), DateOfRecruitment = new DateTime(2005, 1, 1), Departman = "Ghost Writer", Name = "Asli", Overtime = 2, PlaceOfBirth = "Nisantasi", SirName = "Sutcuoglu" };
             DummyPerson dum28 = new DummyPerson() { Id = 28, Address = "raaaa aaaaaa aaaa", BirthDate = new DateTime(1998, 1, 21), DateOfRecruitment = new DateTime(2006, 1, 1), Departman = "Sufleci", Name = "Cem", Overtime = 2, PlaceOfBirth = "Tokyo", SirName = "Onaran" };
 
-            List<DummyPerson> list = new List<DummyPerson>() { dum1,dum2,dum3,dum4,dum5,dum6,dum7,dum8,dum9,dum10,dum11,dum12,dum13,dum14, dum15, dum16, dum17, dum18, dum19, dum20, dum21, dum22, dum23, dum24, dum25, dum26, dum27, dum28};
+            DummyPerson dum29 = new DummyPerson() { Id = 29, Address = "aaaaa aaaaaa aaaa", BirthDate = new DateTime(2011, 1, 21), DateOfRecruitment = new DateTime(2012, 1, 1), Departman = "Saglik", Name = "Osman", Overtime = 2, PlaceOfBirth = "Izmır", SirName = "Igne" };
+            DummyPerson dum30 = new DummyPerson() { Id = 30, Address = "baaaa aaaaaa aaaa", BirthDate = new DateTime(2010, 1, 21), DateOfRecruitment = new DateTime(2013, 1, 1), Departman = "Temizlik", Name = "Nilgun", Overtime = 2, PlaceOfBirth = "Manisa", SirName = "Brightside" };
+            DummyPerson dum31 = new DummyPerson() { Id = 31, Address = "caaaa aaaaaa aaaa", BirthDate = new DateTime(2009, 1, 21), DateOfRecruitment = new DateTime(2014, 1, 1), Departman = "Yazilim", Name = "Simge", Overtime = 2, PlaceOfBirth = "Yemen", SirName = "Alper" };
+            DummyPerson dum32 = new DummyPerson() { Id = 32, Address = "daaaa aaaaaa aaaa", BirthDate = new DateTime(2008, 1, 21), DateOfRecruitment = new DateTime(2015, 1, 1), Departman = "Insan Kaynaklari", Name = "Cansu", Overtime = 2, PlaceOfBirth = "Canakkale", SirName = "Freud" };
+            DummyPerson dum33 = new DummyPerson() { Id = 33, Address = "faaaa aaaaaa aaaa", BirthDate = new DateTime(2007, 1, 21), DateOfRecruitment = new DateTime(2016, 1, 1), Departman = "Yemek", Name = "Merve", Overtime = 2, PlaceOfBirth = "Ankara", SirName = "Tiramisu" };
+            DummyPerson dum34 = new DummyPerson() { Id = 34, Address = "gaaaa aaaaaa aaaa", BirthDate = new DateTime(2006, 1, 21), DateOfRecruitment = new DateTime(2017, 1, 1), Departman = "Zuccaciye", Name = "Mehmet", Overtime = 2, PlaceOfBirth = "Istanbul", SirName = "Caydanlik" };
+            DummyPerson dum35 = new DummyPerson() { Id = 35, Address = "haaaa aaaaaa aaaa", BirthDate = new DateTime(2005, 1, 21), DateOfRecruitment = new DateTime(2018, 1, 1), Departman = "Atom muhendisi", Name = "Ahmet", Overtime = 2, PlaceOfBirth = "Antalya", SirName = "Proton" };
+            DummyPerson dum36 = new DummyPerson() { Id = 36, Address = "kaaaa aaaaaa aaaa", BirthDate = new DateTime(2004, 1, 21), DateOfRecruitment = new DateTime(2019, 1, 1), Departman = "Insan kacakcisi", Name = "Abdullah", Overtime = 2, PlaceOfBirth = "Bursa", SirName = "Shady" };
+            DummyPerson dum37= new DummyPerson() { Id = 37, Address = "laaaa aaaaaa aaaa", BirthDate = new DateTime(2003, 1, 21), DateOfRecruitment = new DateTime(2020, 1, 1), Departman = "Mafya", Name = "Suleyman", Overtime = 2, PlaceOfBirth = "Van", SirName = "Boyaci" };
+            DummyPerson dum38 = new DummyPerson() { Id = 38, Address = "maaaa aaaaaa aaaa", BirthDate = new DateTime(2002, 1, 21), DateOfRecruitment = new DateTime(2021, 1, 1), Departman = "Komedyen", Name = "Pinar Su", Overtime = 2, PlaceOfBirth = "Erzincan", SirName = "Goldberg" };
+           
 
-            return Ok(list);
+            List<DummyPerson> list = new List<DummyPerson>() { dum1,dum2,dum3,dum4,dum5,dum6,dum7,dum8,dum9,dum10,dum11,dum12,dum13,dum14,dum15,dum16,dum17,dum18,dum19,dum20,dum21,dum22,dum23,dum24,dum25,dum26,dum27,dum28,dum29,dum30,dum31,dum32,dum33,dum34,dum35,dum36,dum37,dum38};
+
+            Pagination myPage = new Pagination(model.PageSize, list, model.CurrentPage);
+
+
+            return Ok(myPage);
         }
 
     }
