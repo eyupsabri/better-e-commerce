@@ -22,7 +22,7 @@ namespace Customer_API.Controllers
         [Authorize]
         [HttpPost]
         [ProducesResponseType(200, Type = typeof(Pagination))]
-        public ActionResult GetDummyPeople(OnlyCurrentPage model)
+        public ActionResult GetDummyPeople(DummyPersonFilter model)
         {
             DummyPerson dum1 = new DummyPerson() {Id=1, Address = "aaaaa aaaaaa aaaa", BirthDate = new DateTime(2011, 1, 21), DateOfRecruitment= new DateTime(2012,1,1), Departman="Saglik", Name="Osman", Overtime=2, PlaceOfBirth="Izmır", SirName="Igne"};
             DummyPerson dum2 = new DummyPerson() {Id=2, Address = "baaaa aaaaaa aaaa", BirthDate = new DateTime(2010, 1, 21), DateOfRecruitment = new DateTime(2013, 1, 1), Departman = "Temizlik", Name = "Nilgun", Overtime = 2, PlaceOfBirth = "Manisa", SirName = "Brightside" };
@@ -68,7 +68,8 @@ namespace Customer_API.Controllers
 
             List<DummyPerson> list = new List<DummyPerson>() { dum1,dum2,dum3,dum4,dum5,dum6,dum7,dum8,dum9,dum10,dum11,dum12,dum13,dum14,dum15,dum16,dum17,dum18,dum19,dum20,dum21,dum22,dum23,dum24,dum25,dum26,dum27,dum28,dum29,dum30,dum31,dum32,dum33,dum34,dum35,dum36,dum37,dum38};
 
-            Pagination myPage = new Pagination(model.PageSize, list, model.CurrentPage);
+            var filtered = model.Filters(list);
+            Pagination myPage = new Pagination(filtered, model);
 
 
             return Ok(myPage);
