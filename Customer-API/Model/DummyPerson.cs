@@ -2,7 +2,7 @@
 {
     public class DummyPerson
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string Name { get; set; }
         public string SirName { get; set; }
         public string Address { get; set; }

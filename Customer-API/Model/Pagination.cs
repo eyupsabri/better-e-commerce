@@ -6,6 +6,7 @@ namespace Customer_API.Model
     {
         public List<DummyPerson> People { get; set; }
         public int TotalPages { get; set; }
+        public int CurrentPage { get; set; }
         public Pagination(List<DummyPerson> myList, OnlyCurrentPage page) {
 
             People = new List<DummyPerson>();
@@ -46,7 +47,7 @@ namespace Customer_API.Model
                 }
             }
                  
-
+            CurrentPage = page.CurrentPage;
             int peopleCount = myList.Count;
             if(peopleCount % page.PageSize == 0)
                 TotalPages = peopleCount / page.PageSize;
