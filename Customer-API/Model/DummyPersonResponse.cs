@@ -1,6 +1,6 @@
 ﻿namespace Customer_API.Model
 {
-    public class DummyPerson
+    public class DummyPersonResponse
     {
         public int? Id { get; set; }
         public string Name { get; set; }
@@ -11,13 +11,6 @@
         public DateTime BirthDate { get; set; }
         public string PlaceOfBirth { get; set; }
         public DateTime DateOfRecruitment { get; set; }
-        public bool IsDeleted { get; set; }
-
-        public DummyPersonResponse toDummyPersonResponse()
-        {
-            return new DummyPersonResponse() { Id = Id, Name=Name, SirName= SirName, Address=Address, Departman= Departman, Overtime = Overtime,
-                BirthDate = BirthDate, PlaceOfBirth= PlaceOfBirth, DateOfRecruitment= DateOfRecruitment};
-        }
-
+        
     }
 }

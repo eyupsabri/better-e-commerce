@@ -4,12 +4,12 @@ namespace Customer_API.Model
 {
     public class Pagination
     {
-        public List<DummyPerson> People { get; set; }
+        public List<DummyPersonResponse> People { get; set; } 
         public int TotalPages { get; set; }
         public int CurrentPage { get; set; }
-        public Pagination(List<DummyPerson> myList, OnlyCurrentPage page) {
+        public Pagination(List<DummyPersonResponse> myList, OnlyCurrentPage page) {
 
-            People = new List<DummyPerson>();
+            People = new List<DummyPersonResponse>();
 
             if (page.SortAsc)
             {

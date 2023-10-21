@@ -47,8 +47,23 @@ namespace Customer_API.Controllers
             personOfInterest.DateOfRecruitment = model.DateOfRecruitment;
             personOfInterest.Departman = model.Departman;
             personOfInterest.PlaceOfBirth = model.PlaceOfBirth;
+            
 
-            return Ok(personOfInterest);
+            return Ok(personOfInterest.toDummyPersonResponse());
+        }
+
+        [Authorize]
+        [HttpGet]
+        [ProducesResponseType(200, Type = typeof(Pagination))]
+        [Route("deleteperson")]
+        public ActionResult DeleteDummyPerson([FromQuery]int Id)
+        {
+            DummyPerson personOfInterest = StaticDatabase.list.FirstOrDefault(p => Id == p.Id);
+            personOfInterest.IsDeleted = true;
+
+            if(personOfInterest.IsDeleted)
+                return Ok();
+            return BadRequest();
         }
 
     }

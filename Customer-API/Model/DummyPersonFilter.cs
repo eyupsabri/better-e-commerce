@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Customer_API.LoginHelper;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Customer_API.Model
 {
@@ -7,13 +8,13 @@ namespace Customer_API.Model
         public string? Name { get; set; }
         public string? Sirname { get; set; }
 
-        public List<DummyPerson> Filters(List<DummyPerson> myList)
+        public List<DummyPersonResponse> Filters(List<DummyPerson> myList)
         {
             if (!Name.IsNullOrEmpty())
-                myList = myList.Where(d => d.Name.Contains(Name)).ToList();
+                myList = myList.Where(d => d.Name.Contains(Name) && !d.IsDeleted).ToList();
             if (!Sirname.IsNullOrEmpty())
-                myList = myList.Where(d => d.SirName.Contains(Sirname)).ToList();
-            return myList;
+                myList = myList.Where(d => d.SirName.Contains(Sirname) && !d.IsDeleted).ToList();
+            return myList.toDummyPeople();
 
         }
 
