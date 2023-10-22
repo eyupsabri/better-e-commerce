@@ -39,17 +39,39 @@ namespace Customer_API.Controllers
         public ActionResult UpdateDummyPerson(DummyPerson model)
         {
             DummyPerson personOfInterest = StaticDatabase.list.FirstOrDefault(p => model.Id == p.Id);
-            personOfInterest.Name = model.Name;
-            personOfInterest.SirName = model.SirName;
-            personOfInterest.Address = model.Address;
-            personOfInterest.BirthDate = model.BirthDate;
-            personOfInterest.Overtime = model.Overtime;
-            personOfInterest.DateOfRecruitment = model.DateOfRecruitment;
-            personOfInterest.Departman = model.Departman;
-            personOfInterest.PlaceOfBirth = model.PlaceOfBirth;
-            
+            if (personOfInterest != null)
+            {
+                personOfInterest.Name = model.Name;
+                personOfInterest.SirName = model.SirName;
+                personOfInterest.Address = model.Address;
+                personOfInterest.BirthDate = model.BirthDate;
+                personOfInterest.Overtime = model.Overtime;
+                personOfInterest.DateOfRecruitment = model.DateOfRecruitment;
+                personOfInterest.Departman = model.Departman;
+                personOfInterest.PlaceOfBirth = model.PlaceOfBirth;
 
-            return Ok(personOfInterest.toDummyPersonResponse());
+                return Ok(personOfInterest.toDummyPersonResponse());
+            }
+            return BadRequest();
+            
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ProducesResponseType(200, Type = typeof(Pagination))]
+        [Route("createperson")]
+        public ActionResult CreateDummyPerson(DummyPerson model)
+        {
+            int? maxId = StaticDatabase.list.Max(p => p.Id);
+            
+            if(maxId != null)
+            {
+                model.Id = maxId + 1;
+                StaticDatabase.list.Add(model);
+                return Ok(model);
+            }
+            return BadRequest();
+            
         }
 
         [Authorize]
