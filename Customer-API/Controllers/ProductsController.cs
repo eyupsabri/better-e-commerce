@@ -23,12 +23,11 @@ namespace Customer_API.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         [Route("products")]
         [ProducesResponseType(200, Type = typeof(Paging<ProductResponse>))]
-        public  IActionResult GetProductsByCategoryId([FromQuery] int categoryId, [FromQuery] int pageIndex = 0)
+        public  IActionResult GetProductsByCategoryId( [FromQuery] ProductFilter filter,  [FromQuery] int pageIndex = 0)
         {
-            ProductFilter filter = new ProductFilter() { CategoryId = categoryId, sortAsc = true, sortBy= "productName" };
+           
             var myList = _productsService.GetProducts(filter, pageIndex);
 
 

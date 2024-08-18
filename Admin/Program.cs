@@ -1,4 +1,5 @@
 using Business;
+using Business.DTOs;
 using Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
@@ -20,6 +21,16 @@ namespace Admin
                 options.UseLazyLoadingProxies();
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            builder.Services.AddSingleton<IStorageConnectionFactory, StorageConnectionFactory>(sp =>
+            {
+                CloudStorageOptionsDTO storageOptionsDTO = new CloudStorageOptionsDTO();
+                storageOptionsDTO.ConnectionString = builder.Configuration["AzureBlobStorageConnectionString"];
+                storageOptionsDTO.ProductImgContainer = builder.Configuration["AzureBlobStorageProductContainer"];
+                storageOptionsDTO.CategoryImgContainer = builder.Configuration["AzureBlobStorageCategoryContainer"];
+                return new StorageConnectionFactory(storageOptionsDTO);
+            });
+            builder.Services.AddSingleton<ICloudStorage, AzureStorage>();
 
             builder.Services.AddScoped<ICategoriesRepository, CategoriesRepository>();
             builder.Services.AddScoped<ICategoriesService, CategoriesService>();
@@ -44,15 +55,15 @@ namespace Admin
 
             //app.UseStaticFiles();
 
-            var cemre = Regex.Replace(builder.Environment.ContentRootPath, builder.Environment.ApplicationName, "assets");
+            //var cemre = Regex.Replace(builder.Environment.ContentRootPath, builder.Environment.ApplicationName, "assets");
 
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(Regex.Replace(builder.Environment.ContentRootPath, builder.Environment.ApplicationName, "assets")),
-                RequestPath = new PathString("/assets")
+            //app.UseStaticFiles(new StaticFileOptions
+            //{
+            //    FileProvider = new PhysicalFileProvider(Regex.Replace(builder.Environment.ContentRootPath, builder.Environment.ApplicationName, "assets")),
+            //    RequestPath = new PathString("/assets")
 
-            });
-
+            //});
+            app.UseStaticFiles();
 
 
 
@@ -63,5 +74,5 @@ namespace Admin
 
             app.Run();
         }
-}
+    }
 }

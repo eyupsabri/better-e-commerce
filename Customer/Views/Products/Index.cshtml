@@ -67,27 +67,27 @@
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                             <input type="checkbox" class="custom-control-input price-filter" id="price-1" name="Price1" value="@PriceEnums.PriceOptions.Price1">
                             <label class="custom-control-label" for="price-1">$0 - $100</label>
-                            <span class="badge border font-weight-normal">150</span>
+                            @*<span class="badge border font-weight-normal">150</span>*@
                         </div>
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                             <input type="checkbox" class="custom-control-input price-filter" id="price-2" name="Price2" value="@PriceEnums.PriceOptions.Price2">
                             <label class="custom-control-label" for="price-2">$100 - $200</label>
-                            <span class="badge border font-weight-normal">295</span>
+                            @*<span class="badge border font-weight-normal">295</span>*@
                         </div>
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                             <input type="checkbox" class="custom-control-input price-filter" id="price-3" name="Price3" value="@PriceEnums.PriceOptions.Price3">
                             <label class="custom-control-label" for="price-3">$200 - $300</label>
-                            <span class="badge border font-weight-normal">246</span>
+                            @*<span class="badge border font-weight-normal">246</span>*@
                         </div>
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                             <input type="checkbox" class="custom-control-input price-filter" id="price-4" name="Price4" value="@PriceEnums.PriceOptions.Price4">
                             <label class="custom-control-label" for="price-4">$300 - $400</label>
-                            <span class="badge border font-weight-normal">145</span>
+                            @*<span class="badge border font-weight-normal">145</span>*@
                         </div>
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
                             <input type="checkbox" class="custom-control-input price-filter" id="price-5" name="Price5" value="@PriceEnums.PriceOptions.Price5">
                             <label class="custom-control-label" for="price-5">$400 - $500</label>
-                            <span class="badge border font-weight-normal">168</span>
+                            @*<span class="badge border font-weight-normal">168</span>*@
                         </div>
 
                     </form>
@@ -119,8 +119,8 @@
 
 
                                 <select name="sortAsc" class="form-select form-select-sm sortByPrice" aria-label=".form-select-sm example">
-                                    
-                                    <option value="1"  selected>Fiyata Göre Sırala</option>
+
+                                    <option value="1" selected>Fiyata Göre Sırala</option>
                                     <option value="true">Önce En Düşük</option>
                                     <option value="false">Önce En Yüksek</option>
                                 </select>
@@ -160,7 +160,7 @@
                 url: "@Url.Action("Index","Products")",
                 method: "post",
                 contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-                data: filters + dic ,
+                data: filters + dic,
                 success: function (data) {
                     $("#ProductsPageContainer").html(data);
                 }
@@ -175,7 +175,7 @@
                 url: "@Url.Action("Index","Products")",
                 method: "post",
                 contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-                data: filters + dic ,
+                data: filters + dic,
                 success: function (data) {
                     $("#ProductsPageContainer").html(data);
 
@@ -185,7 +185,7 @@
         });
         $(".sortByPrice").change(function () {
             var value = $(".sortByPrice").val();
-            if(value != "1"){
+            if (value != "1") {
                 var filters = $(".filter-products").serialize()
                 var dic = "@temp"
 
@@ -199,7 +199,7 @@
                     }
                 })
             }
-            
+
         });
     });
 </script>

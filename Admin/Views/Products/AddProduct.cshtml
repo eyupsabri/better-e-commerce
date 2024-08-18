@@ -6,7 +6,7 @@
     <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 </div>*@
 
-<form id="AddProductForm" >
+<form id="AddProductForm">
     <div class="form-group mb-3">
         <label asp-for="CategoryId">Category Name</label>
         <select class="form-select" asp-for="CategoryId" size="3" aria-label="size 3 select example">
@@ -42,47 +42,47 @@
         <input class="form-control" style="width: 30%;" type="file" asp-for="ImgFile" accept=".jpg" />
         <span style="color : red;" asp-validation-for="ImgFile"></span>
     </div>
-    <div class="checkbox">
-        <label><input type="checkbox"> Remember me</label>
-    </div>
-    <button id="SaveNewProduct"  style="width: 10%;" class="button-save"  type="button">Save</button>
+    @*<div class="checkbox">
+    <label><input type="checkbox"> Remember me</label>
+    </div>*@
+    <button id="SaveNewProduct" style="width: 10%;" class="button-save" type="button">Save</button>
 </form>
 
 <script>
     $("#SaveNewProduct").click(function () {
-            
 
-            var formWithImg = document.getElementById("AddProductForm");
-            var formData = new FormData(formWithImg);
 
-            var form = $("#AddProductForm");
+        var formWithImg = document.getElementById("AddProductForm");
+        var formData = new FormData(formWithImg);
 
-            form.removeData("validator");
-            form.removeData("unobtrusiveValidation");
-            $.validator.unobtrusive.parse(form);
+        var form = $("#AddProductForm");
 
-            form.validate();
-            console.log(form.valid());
+        form.removeData("validator");
+        form.removeData("unobtrusiveValidation");
+        $.validator.unobtrusive.parse(form);
 
-            if (form.valid()) {
-                if (window.confirm('Emin misin')) {
-                    $.ajax({
-                        url: "@Url.Action("AddProduct","Products")",
-                        method: "post",
-                        data: formData,
-                        processData: false,
-                        contentType: false,
-                        success: function (data) {
-                            //var returnedData = JSON.parse(data);
-                            alert(data);
-                        },
-                        error: function (err) {
-                            alert("Something Happened");  //
-                        }
-                    })
-                }
+        form.validate();
+        console.log(form.valid());
 
+        if (form.valid()) {
+            if (window.confirm('Emin misin')) {
+                $.ajax({
+                    url: "@Url.Action("AddProduct","Products")",
+                    method: "post",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        //var returnedData = JSON.parse(data);
+                        alert(data);
+                    },
+                    error: function (err) {
+                        alert("Something Happened");  //
+                    }
+                })
             }
 
-        });
+        }
+
+    });
 </script>

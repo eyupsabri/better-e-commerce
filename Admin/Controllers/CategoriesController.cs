@@ -11,6 +11,7 @@ namespace Admin.Controllers
     {
         private ICategoriesService _categoriesService;
         private readonly IWebHostEnvironment _webhost;
+        private ICloudStorage _cloudStorage;
 
         public static bool IsAjaxRequest(HttpRequest request)
         {
@@ -22,10 +23,11 @@ namespace Admin.Controllers
             return false;
         }
 
-        public CategoriesController(ICategoriesService categoriesService, IWebHostEnvironment webhost)
+        public CategoriesController(ICategoriesService categoriesService, IWebHostEnvironment webhost, ICloudStorage cloudStorage)
         {
             _categoriesService = categoriesService;
             _webhost = webhost;
+            _cloudStorage = cloudStorage;
         }
 
         [HttpGet, HttpPost]
@@ -35,10 +37,13 @@ namespace Admin.Controllers
             string response = string.Empty;
             if (IsAjaxRequest(Request))
             {
-                response = await cat.SaveImage(_webhost.WebRootPath);
+                //response = await cat.SaveImage(_webhost.WebRootPath);
+                var name = Guid.NewGuid();
+                response = await _cloudStorage.UploadCatImgAsync(cat.ImgFile, name.ToString().ToUpper());
                 switch (response)
                 {
                     case "succesfully added":
+                        cat.ImageGuid = name;
                         await _categoriesService.AddCategory(cat);
                         break;
                 }
@@ -51,6 +56,6 @@ namespace Admin.Controllers
             return View();
         }
 
-        
+
     }
 }

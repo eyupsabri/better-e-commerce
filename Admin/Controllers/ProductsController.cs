@@ -24,6 +24,7 @@ namespace Admin.Controllers
         private ICategoriesService _categoriesService;
         private ICustomersService _customersService;
         //private IOrderItemsService _orderItemsService;
+        private ICloudStorage _cloudStorage;
         private readonly IWebHostEnvironment _webhost;
         public static bool IsAjaxRequest(HttpRequest request)
         {
@@ -35,13 +36,14 @@ namespace Admin.Controllers
             return false;
         }
 
-        public ProductsController(IProductsService productsService, ICategoriesService categoriesService, ICustomersService customersService, IWebHostEnvironment webhost)
+        public ProductsController(IProductsService productsService, ICategoriesService categoriesService, ICustomersService customersService, IWebHostEnvironment webhost, ICloudStorage cloudStorage)
         {
             _productsService = productsService;
             _categoriesService = categoriesService;
             _customersService = customersService;
             //_orderItemsService = orderItemsService;
             _webhost = webhost;
+            _cloudStorage = cloudStorage;
         }
 
         [HttpGet, HttpPost]
@@ -79,66 +81,8 @@ namespace Admin.Controllers
 
             return View(products);
 
-
-
-
-            //int totalProductsNumber = await _productsService.GetProductsCountByCategoryId(categoryId);
-
-            //int totalPages = TotalPagesCalculator.CalculatingTotalPages(totalProductsNumber);
-
-
-            //List<ProductResponse> productResponse = await _productsService.GetProductsByPagination(categoryId, 0);
-            //SingleProductsPage page = new SingleProductsPage() { Products = productResponse, CurrentPage = 0, TotalPages = totalPages, CategoryId = categoryId };
-
-
-
-
-            //return View(page);
         }
-        //[HttpPost]
-        //[Route("[action]")]
-        //public async Task<IActionResult> FilteringProducts(ProductFilter filter, int? pageIndex = 0)
-        //{
 
-        //}
-
-        //[HttpPost]
-        //[Route("[action]")]
-        //public async Task<IActionResult> PaginatedProducts(int categoryId, int pageNumber)
-        //{
-
-        //    List<ProductResponse> productsResponse = await _productsService.GetProductsByPagination(categoryId, pageNumber);
-        //    int totalProductsNumber = await _productsService.GetProductsCountByCategoryId(categoryId);
-        //    int totalPages = TotalPagesCalculator.CalculatingTotalPages(totalProductsNumber);
-        //    SingleProductsPage page = new SingleProductsPage() { Products = productsResponse, CurrentPage = pageNumber, TotalPages = totalPages, CategoryId = categoryId, CurrentSearchString = null };
-        //    return PartialView("_ProductsPage", page);
-
-        //}
-
-        //[HttpPost]
-        //[Route("[action]")]
-        //public async Task<IActionResult> SearchProductByNameWithPagination(string searchString, int? pageNumber)
-        //{
-        //    List<ProductResponse> paginatedProducts = await _productsService.GetProductsByNameSearchWithPagination(searchString, pageNumber == null ? 0 : (int)pageNumber);
-        //    int totalProductsNumber = await _productsService.GetProductsCountByNameSearch(searchString);
-        //    int totalPages = TotalPagesCalculator.CalculatingTotalPages(totalProductsNumber);
-
-        //    if (pageNumber == null)
-        //    {
-        //        List<CategoryResponse> categoryResponse = await _categoriesService.GetAllCategories();
-        //        ViewBag.Categories = categoryResponse;
-        //        ViewBag.CurrentSearchString = searchString;
-
-        //        SingleProductsPage page = new SingleProductsPage() { Products = paginatedProducts, CurrentPage = pageNumber == null ? 0 : (int)pageNumber, TotalPages = (int)totalPages, CurrentSearchString = searchString, CategoryId = null };
-        //        return View("Index", page);
-        //    }
-        //    else
-        //    {
-        //        SingleProductsPage page = new SingleProductsPage() { Products = paginatedProducts, CurrentPage = pageNumber == null ? 0 : (int)pageNumber, TotalPages = (int)totalPages, CurrentSearchString = searchString, CategoryId = null };
-        //        return PartialView("_ProductsPage", page);
-        //    }
-
-        //}
 
         [HttpPost]
         [Route("[action]")]
@@ -146,13 +90,16 @@ namespace Admin.Controllers
         {
             var productResponse = await _productsService.GetProductByProductId(product.ProductId);
             var rootPath = _webhost.WebRootPath;
-            string response = await product.SaveImage(rootPath);
+            //string response = await product.SaveImage(rootPath);
+            var name = Guid.NewGuid();
+            string response = await _cloudStorage.UploadProImgAsync(product.ImgFile, name.ToString().ToUpper());
 
             switch (response)
             {
-                case "succesfully added":                  
+                case "succesfully added":
+                    product.ImageGuid = name;
                     ProductResponse succesfulResponse = await _productsService.UpdateProductById(product);
-                    return PartialView("_OneProduct", succesfulResponse.ToProductUpdateReq());                   
+                    return PartialView("_OneProduct", succesfulResponse.ToProductUpdateReq());
                 case "Extention must be jpg":
                     return Json(response);
                 default:
@@ -160,10 +107,10 @@ namespace Admin.Controllers
                     product.ImageGuid = oldGuid;
                     ProductResponse updatedProduct = await _productsService.UpdateProductById(product);
                     return PartialView("_OneProduct", updatedProduct.ToProductUpdateReq());
-                    
+
             }
 
-           
+
         }
 
         [HttpPost]
@@ -194,18 +141,21 @@ namespace Admin.Controllers
         public async Task<IActionResult> AddProduct(ProductAddRequest product)
         {
             string s = string.Empty;
-            
-            if(IsAjaxRequest(Request))
+
+            if (IsAjaxRequest(Request))
             {
                 var rootPath = _webhost.WebRootPath;
-                string response =await product.SaveImage(rootPath);
+                //string response =await product.SaveImage(rootPath);
+                var name = Guid.NewGuid();
+                string response = await _cloudStorage.UploadProImgAsync(product.ImgFile, name.ToString().ToUpper());
 
                 switch (response)
                 {
                     //default:
                     //    return list;
                     case "succesfully added":
-                         await _productsService.AddNewProduct(product);
+                        product.ImageGuid = name;
+                        await _productsService.AddNewProduct(product);
                         break;
                     case "Extention must be jpg":
                         break;
